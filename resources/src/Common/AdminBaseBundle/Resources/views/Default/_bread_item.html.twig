@@ -1,0 +1,6 @@
+{% if last==true %}
+<li >{{ name }}</li>
+{% else %}
+    <li ><a href="{{ url }}">{{ name }}</a></li>
+    <i class="fa fa-chevron-right"></i>
+{% endif %}

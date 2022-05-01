@@ -1,0 +1,108 @@
+<div class="col-md-3 product-item   ">
+
+
+    <div class="row">
+
+        <div class=" col-xs-12    {# {% if related==false %}pd0{% endif %}#} ">
+
+            <div class="row product-item-row">   <div class="col-xs-12 product-item-div " >
+                    {% set tarifavalue = product.producto.TarifaValue(tarifa) %}
+                    {% set disc_t = product.producto.promocionType(tarifa) %}
+                    {% if disc_t==1 or disc_t==2 %}
+
+
+
+                        <img class=" left-promo" src="{{asset("bundles/adminbundle/css/images/sup-promo.png")  }}">
+                    {% endif %}
+                    {% if disc_t==2 %}
+                        <img class=" right-promo  " src="{{asset("bundles/adminbundle/css/images/dto.png")  }}">
+
+                    {% endif %}
+
+
+
+                    {% set img = product.PrincipalImage %}
+{% set ran = img.Random %}
+                    {% set img = (img.webpath('medium')) %}
+
+                    <a href="{{ url('producto_view_item',{id:product.id}) }}"  {% if product.images|length==0 %}
+
+                    {% endif %}
+                            ><img class="profile-user-img img-responsive" src="{{ base_dir~ img }}{#{ (('uploads/images/'~ img)| imagine_filter('thumb_200x150')) |raw }}#}?{{ ran  }}" alt=""
+
+                                >
+                    </a>
+
+                </div>
+            </div>
+            <div class="row" >
+                <div class="col-xs-12 title">
+
+
+                    {% if  product.producto!=null %}
+                        {{  product.producto.nombre }}
+                    {% endif %}
+                </div></div>
+            <div class="row product-number">
+                <div class="col-xs-6">
+                    {% trans %}product.id{% endtrans %}:
+                </div>
+                <div class="col-xs-6">
+                    {{product.producto.id}}
+                </div>
+
+
+            </div>
+            <div class="row price">
+                {% set tarifavalue = product.producto.TarifaValue(tarifa) %}
+                {% set disc_t= product.producto.getDiscount(tarifavalue,1) %}
+                {% if disc_t==0 %}
+                <div class="col-xs-1 col-sm-4 pdleft">
+                    {%else%}
+                    <div class="col-xs-2 col-sm-2 pdleft">
+                        {%endif%}
+                        {% trans %} price.amount{% endtrans %}:
+                    </div>
+
+
+                    {% if disc_t==0 %}
+                    <div class="col-xs-9 col-sm-6 final pdleft">
+
+
+
+                        {% else %}
+
+                        <div class="col-xs-2 col-sm-2 disc pdleft product-discount">
+
+                            {{ tarifavalue.pvp|number_format(3,',','.') }}€
+                        </div>
+                        <div class="col-xs-3 col-sm-3 pdleft ">
+                            <div class="row pd0 mrg-0" style="padding: 0;">
+                                <div class="col-xs-6 pd0" style="padding: 0; ">
+                                    {% trans %} price.amount.abs{% endtrans %}
+                                </div>
+                                <div class="col-xs-6 pd0" style="padding: 0;text-align: center">
+                                    {{disc_t|number_format(0) }}%
+                                </div></div></div>
+                        <div class="col-xs-3 col-sm-3 final pdleft">
+                            {% endif %}
+
+                            {{product.baseprice( tarifa,1)|number_format(3,',','.') }}€
+                        </div>
+                        <div class="col-xs-1 col-sm-2 iva pdleft">+IVA</div>
+
+                    </div>
+
+                    {% if simple==false %}
+                        <div class="row edit-button" >
+
+                            <div class="col-xs-12">
+                                <button onclick="DoAddtoCart({{ product.id }},1,'{{ product.producto.nombre }}')" class="btn btn-primary btn-block"><b>{% trans %}cart.addto{% endtrans %}</b></button>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                </div></div>
+
+
+        </div>

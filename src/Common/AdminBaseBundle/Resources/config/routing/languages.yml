@@ -1,0 +1,33 @@
+languages:
+    path:     /
+    defaults: { _controller: "CommonAdminBaseBundle:Languages:index" }
+
+languages_show:
+    path:     /{id}/show
+    defaults: { _controller: "CommonAdminBaseBundle:Languages:show" }
+
+languages_new:
+    path:     /new
+    defaults: { _controller: "CommonAdminBaseBundle:Languages:new" }
+
+languages_create:
+    path:     /create
+    defaults: { _controller: "CommonAdminBaseBundle:Languages:create" }
+    methods:  POST
+
+languages_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "CommonAdminBaseBundle:Languages:edit" }
+
+languages_update:
+    path:     /{id}/update
+    defaults: { _controller: "CommonAdminBaseBundle:Languages:update" }
+    methods:  [POST, PUT]
+
+languages_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "CommonAdminBaseBundle:Languages:delete" }
+    methods:  [POST, DELETE]
+language_nav:
+     defaults: { _controller: CommonAdminBaseBundle:Languages:langNav }
+     path: /lang_nav

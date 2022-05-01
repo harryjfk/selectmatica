@@ -1,0 +1,40 @@
+
+    <a href="#" class="dropdown-toggle non-ajax" data-toggle="dropdown">
+        <img src="{{ base_dir~app.user.path }}" class="user-image" alt="User Image">
+        <span class="hidden-xs"> {{ app.user.nombre }}</span>
+    </a>
+    <ul class="dropdown-menu">
+        <!-- User image -->
+        <li class="user-header">
+            <img src="{{ base_dir~app.user.path }}" class="img-circle" alt="User Image">
+
+            <p>
+                {{ app.user.nombreCompleto }}
+                <small>{% trans  with {'%date%': app.user.creado|date('d-m-Y')} %}member.since{% endtrans %}  </small>
+            </p>
+        </li>
+        <!-- Menu Body -->
+
+        <!-- Menu Footer-->
+        <li class="user-footer">
+            {% if app.user.impersonateUser!=null %}
+            <div style="margin-bottom: 40px">
+            <div class="pull-left">
+                {{ app.user.impersonateUser.nombre }}
+            </div>
+            <div class="pull-right">
+                {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+
+                    <a href="{{ path('store_homepage', {_switch_user: '_exit'}) }}"  class="non-ajax btn btn-danger btn-flat">{% trans %}user.control.exit{% endtrans %}</a>
+                {% endif %}
+                </div>
+            </div>  {% endif %}
+            <div class="pull-left">
+                <a href="{{ url('seguridad_view',{'id':app.user.id}) }}" onclick="$('nav .user-menu').attr('class','dropdown user user-menu');" class="btn btn-default btn-flat">{% trans %}profile{% endtrans %}</a>
+            </div>
+            <div class="pull-right">
+
+                <a  href="{{ url('seguridad_logout') }}" class="non-ajax btn btn-danger btn-flat">{% trans %}user.logout{% endtrans %}</a>
+            </div>
+        </li>
+    </ul>

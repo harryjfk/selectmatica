@@ -1,0 +1,110 @@
+{% if app.user.isComercial %}
+
+    <li class="header"><a href="{{ url('seguridad_control') }}"><i
+                    class="fa fa-circle-o"></i>{% trans %}user.control{% endtrans %}</a></li>
+
+
+    {% else %}
+
+
+        <li class="header">{% trans %}categories.name{% endtrans %}</li>
+
+        {% for category in categoryTree %}
+            <li>
+                {% if (category.length ==0 and data['section']==true)or(category.length ==1 and data['family']==true)or(category.length ==2 and data['subfamily']==true) %}
+                    <a href="{{ url('category_prods', { 'id': category.id }) }}"><i
+                                class="fa fa-object-group"></i>  {{ category.name }}  {% if category.childs.count>0 %} <i
+                                class="fa fa-angle-left pull-right"></i>{% endif %}</a>
+                {% endif %}
+                {% if category.childs.count>0 %}
+                    <ul class="treeview-menu">
+                        {% for category1 in category.childs %}
+                            {% if category1.childs|length>0 %}
+
+
+                                <li>
+                                    {% if (category1.length ==1 and data['family']==true)or(category1.length ==2 and data['subfamily']==true) %}
+                                        <a href="{{ url('category_prods', { 'id': category1.id }) }}"><i
+                                                    class="fa  fa-pie-chart"></i>{{ category1.name }}<i
+                                                    class="fa fa-angle-left pull-right "></i></a>
+                                    {% endif %}
+                                    <ul class="treeview-menu">
+                                        {% for category2 in category1.childs %}
+                                            {% if (category2.length ==2 and data['subfamily']==true) %}
+                                                <li><a href="{{ url('category_prods', { 'id': category2.id }) }}"><i
+                                                                class="fa fa-object-ungroup"></i>{{ category2.name }}</a></li>
+                                            {% endif %}   {% endfor %}
+
+                                    </ul>
+                                </li>
+
+
+                            {% else %}
+                                {% if (category1.length ==1 and data['family']==true)or(category1.length ==2 and data['subfamily']==true) %}
+                                    <li><a href="{{ url('category_prods', { 'id': category1.id }) }}"><i
+                                                    class="fa fa-circle-o"></i>{{ category1.name }}</a></li>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+            </li>
+        {% endfor %}
+        {% set user =app.user.ImpersonateUser==null? app.user: app.user.ImpersonateUser  %}
+
+        {% if user.esadmin   %}
+
+            <li class=""><a href="#" class="non-ajax"><i class="fa fa-circle-o"></i> {% trans %}
+                    admin.title{% endtrans %}   <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li class="header"><a href="{{ url('category_list') }}">{% trans %}categories.edit{% endtrans %}</a>
+                    </li>
+                    <li class="header"><a href="{{ url('producto_list') }}">{% trans %}products.edit{% endtrans %}</a>
+                    </li>
+          <li class="header"><a href="{{ url('cart_list') }}">{% trans %}cart.edit.view{% endtrans %}</a>  </li>
+                    <li class="header" ><a href="{{ url('cart_graph',{'profile':'false'})  }}" > {% trans %}
+                            cart.graph{% endtrans %}  </a>
+               {#     <ul class="treeview-menu">
+
+
+                        <li class="header"><a href="{{ url('cart_graph',{'profile':'2'})  }}">{% trans %}cart.graph.sales{% endtrans %}</a>
+                        </li>
+                        <li class="header"><a href="{{ url('cart_graph',{'profile':'3'})  }}">{% trans %}cart.graph.section{% endtrans %}</a>
+                        </li>
+                        <li class="header"><a href="{{ url('cart_graph',{'profile':'4'})  }}">{% trans %}cart.graph.family{% endtrans %}</a>
+                        </li>
+                        <li class="header"><a href="{{ url('cart_graph',{'profile':'5'})  }}">{% trans %}cart.graph.subfamily{% endtrans %}</a>
+                        </li>
+                        </ul>#}
+</li>
+                    <li class="header"><a href="{{ url('options_list',{view:true}) }}">{% trans %}options.edit{% endtrans %}</a>
+                    </li>
+                    <li class="header"><a href="{{ url('languages') }}">{% trans %}languages.edit{% endtrans %}</a>
+                    </li>
+                    <li class="header"><a href="{{ url('facturas') }}">{% trans %}bill.edit{% endtrans %}</a>
+                    </li>
+                    <li class="header"><a href="{{ url('seguridad_list_users') }}">{% trans %}
+                            users.edit{% endtrans %}</a></li>
+                    <li class="header"><a href="{{ url('grupo') }}">{% trans %}userlist.edit{% endtrans %}</a></li>
+                    <li class="header"><a href="{{ url('api') }}"><i
+                                    class="fa fa-circle-o"></i>{% trans %}user.api{% endtrans %}</a></li>
+
+                    <li class="header">   {% include "@StoreStore/Producto/_syncronize.html.twig" %}</li>
+                </ul>
+            </li>
+
+        {% endif %}
+
+{% endif %}
+
+
+   {#
+<style>
+    @media (min-width: 768px){
+    .content-wrapper {
+
+        min-height:800px !important;
+    }};
+</style>
+#}

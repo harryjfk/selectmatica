@@ -1,0 +1,160 @@
+.list-actions li
+{
+    display: inline-block;
+}
+
+
+.thumbnail {
+    line-height: 0;
+    display: inline-block;
+    border: solid 0.4em #FFF;
+    max-width: 100%;
+    box-shadow: 0 0 2px 1px rgba(50, 50, 50, 0.2);
+    transition: all 200ms ease-out
+}
+
+.thumbnail:hover {
+    opacity: 0.9;
+    box-shadow: 0 0 2px 1px rgba(59, 103, 136, 0.4)
+}
+
+.thumbnail img {
+    max-width: 100%;
+width: 125px;
+}
+
+
+
+.thumbnail-actions {
+    position: absolute;
+    overflow: hidden;
+    z-index: 100;
+    bottom: 0.8em;
+    right: 0.8em
+}
+
+.thumbnail-actions li {
+    margin: 0
+}
+
+.thumbnail-actions a {
+    padding: 0.4em;
+    background: rgba(255, 255, 255, 0.7);
+    color: #323232
+}
+
+.thumbnail-actions a:hover {
+    background: #3b6788;
+    color: #FFF;
+    text-decoration: none
+}
+
+
+.thumbnail-group {
+    overflow: hidden;
+    width: auto;
+    padding-top: 0.4em;
+    margin-bottom: 1.6em
+}
+
+.thumbnail-group li {
+    display: inline-block;
+    margin: 0 0.8em 0.8em 0;
+    position: relative
+}
+.thumbnail-group li a{margin: 0;}
+.fade-in {
+    -webkit-animation-name: fade-in;
+    animation-name: fade-in
+}
+
+.thumbnail:after {
+    content: " ";
+    display: block;
+    clear: both
+}
+
+.thumbnails li:first-child
+{
+padding: 0;
+}
+
+.thumbnail-principal {
+    display: block;
+    padding: 0.8em;
+   position: relative;
+    background: rgba(50, 50, 50, 0.5);
+    color: #FFF;
+    margin: -12% auto 0;
+    top: 10px;
+    width: 70%;
+
+
+}
+
+.products-search
+{
+    margin-left:0px;
+    margin-right: 0px;
+}
+
+.product .view img {
+    width: 100%;
+    padding-left: 5%;
+    padding-top: 5%;
+}
+.pd0
+{
+    /*padding: 0;*/
+}
+
+
+.cart > .row
+{
+    margin: 10px;
+}
+.cart > .row:first-child
+{
+    font-weight: bold;
+    text-align: center;
+}
+
+.cart > .cart-total .cart-button
+{
+    text-align: right;
+}
+.cart  .cart-total:first-child
+{
+    text-align: left;
+}
+.cart  img
+{
+    width:50%;
+}
+.cart > .cart-total p
+{
+    float: right;
+    padding-right: 30%;
+}
+.product-item
+{
+ height:300px;
+}
+.total_text
+{
+    text-align: center;
+}
+.main-header .navbar .nav>li>a>.label
+{
+    font-size: 12px !important;
+}
+.thumbnail .caption span
+{
+    display: none;
+}
+.empty-page {
+    background: rgba(255, 255, 255, 0.5);
+    text-align: center;
+    padding: 6.2em;
+   /* margin: 1.6em 0 3.2em;*/
+}

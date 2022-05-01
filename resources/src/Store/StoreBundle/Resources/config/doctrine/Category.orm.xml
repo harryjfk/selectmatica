@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Store\StoreBundle\Entity\Category" table="category"  repository-class="Store\StoreBundle\Repository\CategoryRepository">
+    <indexes>
+      <index name="fk_parent" columns="idparent"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="name" type="string" column="name" length="50" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+      <field name="sessionid" type="integer" column="sessionid" length="50" nullable="false">
+      <options>
+          <option name="fixed"/>
+      </options>
+      </field>
+      <field name="image" type="string" column="image" length="255" nullable="false">
+          <options>
+              <option name="fixed"/>
+          </options>
+      </field>
+      <field name="id_src" type="string" column="id_src" length="255" nullable="false">
+          <options>
+              <option name="fixed"/>
+          </options>
+      </field>
+      <field name="type_src" type="integer" column="type_src" length="50" nullable="false">
+          <options>
+              <option name="fixed"/>
+          </options>
+      </field>
+      <one-to-many target-entity="Category" mapped-by="idparent" field="Childs" >
+
+      </one-to-many>
+      <one-to-many target-entity="Producto" mapped-by="idcategory" field="Productos" >
+
+      </one-to-many>
+    <many-to-one field="idparent" target-entity="Category" fetch="LAZY">
+      <join-columns>
+        <join-column name="idparent" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

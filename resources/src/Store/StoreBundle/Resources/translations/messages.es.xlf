@@ -1,0 +1,540 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+
+            <trans-unit id="2">
+               <source>cart.emptyit</source>
+               <target>Vaciar carrito</target>
+            </trans-unit>
+            <trans-unit id="3">
+               <source>categories.name</source>
+               <target>Categorías</target>
+            </trans-unit>
+            <trans-unit id="4">
+               <source>category.list</source>
+               <target>Lista de categorías</target>
+            </trans-unit>
+            <trans-unit id="5">
+               <source>category.name</source>
+               <target>Categoría</target>
+            </trans-unit>
+            <trans-unit id="6">
+               <source>actions.label</source>
+               <target>Acciones</target>
+            </trans-unit>
+            <trans-unit id="7">
+               <source>category.sync</source>
+               <target>Sincronizar categorías</target>
+            </trans-unit>
+
+            <trans-unit id="9">
+               <source>entity.edit</source>
+               <target>Editar</target>
+            </trans-unit>
+            <trans-unit id="10">
+               <source>actions.submit</source>
+               <target>Guardar</target>
+            </trans-unit>
+            <trans-unit id="11">
+               <source>actions.cancel</source>
+               <target>Cancelar</target>
+            </trans-unit>
+            <trans-unit id="12">
+               <source>product.edit</source>
+               <target>Editar</target>
+            </trans-unit>
+            <trans-unit id="13">
+               <source>product.name</source>
+               <target>Producto</target>
+            </trans-unit>
+            <trans-unit id="14">
+               <source>product.list</source>
+               <target>Lista de producto</target>
+            </trans-unit>
+            <trans-unit id="15">
+               <source>product.sync</source>
+               <target>Sincronizar</target>
+            </trans-unit>
+            <trans-unit id="16">
+               <source>price.amount</source>
+               <target>Precio</target>
+            </trans-unit>
+            <trans-unit id="1">
+               <source>product.id</source>
+               <target>Código</target>
+            </trans-unit>
+            <trans-unit id="8">
+               <source>price.before</source>
+               <target>Precio Anterior</target>
+            </trans-unit>
+            <trans-unit id="17">
+               <source>cart.products.count</source>
+               <target>Cantidad de productos </target>
+            </trans-unit>
+            <trans-unit id="18">
+               <source>cart.empty</source>
+               <target>Carrito Vacío</target>
+            </trans-unit>
+            <trans-unit id="19">
+               <source>cart.view</source>
+               <target>Ver Carrito</target>
+            </trans-unit>
+            <trans-unit id="20">
+               <source>cart.addto</source>
+               <target>Añadir a carrito</target>
+            </trans-unit>
+            <trans-unit id="21">
+               <source>cart.name</source>
+               <target>Carrito</target>
+            </trans-unit>
+            <trans-unit id="22">
+               <source>cart.amount</source>
+               <target>Cantidad</target>
+            </trans-unit>
+            <trans-unit id="23">
+               <source>categories.edit</source>
+               <target>Administrar Categorías</target>
+            </trans-unit>
+            <trans-unit id="24">
+               <source>products.edit</source>
+               <target>Administrar Productos</target>
+            </trans-unit>
+            <trans-unit id="25">
+               <source>navigation.showing</source>
+               <target>Mostrando</target>
+            </trans-unit>
+            <trans-unit id="26">
+               <source>navigation.to</source>
+               <target>Hasta</target>
+            </trans-unit>
+            <trans-unit id="27">
+               <source>navigation.of</source>
+               <target>De</target>
+            </trans-unit>
+           <trans-unit id="28">
+               <source>navigation.entries</source>
+               <target>Entradas</target>
+            </trans-unit>
+           <trans-unit id="29">
+               <source>navigation.search</source>
+               <target>Buscar</target>
+            </trans-unit>
+           <trans-unit id="30">
+               <source>navigation.show</source>
+               <target>Mostrar</target>
+            </trans-unit>
+
+           <trans-unit id="32">
+               <source>images.names</source>
+               <target>Imagenes</target>
+            </trans-unit>
+           <trans-unit id="33">
+               <source>images.list</source>
+               <target>Todas</target>
+            </trans-unit>
+           <trans-unit id="34">
+               <source>image.name</source>
+               <target>Imagen</target>
+            </trans-unit>
+           <trans-unit id="35">
+               <source>cart.total</source>
+               <target>Total</target>
+            </trans-unit>
+           <trans-unit id="36">
+               <source>cart.end</source>
+               <target>Finalizar</target>
+            </trans-unit>
+           <trans-unit id="37">
+               <source>product.description</source>
+               <target>Descripción</target>
+            </trans-unit>
+            <trans-unit id="38">
+               <source>cart.empty.long</source>
+               <target>Tu Carrito esta vacío</target>
+            </trans-unit>
+            <trans-unit id="39">
+               <source>cart.continue</source>
+               <target>Seguir comprando</target>
+            </trans-unit>
+            <trans-unit id="40">
+               <source>file.uploading</source>
+               <target>Cargando....</target>
+            </trans-unit>
+
+            <trans-unit id="48">
+               <source>product.byamount</source>
+               <target>Precio por cantidad</target>
+            </trans-unit>
+
+            <trans-unit id="52">
+               <source>upload.text</source>
+               <target>Formato JPG, PNG o GIF de un máximo 20 MB</target>
+            </trans-unit>
+
+          <trans-unit id="62">
+               <source>search</source>
+               <target>Buscar</target>
+            </trans-unit>
+
+          <trans-unit id="63">
+               <source>cart.list</source>
+               <target>Listado de ordenes</target>
+            </trans-unit>
+          <trans-unit id="64">
+               <source>cart.pdf</source>
+               <target>Exportar a PDF</target>
+            </trans-unit>
+          <trans-unit id="65">
+               <source>price.gift</source>
+               <target>Regalo</target>
+            </trans-unit>
+          <trans-unit id="66">
+               <source>price.discount.from</source>
+               <target>Desde</target>
+            </trans-unit>
+          <trans-unit id="67">
+               <source>price.discount.to</source>
+               <target>Hasta</target>
+            </trans-unit>
+          <trans-unit id="68">
+               <source>price.discount</source>
+               <target>Descuento</target>
+            </trans-unit>
+          <trans-unit id="69">
+               <source>start</source>
+               <target>Inicio</target>
+            </trans-unit>
+          <trans-unit id="70">
+               <source>products.related</source>
+               <target>Productos relacionados</target>
+            </trans-unit>
+          <trans-unit id="71">
+               <source>products.observation</source>
+               <target>Observaciones</target>
+            </trans-unit>
+          <trans-unit id="72">
+               <source>total.gift</source>
+               <target>Total de regalos</target>
+            </trans-unit>
+          <trans-unit id="73">
+               <source>total.amount</source>
+               <target>Cantidad total</target>
+            </trans-unit>
+          <trans-unit id="74">
+               <source>cart.reducedprice</source>
+               <target>Precio final</target>
+            </trans-unit>
+          <trans-unit id="75">
+               <source>cart.observations</source>
+               <target>Observaciones</target>
+            </trans-unit>
+          <trans-unit id="76">
+               <source>cart.thanks</source>
+               <target>¡GRACIAS POR SU COMPRA!</target>
+            </trans-unit>
+          <trans-unit id="77">
+               <source>cart.thanks.message</source>
+              <target>En breve recibirá un mensaje en su correo electrónico con los datos del pedido. </target>
+            </trans-unit>
+          <trans-unit id="78">
+               <source>cart.id</source>
+               <target>No.</target>
+            </trans-unit>
+          <trans-unit id="79">
+               <source>cart.user</source>
+               <target>Usuario</target>
+            </trans-unit>
+          <trans-unit id="80">
+               <source>cart.date</source>
+               <target>Creado</target>
+            </trans-unit>
+         <trans-unit id="81">
+               <source>cart.order.view</source>
+               <target>Ver Orden</target>
+            </trans-unit>
+         <trans-unit id="82">
+               <source>order.details</source>
+               <target>Detalles</target>
+            </trans-unit>
+         <trans-unit id="83">
+               <source>order.mailsend</source>
+               <target>Se ha enviado un correo con el pedido</target>
+            </trans-unit>
+         <trans-unit id="84">
+               <source>cart.status</source>
+               <target>Estado</target>
+            </trans-unit>
+         <trans-unit id="85">
+               <source>cart.status.closed</source>
+               <target>Cerrado</target>
+            </trans-unit>
+         <trans-unit id="86">
+               <source>cart.status.open</source>
+               <target>Abierto</target>
+            </trans-unit>
+         <trans-unit id="87">
+               <source>cart.payment</source>
+               <target>Información de pago</target>
+            </trans-unit>
+         <trans-unit id="88">
+               <source>cart.customer.info</source>
+               <target>Información del cliente</target>
+            </trans-unit>
+         <trans-unit id="89">
+               <source>cart.customer.name</source>
+               <target>Nombre</target>
+            </trans-unit>
+         <trans-unit id="90">
+               <source>cart.customer.mail</source>
+               <target>Correo electronico</target>
+            </trans-unit>
+         <trans-unit id="91">
+               <source>bill.edit</source>
+               <target>Administrar Facturas</target>
+            </trans-unit>
+         <trans-unit id="92">
+               <source>bill.list</source>
+               <target>Lista de facturas</target>
+            </trans-unit>
+         <trans-unit id="93">
+               <source>bill.serie</source>
+               <target>Serie</target>
+            </trans-unit>
+         <trans-unit id="94">
+               <source>bill.ano</source>
+               <target>Año</target>
+            </trans-unit>
+         <trans-unit id="95">
+               <source>bill.numero</source>
+               <target>Número</target>
+            </trans-unit>
+         <trans-unit id="96">
+               <source>bill.importe</source>
+               <target>Importe</target>
+            </trans-unit>
+         <trans-unit id="97">
+               <source>bill.file</source>
+               <target>Archivo</target>
+            </trans-unit>
+         <trans-unit id="98">
+               <source>cart.customer.id</source>
+               <target>ID</target>
+            </trans-unit>
+         <trans-unit id="99">
+               <source>order.mailsenderror</source>
+               <target>The mail with the order can't be sent, Message:</target>
+            </trans-unit>
+         <trans-unit id="100">
+               <source>order.mail.send</source>
+               <target>Una orden se ha creado</target>
+            </trans-unit>
+         <trans-unit id="101">
+               <source>bill.file.ext</source>
+               <target>El archivos a subir debe ser PDF</target>
+            </trans-unit>
+         <trans-unit id="102">
+               <source>product.primary.show</source>
+               <target>Mostrar en pantalla principal</target>
+            </trans-unit>
+         <trans-unit id="103">
+               <source>product.primary.text</source>
+               <target>Productos destacados</target>
+            </trans-unit>
+         <trans-unit id="104">
+               <source>product.synchronizing</source>
+               <target>Sincronizando</target>
+            </trans-unit>
+         <trans-unit id="105">
+               <source>product.sync.done</source>
+               <target>Sincronización Terminada</target>
+            </trans-unit>
+         <trans-unit id="106">
+               <source>product.sync.error</source>
+               <target>Error Sincronizando</target>
+            </trans-unit>
+         <trans-unit id="107">
+               <source>product.sync.found</source>
+               <target>Se encontraron %count% productos </target>
+            </trans-unit>
+         <trans-unit id="108">
+               <source>product.sync.init</source>
+               <target>Inicializando</target>
+            </trans-unit>
+         <trans-unit id="109">
+               <source>product.sync.category</source>
+               <target>Categoría: '%count%' se ha sincronizado</target>
+            </trans-unit>
+         <trans-unit id="110">
+               <source>product.sync.products</source>
+               <target>Producto: '%count%' se ha sincronizado</target>
+            </trans-unit>
+         <trans-unit id="111">
+               <source>product.sync.end</source>
+               <target>la sincronización ha terminado con %prods% productos y  %cat% categorias </target>
+            </trans-unit>
+    <trans-unit id="112">
+               <source>product.search</source>
+               <target>Resultados de busqueda de productos</target>
+            </trans-unit>
+          <trans-unit id="113">
+                <source>product.search.byprice</source>
+               <target>Busqueda por Precio</target>
+            </trans-unit>
+     <trans-unit id="114">
+                <source>product.search.msg</source>
+                <target>Por favor, verifique los filtros</target>
+             </trans-unit>
+          <trans-unit id="115">
+               <source>product.car.added</source>
+               <target>Añadió %cant% de %prods%  </target>
+            </trans-unit>
+           <trans-unit id="116">
+              <source>user.api</source>
+              <target>Usando el Api </target>
+           </trans-unit>
+           <trans-unit id="117">
+              <source>user.api.explication</source>
+               <target>Explicación </target>
+           </trans-unit>
+           <trans-unit id="118">
+              <source>user.api.example</source>
+               <target>Ejemplo </target>
+           </trans-unit>
+           <trans-unit id="119">
+              <source>user.api.exp1</source>
+               <target> Para poder utilizar esta funcionalidad es necesario insertar en la web de destino un iframe que apunte a la dirección de la tienda web y además añadir la cadena string /frame, ejemplo: http://localhost:8080/store/web/frame,  al hacer esto en esta parte de la pantalla se mostraran los productos definidos a mostrarse en la webs amigas, de la misma forma que se muestran en la tienda.
+                </target>
+           </trans-unit>
+           <trans-unit id="120">
+              <source>user.api.exp2</source>
+               <target>    Al hacer click en un producto llevara al usuario a la pagina de este producto, si el usuario no tiene iniciado sesión, deberá primero iniciar sesión para poder acceder a esta información. De todas maneras puede ver el archivo api.php dentro de la carpeta web que posee el ejemplo de uso de la api.
+                             </target>
+  </trans-unit>
+            <trans-unit id="121">
+               <source>product.sync.progress</source>
+               <target>Progreso</target>
+            </trans-unit>
+            <trans-unit id="122">
+               <source>product.sync.log</source>
+               <target>Registro</target>
+            </trans-unit>
+            <trans-unit id="123">
+               <source>cart.totaliva</source>
+               <target>Total / IVA</target>
+            </trans-unit>
+          <trans-unit id="124">
+               <source>cart.nocliente</source>
+               <target>No Orden Cliente</target>
+            </trans-unit>
+         <trans-unit id="125">
+               <source>sales.name</source>
+               <target>Nombre del Vendedor</target>
+            </trans-unit>
+         <trans-unit id="126">
+               <source>series.name</source>
+               <target>Nombre de serie</target>
+            </trans-unit>
+            <trans-unit id="127">
+               <source>cart.send.error</source>
+               <target>Error enviando el pedido. Por favor consulte con el proveedor del sistema</target>
+            </trans-unit>
+          <trans-unit id="128">
+               <source>product.related.cant</source>
+               <target>Cantidad de productos relacionados</target>
+            </trans-unit>
+           <trans-unit id="129">
+               <source>cart.subtotal</source>
+               <target>SubTotal</target>
+            </trans-unit>
+           <trans-unit id="130">
+               <source>price.amount.abs</source>
+               <target>Dto</target>
+            </trans-unit>
+       <trans-unit id="131">
+               <source>cart.recharge.name</source>
+               <target>% de Recargo</target>
+            </trans-unit>
+       <trans-unit id="132">
+               <source>store.name</source>
+               <target>Nombre</target>
+            </trans-unit>
+       <trans-unit id="133">
+               <source>store.picture</source>
+               <target>Imágen</target>
+            </trans-unit>
+       <trans-unit id="134">
+               <source>store.resp</source>
+               <target>Responsable</target>
+            </trans-unit>
+       <trans-unit id="135">
+               <source>store.cif</source>
+               <target>CIF</target>
+            </trans-unit>
+       <trans-unit id="136">
+               <source>store.resp1</source>
+               <target>2do Responsable</target>
+            </trans-unit>
+       <trans-unit id="137">
+               <source>store.address</source>
+               <target>Dirección</target>
+            </trans-unit>
+       <trans-unit id="138">
+               <source>store.phone</source>
+               <target>Teléfono</target>
+            </trans-unit>
+       <trans-unit id="139">
+               <source>store.mail</source>
+               <target>E-Mail</target>
+            </trans-unit>
+       <trans-unit id="140">
+               <source>cart.graph</source>
+               <target>Gráficos</target>
+            </trans-unit>
+       <trans-unit id="141">
+               <source>cart.graph.sales</source>
+               <target>Gráfico de Ventas</target>
+            </trans-unit>
+       <trans-unit id="142">
+               <source>cart.graph.section</source>
+               <target>Gráfico de Sección</target>
+            </trans-unit>
+       <trans-unit id="143">
+               <source>cart.graph.family</source>
+               <target>Gráfico de Familia</target>
+            </trans-unit>
+       <trans-unit id="144">
+               <source>cart.graph.subfamily</source>
+               <target>Gráfico de SubFamilia</target>
+            </trans-unit>
+       <trans-unit id="145">
+               <source>cart.graph.buy</source>
+               <target>Gráfico de Compras</target>
+            </trans-unit>
+     <trans-unit id="146">
+               <source>cart.graph.from</source>
+               <target>Desde</target>
+            </trans-unit>
+       <trans-unit id="147">
+               <source>cart.graph.to</source>
+               <target>Hasta</target>
+            </trans-unit>
+      <trans-unit id="148">
+               <source>store.mail.text</source>
+               <target>Texto del Correo</target>
+            </trans-unit>
+       <trans-unit id="149">
+               <source>product.section</source>
+               <target>Sección</target>
+            </trans-unit>
+       <trans-unit id="150">
+               <source>product.family</source>
+               <target>Familia</target>
+            </trans-unit>
+       <trans-unit id="151">
+               <source>product.subfamily</source>
+               <target>SubFamilia</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

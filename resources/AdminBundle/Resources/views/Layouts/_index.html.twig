@@ -1,0 +1,22 @@
+{% extends "StoreAdminBundle:Layouts:layout.html.twig" %}
+{% block mod_name %}Producto list{% endblock %}
+{% block innerbody %}
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                {% block headers %}
+            {% endblock headers %}
+            </tr>
+        </thead>
+        <tbody>
+          {% block tablecontent %}
+        {% endblock tablecontent %}
+        </tbody>
+    </table>
+
+        <ul>
+
+    </ul>
+    {% endblock %}

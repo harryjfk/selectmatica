@@ -1,0 +1,72 @@
+{% extends 'CommonAdminBaseBundle:Default:_list.html.twig' %}
+
+{% block breadcumb %}
+
+{% endblock %}
+
+ {% block title_block %}{% endblock %}
+
+  {% block form_action %}
+      {{ url('cart_list',{profile:true}) }}
+  {% endblock %}
+{% block delete_item %}''{% endblock %}
+{% block header_url %}'{{ url('cart_list',{profile:true}) }}' {% endblock %}
+{% block columns%}
+
+
+
+
+    <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+        aria-sort="ascending"
+        aria-label="Rendering engine: activate to sort column descending">{{ knp_pagination_sortable(entities,  'cart.id' , 'a.date') }}</th>
+
+       <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+        aria-sort="ascending"
+        aria-label="Rendering engine: activate to sort column descending">{{ knp_pagination_sortable(entities,  'cart.date' , 'a.date') }}</th>
+
+    <th>{% trans %} cart.total{% endtrans %} </th>
+    <th>IVA</th>
+    <th >
+        {% trans %} actions.label{% endtrans %}
+    </th>
+
+{% endblock columns%}
+{% block top_navigation %} {% endblock %}
+{% block list_content %}
+
+    {% for entity in entities %}
+        <tr id="rw{{ entity.id }}" class="odd">
+
+            <td class="sorting_1"><a href="{{ path('cart_view_item', { 'id': entity.id }) }}">
+                    {{ entity.clave }}
+                </a></td>
+
+
+            <td class="sorting_1"><a  href="{{ path('cart_view_item', { 'id': entity.id }) }}">
+                    {{ entity.date |date('d-m-Y') }}
+                </a></td>
+            <td class="sorting_1"><a  href="{{ path('cart_view_item', { 'id': entity.id }) }}">
+                    {{ entity.getTotalPrice(tarifa)|number_format(3,',','.')  }}€
+                </a></td>
+            <td class="sorting_1"><a  href="{{ path('cart_view_item', { 'id': entity.id }) }}">
+                    {{ entity.IvaPrice(tarifa)|number_format(3,',','.')  }}€
+                </a></td>
+            <td> <ul class="list-actions">
+                    <li>
+                        <a href="{{ path('cart_view_item', { 'id': entity.id }) }}"><img src="{{  asset('bundles/adminbundle/img/view.png')}}" /></a>
+                    </li>
+                    <li>
+                        <a class="non-ajax" target="_blank" href="{{ path('cart_view_pdf', { 'id': entity.id }) }}"><img src="{{  asset('bundles/adminbundle/img/PDF.png')}}" /></a>
+                    </li>
+                    {#      <li>
+                               <a aria-controls="gridview" href="{{ path('producto_delete', { 'id': entity.id }) }}"> <span class="glyphicon glyphicon-remove"></span></a>
+                           </li>#}
+                </ul></td>
+        </tr>
+
+        <script>
+            assign_event('.content-wrapper',null,'.content-wrapper a');
+        </script>
+    {% endfor %}
+
+{% endblock %}

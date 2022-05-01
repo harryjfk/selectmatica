@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Store\RestBundle\Entity\TiposIva" table="tipos-iva">
+      <id name="id" type="string" column="id"  >
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </id>
+      <field name="descripcion" type="string" column="descripcion"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="porcentajeIVA" type="float" column="porcentajeIVA"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="porcentajeRE" type="float" column="porcentajeRE"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="aplicaRetencion" type="boolean" column="aplicaRetencion"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <one-to-many target-entity="Store\RestBundle\Entity\Articulos" mapped-by="idTipoIVA" field="Articulos" >
+      </one-to-many>
+  </entity>
+</doctrine-mapping>

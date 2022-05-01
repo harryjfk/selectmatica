@@ -1,0 +1,18 @@
+{% extends 'CommonAdminBaseBundle:Default:_edit.html.twig' %}
+{% block type_name %}
+  {% if isNew %}
+  {% trans %} entity.new  {% endtrans %}
+{% else %}
+    {% trans %} entity.edit  {% endtrans %}
+    {% endif %}
+{% endblock type_name %}
+{% block from_declare %}{{ form_start(form) }} {% endblock %}
+
+{% block form_body %}
+    {{ form_widget(form) }}
+{% endblock %}
+
+{% block cancel_ref %}{{ url('category_list') }}{% endblock %}
+{% block submit_url%}
+    '{{ url('category_edit',{'id':entity.id}) }}'
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends  app.request.isXmlHttpRequest ?'CommonAdminBaseBundle:Default:_ajax_layout.html.twig':'CommonAdminBaseBundle:Default:_layout.html.twig' %}
+ {% block breadcumb_child %}
+     {% include "@CommonAdminBase/Default/_bread_item.html.twig"  with {"last":true,"name":"product.primary.text"|trans} %}
+ {% endblock %}
+{% block title %}{% trans %}product.primary.text{% endtrans %}{% endblock %}
+ {% block content %}
+     <div class="row">
+         <div class="col-xs-12">
+     {% include "StoreStoreBundle:Producto:_product_list.html.twig" with {related:false}%}
+     </div></div>
+ {% endblock content %}

@@ -1,0 +1,43 @@
+<section class="sidebar">
+    <!-- Sidebar user panel -->
+
+    <!-- search form -->
+    <form id="search-form" name="search-form" class="sidebar-form">
+
+        <div class="input-group">
+            <input type="text" name="nombre" class="form-control" placeholder="{% trans %}search{% endtrans %}">
+              <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
+            <span class="input-group-btn">
+                <button id="more-search" type="button" name="search" class="btn btn-flat"><i class="fa  fa-search-plus"></i>
+                </button>
+              </span>
+
+        </div>
+        <div  id="price-group" class="input-group" style="margin-top: 10px;display: none;     width: 100%;">
+     <label style="color:#666; padding-left: 20%;">{% trans %}product.search.byprice{% endtrans %}</label>
+
+            <div>
+            <input id="range" type="text" name="range" value=""></div>
+        </div>
+    </form>
+    <!-- /.search form -->
+    <!-- sidebar menu: : style can be found in sidebar.less -->
+    <ul class="sidebar-menu">
+
+        {{ render(url('category_nav')) }}
+
+
+
+
+
+
+</ul>
+
+
+
+</section>
+
+<!-- /.sidebar -->

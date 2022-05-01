@@ -1,0 +1,31 @@
+{% extends "StoreAdminBundle:Layouts:layout.html.twig" %}
+{% block mod_name %}Producto{% endblock %}
+{% block innerbody %}
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Idproducto</th>
+                <td>{{ entity.idproducto }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('producto') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('producto_edit', { 'id': entity.id }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

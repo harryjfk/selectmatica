@@ -1,0 +1,54 @@
+{% extends 'CommonAdminBaseBundle:Default:_list.html.twig' %}
+{% block breadcumb_child %}
+    {% include 'CommonAdminBaseBundle:Default:_bread_item.html.twig' with {last:true,name:('options.list'|trans)} %}
+
+
+{% endblock %}
+{% block top_navigation %}
+{% endblock %}
+{% block title %}   {% trans %} options.list{% endtrans %}{% endblock %}
+{% block new_item %}{% endblock %}
+{% block delete_item %}''{% endblock %}
+ {% block additional_controls %}
+{% endblock %}
+{% block form_action %}{{ url('options_list',{view:'false'}) }}{% endblock %}
+{% block header_url %}
+    '{{ url('options_list',{view:'false'}) }}'
+{% endblock %}
+
+
+{% block columns%}
+
+
+    <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+        aria-sort="ascending"
+        aria-label="Rendering engine: activate to sort column descending">{% trans %}options.name{% endtrans %}</th>
+    <th >
+        {% trans %} actions.label{% endtrans %}
+    </th>
+
+{% endblock columns%}
+
+
+{% block list_content %}
+
+    {% for entity in entities %}
+        <tr role="row" class="odd">
+            <td class="sorting_1"><a href="{{ path('options_edit', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
+            <td> <ul class="list-actions">
+                    <li>
+                        <a href="{{ path('options_edit', { 'id': entity.id,'view':'false' }) }}"> <span class="glyphicon glyphicon-edit"></span></a>
+                    </li>
+                    {#      <li>
+                               <a aria-controls="gridview" href="{{ path('producto_delete', { 'id': entity.id }) }}"> <span class="glyphicon glyphicon-remove"></span></a>
+                           </li>#}
+                </ul></td>
+        </tr>
+
+    {% endfor %}
+
+{% endblock %}
+{% block list_footer %}
+    <th rowspan="1" colspan="1">{% trans %} options.name{% endtrans %}</th>
+    <th rowspan="1" colspan="1">  {% trans %} actions.label{% endtrans %}</th>
+{% endblock %}

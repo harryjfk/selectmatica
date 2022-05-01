@@ -1,0 +1,16 @@
+{% set lineObject = line.vars.data %}
+{% set producto = lineObject.idproducto %}
+
+
+
+<tr>
+    <td> {{ producto.producto.id }}</td>
+    <td> {{ producto.producto.nombre }}</td>
+    <td class="center">{{lineObject.cantidad }}</td>
+    <td class="center"> {% set tarifav = producto.producto.TarifaValue(tarifa)  %}
+        {{ tarifav.pvp|number_format(3,',','.') }}€ </td>
+    <td class="center">{{ producto.producto.getDiscountValue(tarifa,lineObject.cantidad,false)|number_format(3,',','.') }}€</td>
+
+    <td class="center"> {{ lineObject.FinalPrice(tarifa)|number_format(3,',','.') }}€</td>
+</tr>
+

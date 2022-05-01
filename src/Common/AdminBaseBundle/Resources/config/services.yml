@@ -1,0 +1,4 @@
+services:
+#    common_admin_base.example:
+#        class: Common\AdminBaseBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

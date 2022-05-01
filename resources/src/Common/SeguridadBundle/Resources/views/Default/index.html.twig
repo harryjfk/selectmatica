@@ -1,0 +1,98 @@
+{% extends  'CommonAdminBaseBundle:Default:_list.html.twig'  %}
+{% block breadcumb_child %}
+    <li>{% trans %} users.list{% endtrans %}</li>
+{% endblock %}
+{% block title  %} {% trans %}users.list{% endtrans %}{% endblock %}
+
+{% set paramsUrl = {itemid: app.request.get('itemid')} %}
+{% block header_url %}
+    '{{ url('seguridad_list_users') }}'
+{% endblock %}
+       {% block form_action %}
+{{ path('seguridad_list_users', paramsUrl) }}
+    {% endblock %}
+ {% block top_navigation %}
+
+{% endblock %}
+{% block columns%}
+        <tr>
+        <th style="width: 25px;">
+            <input type="checkbox" id="chkall" class="chkall" />
+        </th>
+        <th>{{ knp_pagination_sortable(entities, 'usuario' | trans({}, 'seguridad'), 'u.username', {'direction': 'desc'}) }}</th>
+        <th>{{ knp_pagination_sortable(entities, 'nombre' | trans({}, 'seguridad'), 'u.nombre', {'direction': 'desc'}) }}</th>
+        <th>{{ 'email' | trans({}, 'seguridad') }}</th>
+          <th>{{ knp_pagination_sortable(entities, 'creado' | trans({}, 'seguridad'), 'u.creado', {'direction': 'desc'}) }}</th>
+
+    <th >
+        {% trans %} actions.label{% endtrans %}
+    </th>
+</tr>
+
+    <tr>
+<th></th>
+        <th>    <input type="text" id="username" name="username" value="{{ app.request.get('username') }}" class="form-control" />
+        </th>
+
+        <th >     <input type="text" id="nombre" name="nombre" value="{{ app.request.get('nombre') }}" class="form-control" />
+        </th>
+         <th>      <input type="text" id="email" name="email" value="{{ app.request.get('email') }}" class="form-control" />
+        </th><th></th>
+        <th >
+            <button type="submit" class="btn blue fa fa-search"></button>
+        </th>
+
+    </tr>
+
+{% endblock columns%}
+
+{% block list_content %}
+    {% set usersess = app.user %}
+    {% set puedeEditar = priviligies['edit'] %}
+
+    {% for entity in entities %}
+
+        {% set showEdit = (not entity.esadmin and puedeEditar) ? true : usersess.id == entity.id %}
+
+        <tr id="rw{{ entity.id }}">
+            <td>
+                {% if not entity.esadmin %}
+                    <input type="checkbox" name="idcheck[]" value="{{entity.id}}" id="id{{entity.id}}" class="selitm" />
+                    <label for="id{{entity.id}}"></label>
+                {% endif %}
+            </td>
+            <td>
+                {% if showEdit %}
+                    <a href="{{ path('seguridad_register_edit', { 'id': entity.id } | merge(paramsUrl)) }}" class="edit">{{ entity.username }}</a>
+                {% else %}
+                    {{ entity.username }}
+                {% endif %}
+            </td>
+            <td>{{ entity.nombre ~ ' ' ~ entity.primerApellido ~ ' ' ~ entity.segundoApellido}}</td>
+            <td>{{ entity.email }}</td>
+
+            <td>{{ entity.creado | date('d/m/Y H:i') }}</td>
+        </tr>
+    {% endfor %}
+
+</form>
+    <script type="text/javascript">
+     /*   jQuery(function () {
+
+
+
+
+            MKAjax.paginate('.pagination a, th a, .edit, .new', 'content-wrapper', 'frmsearch');
+            //jQuery('label').asetAjaxUpdateFormddClass('active');
+
+            //App.init();//inicializa los controles
+
+        });*/
+    </script>
+
+{% endblock %}
+
+{% block delete_item %}
+    '{{ path('seguridad_register_delete_user', paramsUrl) }}'
+{% endblock %}
+{% block new_item %}{{ path('seguridad_register_create', paramsUrl) }}{% endblock %}

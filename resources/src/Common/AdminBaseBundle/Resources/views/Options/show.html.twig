@@ -1,0 +1,76 @@
+{% extends 'CommonAdminBaseBundle:Default:_ajax_layout.html.twig' %}
+{% block breadcumb_child %}
+
+    {% include 'CommonAdminBaseBundle:Default:_bread_item.html.twig' with {last:false,name:('options.list' |trans),url: url('options_list',{view:view}) } %}
+
+    <li>
+
+            {% trans %} entity.edit  {% endtrans %}  {{ entity.name }}
+
+
+    </li>
+{% endblock %}
+ {% block title %} {% trans %} entity.edit  {% endtrans %} {{ entity.name }} {% endblock %}
+{% block content %}
+    <div class="box box-primary">
+
+<div class="box-body">
+        {{ entity.FormDeclare|raw }}
+    {{ entity.Rows(translator,controller,base_dir)|raw }}
+
+</div>
+        <div class="box-footer">
+            <button type="button" onclick="doclick(this)"  class="btn btn-primary">{% trans %}actions.submit{% endtrans %}</button>
+            <a class="btn btn-" href="{{ url('options_list',{'view':view}) }}">{% trans %}actions.cancel{% endtrans %}</a>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+
+    </div>
+ <script>
+     function doclick(e) {
+         $('#{{ entity.FormName }}').submit()
+
+     }
+
+     $('#{{ entity.FormName }}').on('submit',
+             function (e)
+             {
+                 e.stopPropagation();
+                 e.preventDefault();
+                 var c= '.content-wrapper';
+                 {% if entity.isFile %}
+                 var data = new FormData(this);
+                 {% else %}
+                 var data=  jQuery('#{{ entity.FormName }}').serialize();
+                 {% endif %}
+                 //       alert(data);
+                 executeajax('{{url('options_edit',{id:entity.id,'view':view})  }}',data,'POST',function(r){ $(c).html(r);
+
+                             assign_event(c,null,'.content-wrapper a');
+                             $t = $('.alert div');
+                             if($t.length>0)
+                             {
+                                 if([0].innerHTML=='')
+                                 {
+                                     $('.alert').attr('class',"alert alert-success alert-dismissible");
+                                     $('.alert i').attr('class','icon fa fa-check')
+                                 }
+
+                                 $('.alert').show();}
+                         },function(r){
+                             $('.alert').attr('class',"alert alert-danger alert-dismissible");
+                             $('.alert i').attr('class','icon fa fa-ban');
+
+                    // alert(r);
+                             $('.alert div')[0].innerHTML= r.responseText;
+                             $('.alert').show();
+
+
+                         },{% if entity.isFile %}true{% else %}false{% endif %});
+             }
+     );
+
+ </script>
+
+{% endblock %}

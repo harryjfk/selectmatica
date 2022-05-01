@@ -1,0 +1,142 @@
+{% extends app.request.isXmlHttpRequest ? '::ajax.html.twig' : '::admin.html.twig' %}
+
+
+{% set titlePage = 'trazas' | trans({}, 'backend') %}
+{% set tit = 'listado_X' | trans({'%nombre%':  titlePage }, 'backend') %}
+{% block title %} {{ tit }} {% endblock %}
+{% set itemid = app.request.get('itemid') %}
+{% block update -%}   
+
+    <div class="portlet">
+        <div class="portlet-title">
+            <div class="caption">{{ tit }} </div>           
+        </div>
+
+        {% for tipo, mensajes in app.session.flashbag.all() %}
+            {% for mensaje in mensajes %}
+                <div class="{{ tipo }}">{{ mensaje }}</div>
+            {% endfor %}
+        {% endfor %}
+        <form action="{{ path('traza') }}" name="frmsearch" id="frmsearch" method="post">
+
+            <div class="buscador">
+                <div class="row">
+
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="nombre">{{ 'nombre' | trans({}, 'seguridad') }}</label>
+                            <input type="text" id="usuario" name="usuario" value="{{ app.request.get('usuario') }}" class="form-control" />                         
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label for="usuario">{{ 'usuario' | trans({}, 'seguridad') }}</label>
+                            <input type="text" id="usuario" name="usuario" value="{{ app.request.get('usuario') }}" class="form-control" />                      
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>{{ 'accion' | trans({}, 'seguridad') }}</label>
+                            <input type="text" id="accion" name="accion" value="{{ app.request.get('accion') }}"  class="form-control date-picker" />                      
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>{{ 'tabla' | trans({}, 'seguridad') }}</label>
+                            <input type="text" id="tabla" name="tabla" value="{{ app.request.get('tabla') }}" class="form-control date-picker" />                      
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label style="display: block;">&nbsp;</label>
+                            <button type="submit" class="btn blue fa fa-search"></button>
+                            <button type="button" class="btn waves-effect waves-light" id="limpiar">
+                                {{ 'limpiar' | trans({}, 'backend') }}
+                            </button>
+                        </div>
+                    </div>
+
+                </div>   
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>{{ 'fecha_inicio' | trans({}, 'backend') }}</label>
+                            <input type="text" id="fini" class="datepicker form-control"  name="fini" value="{{ app.request.get('fini') }}" />                      
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>{{ 'fecha_fin' | trans({}, 'backend') }}</label>
+                            <input type="text" id="ffin" class="datepicker form-control"  name="ffin" value="{{ app.request.get('ffin') }}" />                   
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portlet-body">
+                <div class="table-scrollable">
+                    <table class="responsive-table table table-striped table-bordered table-advance table-hover">
+                        <thead>
+                            <tr>
+                                <th>{{ 'usuario' | trans({}, 'seguridad') }}</th>
+                                <th>{{ 'accion' | trans({}, 'seguridad') }}</th>
+                                <th>{{ 'ip' | trans({}, 'seguridad') }}</th>
+                                <th>{{ 'tabla' | trans({}, 'seguridad') }}</th>
+                                <th>{{ 'id_registro' | trans({}, 'seguridad') }}</th>                    
+                                <th>{{ 'fecha' | trans({}, 'backend') }}</th>   
+                                <th style="width: 30%">{{ 'modificacion' | trans({}, 'seguridad') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for entity in entities %}
+                                <tr id="rw{{ entity.id }}">
+                                    <td>{{ entity.usuario }}</td>
+                                    <td>{{ entity.accion }}</td>
+                                    <td>{{ entity.ip }}</td>
+                                    <td>{{ entity.tabla }}</td>
+                                    <td>{{ entity.idregistro }}</td>                       
+                                    <td>{% if entity.fecha %}{{ entity.fecha|date('d/m/Y H:i:s') }}{% endif %}</td>      
+                                    <td>{{ entity.observacion }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {{ knp_pagination_render(entities) }}
+
+        </form>
+    </div>
+    <script type="text/javascript">
+        jQuery(function () {
+
+            MKAjax.setAjaxUpdateForm('frmsearch', '', 'dvupdate', function () {
+                //Materialize.updateTextFields();
+            });
+
+            jQuery('.datepicker').datepicker({
+                format: "yyyy-mm-dd",
+                /*startDate: "2016-04-05",*/
+                endDate: "{{ 'now' | date('Y-m-d') }}",
+                clearBtn: true,
+                autoclose: true,
+                todayHighlight: true
+            });
+
+
+            jQuery('#limpiar').on('click', function () {
+                MKLib.AjaxUpdate('{{ path('traza', {'itemid': itemid}) }}', 'dvupdate');
+            });
+
+            MKAjax.paginate('.pagination a', 'dvupdate', 'frmsearch');
+
+        });
+    </script>   
+
+{% endblock %}

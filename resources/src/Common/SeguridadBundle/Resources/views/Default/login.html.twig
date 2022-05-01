@@ -1,0 +1,54 @@
+{% extends  'CommonAdminBaseBundle:Default:index.html.twig' %}
+
+
+{% block content %}
+    <div class="row">
+<div class="login-box">
+    <div class="login-logo">
+        <a href="../../index2.html"><b>Admin</b>SelectMática</a>
+    </div>
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+        <p class="login-box-msg">{{ 'entrar_tu_cuenta' | trans({}, 'seguridad') }}</p>
+        {% if error %}
+            <div class="alert alert-danger"
+                 role="alert">{{ 'usuario_pass_nocoincide' | trans({}, 'messages') }}</div>
+        {% endif %}
+
+        <form  action="{{ path('seguridad_login_check') }}" method="post">
+            <div class="form-group has-feedback">
+                <input type="text" class="form-control" placeholder="{{ 'email' | trans({}, 'seguridad') }}"  name="_username"  value="{{ last_username }}">
+                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <input type="password" class="form-control"   name="_password"  placeholder="{{ 'contrasenya' | trans({}, 'seguridad') }}">
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+            </div>
+            <div class="row">
+                <div class="col-xs-8">
+
+
+                                              {#  <a href="{{ url('seguridad_register') }}" class="text-center">      Register a new membership</a> #} </div>
+
+
+
+                <!-- /.col -->
+                <div class="col-xs-4">
+                    <button type="submit"
+                            class="btn btn-primary btn-block btn-flat"> {{ 'entrar' | trans({}, 'seguridad') }} </button>
+                </div>
+                <!-- /.col -->
+            </div>
+        </form>
+
+
+        <!-- /.social-auth-links -->
+
+
+    </div>
+    <!-- /.login-box-body -->
+</div>
+
+
+    </div>
+{% endblock %}

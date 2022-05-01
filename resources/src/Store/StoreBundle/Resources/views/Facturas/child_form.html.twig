@@ -1,0 +1,11 @@
+{% extends 'CommonBaseAppBundle:Default:_embeded_form.html.twig' %}
+
+{% block type_name %}{% trans %}product.byamount{% endtrans %} {% endblock %}
+
+{% block actions %}
+
+    {% endblock %}
+  {% block on_add_item %}
+       SetOnChange();
+
+  {% endblock %}

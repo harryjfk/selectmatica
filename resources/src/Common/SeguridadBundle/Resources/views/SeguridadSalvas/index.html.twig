@@ -1,0 +1,136 @@
+{% extends app.request.isXmlHttpRequest ? 'CommonAdminBaseBundle:Default:_ajax_layout.html.twig' : 'CommonAdminBaseBundle:Default:index.html.twig' %}
+
+{% set titlePage = 'salvas' | trans({}, 'seguridad') %}
+{% set tit = 'listado_X' | trans({'%nombre%':  titlePage }, 'backend') %}
+{% block title %} {{ tit }} {% endblock %}
+{% set itemid = app.request.get('itemid') %}
+{% block update -%}   
+
+    <div class="portlet">
+        <div class="portlet-title">
+            <div class="caption">{{ tit }} </div>
+            <div class="tools">                
+                {% if is_granted('ROLE_SALVAS_CREATE') %}
+                    <a href="{{ path('seguridadsalvas_new', {'itemid': itemid}) }} " class="morado new blue btn" style="height: auto;"><i class="fa fa-database"></i>{{ 'crear_respaldo' | trans({}, 'seguridad') }}</a> 
+                    {% endif %}
+            </div>
+        </div>
+
+
+
+        <form action="{{ path('seguridadsalvas') }}" name="frmsearch" id="frmsearch" method="post">
+
+
+            <div class="row">
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="nombre">{{ 'fecha_inicio' | trans({}, 'seguridad') }}</label>
+                        <input type="text" id="fini" name="fini" value="{{ app.request.get('fini') }}" class="datepicker form-control" />
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label for="nombre">{{ 'fecha_fin' | trans({}, 'seguridad') }}</label>
+                        <input type="text" id="ffin" name="ffin" value="{{ app.request.get('ffin') }}" class="datepicker form-control" /> 
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label style="display: block;">&nbsp;</label>
+                        <button type="submit" class="btn blue fa fa-search"></button>
+                    </div>
+                </div>               
+            </div>          
+
+
+            <div class="portlet-body">
+                <div class="table-scrollable">
+                    <table class="responsive-table table table-striped table-bordered table-advance table-hover">
+
+                        <thead>
+                            <tr>
+                                <th>{{ 'fichero' | trans({}, 'seguridad') }}</th>
+                                <th>{{ 'fecha' | trans({}, 'backend') }}</th>
+                                <th>{{ 'usuario' | trans({}, 'seguridad') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for entity in entities %}
+                                {% set usuario = entity.idusuario %}
+                                <tr id="rw{{ entity.id }}">
+                                    <td>
+                                        <a href="{{ path('seguridadsalvas_download', { 'id': entity.id, 'itemid': itemid }) }}" class="edit" target="_blank">{{ entity.nombreFichero }}</a>                         
+                                    </td>                        
+                                    <td>{% if entity.fechaSalva %}{{ entity.fechaSalva|date('d/m/Y H:i:s') }}{% endif %}</td>
+                                    <td>{{ usuario.nombre~' '~usuario.primerApellido }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {{ knp_pagination_render(entities) }}
+
+        </form>
+    </div>
+    <script type="text/javascript">
+        jQuery(function () {
+
+            MKAjax.setAjaxUpdateForm('frmsearch', '', 'dvupdate', function () {
+                //Materialize.updateTextFields();
+            });
+            MKAjax.paginate('.pagination a', 'dvupdate', 'frmsearch');
+
+            jQuery('.new').on('click', function (e) {
+                e.preventDefault();
+                //AjaxRequest: function (url, idform, myFn, dataType, method)
+                MKLib.AjaxRequest(jQuery(this).attr('href'), '', function (j) {
+                    if (j.status == 1)
+                    {
+                        MKLib.showMsg('alert-success', '{{ 'bd_respaldada' | trans({}, 'messages') }}');
+                        jQuery('#frmsearch').trigger('submit');
+                    } else
+                    {
+                        if (status === 2)
+                            MKLib.showMsg('alert-danger', '{{ 'js_acceso_denegado' | trans({}, 'messages') }}');
+                        else
+                            MKLib.showMsg('alert-danger', j.stringError ? j.stringError : '{{ 'bd_no_respaldada' | trans({}, 'messages') }}');
+                    }
+                    MKLib.unlockScreen();
+                }, 'json');
+
+            });
+
+            jQuery('#limpiar').on('click', function () {
+                MKLib.AjaxUpdate('{{ path('seguridadsalvas', {'itemid': itemid}) }}', 'dvupdate');
+            });
+
+            jQuery('.datepicker').datepicker({
+                format: "yyyy-mm-dd",
+                /*startDate: "2016-04-05",*/
+                endDate: "{{ 'now' | date('Y-m-d') }}",
+                clearBtn: true,
+                autoclose: true,
+                todayHighlight: true
+            });
+
+            /* jQuery('.datepicker').pickadate({
+             selectMonths: true, // Creates a dropdown to control month
+             selectYears: 15, // Creates a dropdown of 15 years to control year
+             format: 'yyyy-mm-dd',
+             onSet: function (ele) {
+             if (ele.select) {
+             this.close();
+             }
+             }
+             });
+             
+             Materialize.updateTextFields();*/
+
+        });
+    </script>   
+
+{% endblock %}

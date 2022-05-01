@@ -1,0 +1,45 @@
+{% set lineObject = line %}
+{% set producto = lineObject.idproducto %}
+
+
+
+<tr id="row{{ lineObject.id }}" class="cart-line">
+    <td  style="width: 20%">
+        <img src="{{base_dir  ~  producto.principalimage.webpath() }}"/>
+    </td>
+    <td>
+        {{ producto.producto.nombre }}
+    <td>
+        {% set tarifav = producto.producto.TarifaValue(tarifa) %}
+        {{ tarifav.pvp |number_format(3,',','.') }}€ </td>
+    <td>  {{lineObject.cantidad }}</td>
+    <td id="disc_{{ lineObject.id }}">{{ producto.producto.getDiscountValue(tarifa,lineObject.cantidad,false) |number_format(3,',','.') }}€ </td>
+
+    {% if producto.producto.preciosespeciales|length>0 %}
+        {% set precios = producto.producto.preciosespeciales[0] %}
+        {% if precios.ArticuloRegaloObject!=null %}
+
+            <td id="gift_{{ lineObject.id }}"> {{ precios.regalocant(lineObject.cantidad) }}</td>
+            <td>{{ precios.ArticuloRegaloObject.descripcion }}</td>
+
+        {% else %}
+            <td></td>
+            <td></td>
+        {% endif %}
+    {% else %}
+        <td></td>
+        <td></td>
+    {% endif %}
+
+    <td> <p  id="price_{{ lineObject.id }}"> {{ lineObject.Price(tarifa)|number_format(3,',','.') }}€</p></td>
+    <td class="price_row">
+
+        <p id="total_{{ lineObject.id }}"> {{ lineObject.FinalPrice(tarifa)|number_format(3,',','.')  }}€</p>
+
+        <p style="" id="total_iva_{{ lineObject.id }}">{{ lineObject.IVAValue(tarifa)|number_format(3,',','.')  }}€</p>
+
+        <p style="font-weight: bold" id="total_price_{{ lineObject.id }}">{{ lineObject.FinalPriceIVA(tarifa)|number_format(3,',','.')  }}€</p>
+
+    </td>
+
+</tr>

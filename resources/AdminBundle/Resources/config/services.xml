@@ -1,0 +1,20 @@
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+<services>
+    <service id="store.client" class="%guzzle.client.class%">
+        <tag name="guzzle.client"/>
+        <argument>http://localhost/store2/web/app_dev.php/</argument>
+        <argument type="collection">
+            <argument key="setting1">true</argument>
+            <argument key="setting2">false</argument>
+        </argument>
+
+        <call method="setUserAgent">
+            <argument>My Guzzle client</argument>
+            <argument>true</argument>
+        </call>
+    </service>
+</services>
+</container>

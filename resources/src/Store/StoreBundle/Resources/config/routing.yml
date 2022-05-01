@@ -1,0 +1,44 @@
+store_store_facturas:
+    resource: "@StoreStoreBundle/Resources/config/routing/facturas.yml"
+    prefix:   /facturas
+
+
+
+store_store_cartline:
+    resource: "@StoreStoreBundle/Resources/config/routing/cartline.yml"
+    prefix:   /cartline
+
+store_store_cart:
+    resource: "@StoreStoreBundle/Resources/config/routing/cart.yml"
+    prefix:   /cart
+
+store_store_producto:
+    resource: "@StoreStoreBundle/Resources/config/routing/producto.yml"
+    prefix:   /producto
+
+store_store_category:
+    resource: "@StoreStoreBundle/Resources/config/routing/category.yml"
+    prefix:   /category
+
+store_homepage:
+    path:     /
+    defaults: { _controller: StoreStoreBundle:Default:index }
+    requirements:
+        _locale: es|en
+store_start:
+    path:     /start
+    defaults: { _controller: StoreStoreBundle:Default:start }
+    requirements:
+        _locale: es|en
+
+store_name:
+    path:     /name
+    defaults: { _controller: StoreStoreBundle:Default:name }
+    requirements:
+        _locale: es|en
+producto_frame:
+    path:    /frame
+    defaults: { _controller: "StoreStoreBundle:Producto:frame" }
+api:
+    path:    /api
+    defaults: { _controller: "StoreStoreBundle:Default:api" }

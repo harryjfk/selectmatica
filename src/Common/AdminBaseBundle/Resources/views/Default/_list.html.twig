@@ -1,0 +1,235 @@
+{% extends  app.request.isXmlHttpRequest ?'CommonAdminBaseBundle:Default:_ajax_layout.html.twig':'CommonAdminBaseBundle:Default:_layout.html.twig' %}
+
+{% block error %}
+{% endblock %}
+   {% block additional_controls %}
+
+       <div style="text-align: right;float: right;margin: 5px;" >
+
+           {% if priviligies['new']==true %}
+           <a href="{% block new_item %}{% endblock %}" class="morado new btn blue" style="height: auto;"><i class="fa fa-plus-square"></i>{% trans  %}entity.new{% endtrans %}</a>
+{% endif %}
+           {% if priviligies['delete']==true %}
+           <a href="" class="rojovino del btn red non-ajax" style="height: auto;"><i class="fa fa-trash-o"></i>{% trans  %}entity.delete{% endtrans %}</a>
+           {% endif %}
+
+       </div>
+
+   {% endblock %}
+
+{% block content %}
+
+          <form id="frmsearch" name="frmsearch"  method="post" action="{% block form_action %}{% endblock %}" >
+
+        <!-- /.box-header -->
+        <div class="box-body">
+            <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+
+
+                <div class="row">
+                    {% for tipo, mensajes in app.session.flashbag.all() %}
+                        {% for mensaje in mensajes %}
+                            <div class="{{ tipo }}">{{ mensaje }}</div>
+                        {% endfor %}
+                    {% endfor %}
+                    {% block top_navigation %}
+
+
+
+                        <div class="col-sm-6">
+
+
+                        <div class="dataTables_length"  ><label> {% trans %}navigation.show{% endtrans %} <select id="dataTables_length" name="dataTables_length"
+                                                                                                aria-controls="example1"
+                                                                                                class="form-control input-sm">
+                                    <option value="10">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50" >50</option>
+                                    <option value="100">100</option>
+                                </select>  {% trans %}navigation.entries{% endtrans %}</label></div>
+                            {% if app.request.get('dataTables_length') %}
+                                <script>
+                                    dataTables_length.value = {{ app.request.get('dataTables_length') }};
+                                    </script>
+                            {% endif %}
+                    </div>
+                        {% block data_filter %}
+                    <div class="col-sm-6">
+                        <div   class="dataTables_filter"><label> {% trans %}navigation.search{% endtrans %}:<input id="dataTables_filter" name="dataTables_filter"  type="search"
+                                                                                                 class="form-control input-sm"
+                                                                                                 placeholder=""
+                                                                                                 {% if app.request.get('dataTables_filter') %}
+                                value="{{ app.request.get('dataTables_filter') }}"
+                                {% endif %}></label>
+                        </div>
+                    </div>
+                    {% endblock %}
+                    {% endblock  %}
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table id="gridview" class="table table-bordered table-striped dataTable" role="grid"
+                               aria-describedby="example1_info">
+                            <thead>
+
+                            <tr role="row">
+                                {% block columns %} {% endblock %}
+
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% block list_content %}
+
+                            {% endblock list_content %}
+
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                {% block list_footer %}
+
+                                {% endblock %}
+
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+               {% block bottom_navigation %}
+                    <div class="col-sm-5">
+                        <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">
+                          {% trans %}navigation.showing{% endtrans %}  {% if entities.getCurrentPageNumber==1 %}
+                            1
+                            {% else %}
+                            {{ entities.getItemNumberPerPage * (entities.getCurrentPageNumber-1)+1 }}
+                            {% endif %}
+                            {% trans %}navigation.to{% endtrans %}
+                            {% if entities.getItemNumberPerPage > entities.getTotalItemCount %}
+                                {{ entities.getTotalItemCount }}
+                            {% else %}
+                                {{ entities.getItemNumberPerPage }}
+                            {% endif %}
+                            {% trans %}navigation.of{% endtrans %}  {{ entities.getTotalItemCount }} {% trans %}navigation.entries{% endtrans %}
+                        </div>
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+                            <ul class="pagination">
+                                {{ knp_pagination_render(entities   ) }}
+
+                              </ul>
+                        </div>
+                    </div>
+                    {% endblock  %}
+                </div>
+            </div>
+        </div>
+          </form>
+        <!-- /.box-body -->
+
+
+{% endblock content %}
+
+
+{% block javascript %}
+
+    <script>
+
+        var searching=false;
+     /*   assign_event('.content-wrapper',null,'.content-wrapper a');*/
+       function executeAction(e)
+       {
+           e.stopPropagation();
+           e.preventDefault();
+           if(searching==true)
+           return;
+           var url= {% block header_url %} {% endblock %};
+
+           var c= '.content-wrapper';
+           var data=  $(frmsearch).serialize();
+           //esto lo hice pq si lo pongo dentro del form me manda a acargar la pagina de nuevo
+         try
+         {
+             if(dataTables_filter.value!="")
+             {
+                 if(data!="")
+                     data+="&";
+                 data+="dataTables_filter="+dataTables_filter.value;
+
+             }
+         }catch (exc){}
+
+
+           searching=true;
+           blockScreen('Cargando');
+           executeajax(url,data,'POST',function(r){ $(c).html(r);
+   searching=false;   $('#blockscreen').hide();
+              assign_event(c,null,'.content-wrapper a');},function(r){    $('#blockscreen').hide(); searching=false;},false);
+
+       }
+
+        $('.dataTables_length').bind('change',function(e){
+
+         executeAction(e);
+
+
+        });
+        $('.dataTables_filter').bind('change',function(e){
+            executeAction(e);
+              });
+     $('#frmsearch').bind('submit',function(e){
+
+         executeAction(e);
+
+     });
+       jQuery('.chkall').on('click', function () {
+           MKLib.checkedCtrl(this, '.selitm');
+       });
+
+       jQuery('.del').on('click', function (e) {
+
+           e.preventDefault();
+           var _this = jQuery(this);
+           var list = jQuery('#frmsearch .selitm:checked');
+           if (list.length)
+           {
+               if (confirm('{{ 'js_eliminar_seleccionados' | trans({}, 'messages') }}'))
+               {
+
+                   MKLib.AjaxRequest({% block delete_item %}{% endblock %}, 'frmsearch', function (j) {
+                       var status = parseInt(j.status);
+                       if (status === 1)
+                       {
+
+                           jQuery('#frmsearch').trigger('submit');
+                           MKLib.deleteItem(j.ids, function () {
+                               MKLib.showMsg('alert-success', '{{ 'js_eliminados_correctamente' | trans({}, 'messages') }}');
+                               {% block on_delete %}
+
+                               {% endblock %}
+
+                           }, 'rw');
+                       } else
+                       {
+                           if (status === 2)
+                               MKLib.showMsg('alert-danger', '{{ 'js_acceso_denegado' | trans({}, 'messages') }}');
+                           else
+                               MKLib.showMsg('alert-danger', '{{ 'js_error_eliminar_datos' | trans({}, 'messages') }}');
+                       }
+                       MKLib.unlockScreen();
+
+                   }, 'json', 'DELETE');
+               }
+           } else
+               MKLib.showMsg('alert-danger', '{{ 'js_seleccionar_elemento' | trans({}, 'messages') }}');
+       });
+    /*   MKAjax.setAjaxUpdateForm('frmsearch', '', 'content-wrapper', function () {
+
+           assign_event('.content-wrapper',null,'.content-wrapper a');
+           //Materialize.updateTextFields();
+       });*/
+
+    </script>
+
+{% endblock javascript %}

@@ -1,0 +1,184 @@
+{% extends 'CommonAdminBaseBundle:Default:_edit.html.twig' %}
+
+{% block breadcumb_child %}
+
+    {% include 'CommonAdminBaseBundle:Default:_bread_item.html.twig' with {last:false,name:('product.list' |trans),url: url('producto_list') } %}
+
+    <li>
+        {% if isNew %}
+            {% trans %} entity.new  {% endtrans %}
+        {% else %}
+            {% trans %} entity.edit  {% endtrans %}   {{ entity.producto.nombre }}
+        {% endif %}
+
+    </li>
+{% endblock %}
+ {% block inner_title %}{{ entity.producto.nombre }} {% endblock %}
+
+{% block from_declare %}{{ form_start(form, { attr:{id:form.vars.id} } ) }} {% endblock %}
+
+{% block form_body %}
+    {# Underscore templates for the uploader #}
+    {% include "StoreStoreBundle:Producto:_upload_control.html.twig" %}
+
+    {{ form_row(form.headimg) }}
+
+
+
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <i class="fa fa-edit"></i>
+
+                <h3 class="box-title"></h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <label for="store_storebundle_producto_destacado">{% trans %}product.primary.show{% endtrans %}</label>
+                <div class="switch " style="width: 100%" >
+                    <input id="store_storebundle_producto_destacado" name="store_storebundle_producto[destacado]" type="checkbox" {% if entity.destacado %}checked="checked"{% endif %}/>
+                    <label for="store_storebundle_producto_destacado">{% trans %}product.primary.show{% endtrans %}</label>
+                </div>
+
+            </div>
+            <!-- /.box-body -->
+        </div>
+<input id="search" name="search" type="hidden" value="{{ search }}">
+    <div class="box box-default">
+        <div class="box-header with-border">
+            <i class="fa fa-image"></i>
+
+            <h3 class="box-title">{% trans %}images.names{% endtrans %}</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+
+            <div class="file-uploader">
+            </div>
+
+            <p class="fz-s">{% trans %}upload.text{% endtrans %}</p>
+        </div>
+        <!-- /.box-body -->
+    </div>
+    </div>
+   {#<div class="col-xs-6">
+        <div class="row">
+
+        {% set c = {'product.price.amount':'cantidad','product.price.price':'precio' ,'product.price.iva':'precioiva'} %}
+ {% include '@StoreStore/Producto/child_form.html.twig' with {child:form.Precios,columns:c}  %}
+
+        </div>
+    </div>#}
+</div>
+    {{ form_widget(form) }}
+
+{% endblock %}
+
+{% block cancel_ref %}{{ url('producto_list') }}{% endblock %}
+    {% block javascript %}
+        {% javascripts
+        '@StoreStoreBundle/Resources/public/js/underscore-min.js'
+        '@PunkAveFileUploaderBundle/Resources/public/js/jquery.fileupload.js'
+        '@PunkAveFileUploaderBundle/Resources/public/js/jquery.iframe-transport.js'
+        '@PunkAveFileUploaderBundle/Resources/public/js/FileUploader.js'%}
+        <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+        <script type="text/javascript">
+
+          /*  function createbuttons()
+            {
+            var thmbs=  $('.thumbnails')[0];
+             for(var i= 0;i<thmbs.childNodes.length;i++)
+             {
+                 var li = thmbs.childNodes[i].innerHTML;
+              //   alert(li);
+             }
+            }*/
+            // Enable the file uploader
+            $(function () {
+
+                var s =   new PunkAveFileUploader({
+                    'uploadUrl': {{ path('producto_upload', { editId: entity.sessionid }) | json_encode | raw }},
+                    'viewUrl': {{ ( url~'tmp/attachments/' ~  entity.sessionid) | json_encode | raw }},
+                    'el': '.file-uploader',
+
+                    'existingFiles': {{ punkave_get_files('tmp/attachments/' ~  entity.sessionid) | json_encode | raw }},
+                    'delaySubmitWhileUploading': '.edit-form'
+                    ,alwaysCallback: function(){
+                  //   createbuttons();
+                    //    alert('aaa');
+                    }
+
+                });
+
+            });
+            /*   $(function(){ alert('a');  createbuttons();});*/
+
+
+
+           function setDefault(e)
+           {
+           var base =  '{{ url('store_homepage') }}'+'producto/{path}/image';
+               var str = $(e.parentNode.parentNode).attr("data-name");
+                   base= base.replace('{path}',str);
+
+               executeajax(base,null,'POST', function (e) {
+                   var id = e.id;
+                   if(e.id==null){
+                       store_storebundle_producto_theadimg.value = str;
+                   }
+                   else
+
+                   store_storebundle_producto_headimg.value = e.id;
+                   updateLabel(str);
+
+               }, function (w) {
+
+               },false);
+
+           }
+
+         function updateLabel(src)
+         {
+
+             $('.thumbnail-principal').each(function(e,w){
+               //  alert($(w.parentNode.parentNode).attr("data-name")+'-'+src);
+               if($(w.parentNode.parentNode).attr("data-name")==src)
+                   $(w).show();
+                 else
+                   $(w).hide();
+
+
+
+             });
+         }
+
+            updateLabel($("#store_storebundle_producto_headimg option:selected").html());
+
+        </script>
+
+
+
+    {% endblock %}
+
+{% block submit_url%}
+   '{{ url('producto_edit',{'id':entity.id}) }}'
+{% endblock %}
+{# %}
+{% block body -%}
+    <h1>Producto edit</h1>
+
+    {{ form(edit_form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('producto') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}
+#}

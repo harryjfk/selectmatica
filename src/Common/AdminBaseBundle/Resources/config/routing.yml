@@ -1,0 +1,8 @@
+common_admin_base_languages:
+    resource: "@CommonAdminBaseBundle/Resources/config/routing/languages.yml"
+    prefix:   /languages
+
+store_store_options:
+    resource: "@CommonAdminBaseBundle/Resources/config/routing/options.yml"
+    prefix:   /options
+

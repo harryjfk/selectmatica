@@ -1,0 +1,16 @@
+{% if max_price==-1 %}
+$('#search-form').hide();
+{% else %}
+$("#range").ionRangeSlider({
+min: 0,
+max: {{ max_price }},
+from: 0,
+to: {{ max_price }},
+type: 'double',
+step: 1,
+prefix: "",
+    postfix:"€",
+prettify: false,
+hasGrid: true
+});
+{% endif %}

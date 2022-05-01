@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Store\RestBundle\Entity\Historico" table="historico">
+    <id name="idArticulo" type="integer" column="idArticulo"  nullable="false">
+       <options>
+        <option name="unsigned"/>
+      </options>
+    </id>
+    <field name="idCliente" type="integer" column="idCliente" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    
+  </entity>
+</doctrine-mapping>

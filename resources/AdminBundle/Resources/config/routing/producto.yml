@@ -1,0 +1,34 @@
+producto:
+    path:     /
+    defaults: { _controller: "StoreAdminBundle:Producto:index" }
+
+producto_show:
+    path:     /{id}/show
+    defaults: { _controller: "StoreAdminBundle:Producto:show" }
+
+producto_new:
+    path:     /new
+    defaults: { _controller: "StoreAdminBundle:Producto:new" }
+
+producto_create:
+    path:     /create
+    defaults: { _controller: "StoreAdminBundle:Producto:create" }
+    methods:  POST
+
+producto_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "StoreAdminBundle:Producto:edit" }
+
+producto_update:
+    path:     /{id}/update
+    defaults: { _controller: "StoreAdminBundle:Producto:update" }
+    methods:  [POST, PUT]
+
+producto_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "StoreAdminBundle:Producto:delete" }
+    methods:  [POST, DELETE]
+producto_upload:
+    path:     /upload
+    defaults: { _controller: "StoreAdminBundle:Producto:upload" }
+    methods:  [POST, DELETE]

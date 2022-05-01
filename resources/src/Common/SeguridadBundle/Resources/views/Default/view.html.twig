@@ -1,0 +1,269 @@
+{% extends 'CommonAdminBaseBundle:Default:_edit.html.twig' %}
+{% block breadcumb_child %}
+
+    <li>
+
+            {% trans %}profile{% endtrans %}
+    </li>
+{% endblock %}
+{% block title  %}
+    {% trans %}profile{% endtrans %}
+    {% endblock %}
+{% block error_text %}
+    {{ form_errors(form.password.first) }}
+    {{ form_errors(form.password.second) }}
+{% endblock %}
+{% block from_declare %} {% endblock %}
+
+{% block form_body %}
+
+
+    <div class="nav-tabs-custom">
+        <ul class="nav nav-tabs">
+            {% if app.user.isComercial==false %}
+            <li class="active"><a href="#tab_1" class="non-ajax" data-toggle="tab" aria-expanded="true"> <i class="fa fa-info   "></i>{% trans %}user.info{% endtrans %}</a></li>
+           {% endif %}
+            <li class="  {% if app.user.isComercial==true %}active{% endif %}"><a href="#tab_2" class="non-ajax" data-toggle="tab" aria-expanded="false"> <i class="fa fa-edit   "></i>{% trans %}profile.change{% endtrans %}</a></li>
+            {% if app.user.isComercial==false %}
+            <li class=""><a href="#tab_3" class="non-ajax" data-toggle="tab" aria-expanded="false"> <i class="fa fa-list   "></i>{% trans %}cart.list{% endtrans %}</a></li>
+            <li class=""><a href="#tab_4" class="non-ajax" data-toggle="tab" aria-expanded="false"> <i class="fa fa-line-chart   "></i>{% trans %}cart.graph{% endtrans %}</a></li>
+{% endif %}
+        </ul>
+        <div class="tab-content">
+            {% if app.user.isComercial==false %}
+            <div class="tab-pane active" id="tab_1">
+                <div class="box-body profile-order">
+                  <div class="row profile-row">
+
+                      <div class="col-xs-12 col-md-4 ">
+                          <div class="row">
+                              <div class="col-xs-12">
+                              <div class=" profile-name">
+                                  {% trans  from "seguridad" %}nombre{% endtrans %}
+
+                              </div>
+                              <div class=" profile-value">
+
+                                  {{ app.user.cliente.nombre }}
+                              </div></div>
+
+                          </div>
+
+                      </div>
+                      <div class="col-xs-12 col-md-4 ">
+                          <div class="row">
+                              <div class="col-xs-12">
+                              <div class=" profile-name">
+                                  NIF
+
+                              </div>
+                                  <div class=" profile-value">
+                                  {{ app.user.cliente.nif }}
+                              </div>
+                              </div>
+
+                          </div>
+
+                      </div>
+                      <div class="col-xs-12 col-md-4 ">
+                          <div class="row">
+                              <div class="col-xs-12">
+                              <div class=" profile-name">
+                                  {% trans  from "seguridad" %}email{% endtrans %}
+
+                              </div>
+                                  <div class=" profile-value">
+                                  {{ app.user.cliente.email }}
+                              </div>
+                              </div>
+
+                          </div>
+
+                      </div>
+                  </div>
+                    <div class="row profile-row">
+                        <div class="col-xs-12 col-md-4 ">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                <div class=" profile-name">
+                                    {% trans  from "seguridad" %}address{% endtrans %}
+
+                                </div>
+                                    <div class=" profile-value">
+                                    {{ app.user.cliente.direccion }}
+                                </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="col-xs-12 col-md-4 ">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                <div class=" profile-name">
+                                    {% trans  from "seguridad" %}phone{% endtrans %}
+
+                                </div>
+                                    <div class=" profile-value">
+                                    {{ app.user.cliente.telefono1 }}
+                                </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="col-xs-12 col-md-4 ">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                <div class=" profile-name">
+                                    {% trans  from "seguridad" %}payment{% endtrans %}
+
+                                </div>
+                                    <div class=" profile-value">
+                                    {{ app.user.cliente.FormaPagoObject.descripcion }}
+                                </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row profile-row">
+                        <div class="col-xs-12 col-md-4 ">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                <div class=" profile-name">
+                                    {% trans  from "seguridad" %}postal_code{% endtrans %}
+
+                                </div>
+                                    <div class=" profile-value">
+                                    {{ app.user.cliente.codPostal }}
+                                </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="col-xs-12 col-md-4 ">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                <div class=" profile-name">
+                                    {% trans  from "seguridad" %}district{% endtrans %}
+
+                                </div>
+                                    <div class=" profile-value">
+                                    {{ app.user.cliente.poblacion }}
+                                </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="col-xs-12 col-md-4 ">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                <div class="profile-name">
+                                    {% trans  from "seguridad" %}province{% endtrans %}
+
+                                </div>
+                                    <div class=" profile-value">
+                                    {{ app.user.cliente.provincia }}
+                                </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            {% endif %}
+            <!-- /.tab-pane -->
+            <div class="tab-pane  {% if app.user.isComercial==true %}active{% endif %}" id="tab_2">
+                {{ form_start(form, { attr:{id:form.vars.id} } ) }}
+                <div class="box-body edit-form">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-xs-2">
+                                    <img src="{{ base_dir~form.vars.data.path }}" height="64px">
+                                </div>
+                                <div class="col-xs-8">
+                                    {{ form_row(form.file) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            {{ form_row(form.password.first, {'attr':{'class': 'form-control'} }) }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form_row(form.password.second, {'attr':{'class': 'form-control'} }) }}
+                        </div>
+                    </div>
+                    <div style="display: none">
+                        {{ form_widget( form) }}</div>
+                </div>
+                <!-- /.box-body -->
+
+                <div class="box-footer">
+                    <button id="{{ form.vars.id }}_button" type="button"  onclick="doclick(this)"   class="btn btn-primary">{% trans %}actions.submit{% endtrans %}</button>
+
+                </div>
+            </div>
+            {% if app.user.isComercial==false %}
+            <div class="tab-pane " id="tab_3">
+                <div class="box-body profile-order">
+                    {{ render(url('cart_list',{profile:"true"})) }}
+                </div>
+            </div>
+            <div class="tab-pane " id="tab_4">
+            <div class="box-body profile-graph" >
+                {{ render(url('cart_graph',{profile:true})) }}
+            </div>
+            </div>
+            {% endif %}
+            <!-- /.tab-pane -->
+        </div>
+        <!-- /.tab-content -->
+    </div>
+
+    <script>
+
+        function UpdateUserNav()
+        {
+            var c= '.user-menu';
+            //   alert(data);
+            executeajax('{{ url('seguridad_nav') }}',null,'GET',function(r){
+
+
+                $(c).html(r);
+                assign_event('.content-wrapper',null,'.user-menu a');
+                assign_event(c,null,'.content-wrapper a');
+
+
+
+            },function(r){ /*alert('error');*/},false);
+        }
+
+
+    </script>
+
+{% endblock %}
+{% block cancel_ref %}{{ url('seguridad_list_users') }}{% endblock %}
+{% block submit_url%}
+
+        '{{ url('seguridad_view',{'id':form.vars.data.id}) }}'
+
+{% endblock %}
+{% block buttons %}
+{% endblock %}
+     {% block java_data %}
+         var data = new FormData(this);
+     {% endblock %}
+{% block ajax_file %}true{% endblock %}
+  {% block on_edited %}
+      UpdateUserNav();
+  {% endblock %}

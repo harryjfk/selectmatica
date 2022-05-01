@@ -1,0 +1,43 @@
+#cart:
+#    path:     /
+#    defaults: { _controller: "StoreStoreBundle:Cart:index" }
+
+cart_show:
+    path:     /{id}/show
+    defaults: { _controller: "StoreStoreBundle:Cart:show" }
+
+cart_nav:
+    path: /nav
+    defaults: { _controller: "StoreStoreBundle:Cart:nav" }
+cart_view:
+    path: /
+    defaults: { _controller: "StoreStoreBundle:Cart:index" }
+
+cart_add_to:
+    path: /add/{id}/{cant}
+    defaults: {_controller: "StoreStoreBundle:Cart:add_to"}
+cart_list:
+    path: /list/{profile}
+    defaults: { _controller: "StoreStoreBundle:Cart:list",profile:false }
+cart_view_item:
+    path:     /{id}/view
+    defaults: { _controller: "StoreStoreBundle:Cart:view" }
+cart_view_pdf:
+    path:     /{id}/pdf
+    defaults: { _controller: "StoreStoreBundle:Cart:pdf" }
+
+cart_delete:
+    path:     /delete
+    defaults: { _controller: "StoreStoreBundle:Cart:delete" }
+cart_save:
+    path:     /save
+    defaults: { _controller: "StoreStoreBundle:Cart:save" }
+cart_finished:
+    path:     /finished/{id}
+    defaults: { _controller: "StoreStoreBundle:Cart:finished" }
+cart_empty:
+    path:     /empty
+    defaults: { _controller: "StoreStoreBundle:Cart:empty" }
+cart_graph:
+    path:     /graph/{profile}
+    defaults: { _controller: "StoreStoreBundle:Cart:graph" }

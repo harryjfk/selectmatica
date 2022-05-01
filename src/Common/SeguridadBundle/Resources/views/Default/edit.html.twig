@@ -1,0 +1,185 @@
+{% extends  'CommonAdminBaseBundle:Default:_edit.html.twig' %}
+
+{% set paramsUrl = {itemid: app.request.get('itemid')} %}
+{% block breadcumb_child %}
+
+    {% include 'CommonAdminBaseBundle:Default:_bread_item.html.twig' with {last:false,name:('users.list' |trans),url: url('seguridad_list_users') } %}
+
+    <li>
+        {% if isNew %}
+            {% trans %} entity.new  {% endtrans %}
+        {% else %}
+            {% trans %} entity.edit  {% endtrans %}   {{ form.vars.value.nombre }}
+        {% endif %}
+
+    </li>
+{% endblock %}
+ {% block inner_title %}      {% if isNew==false %}{{ form.vars.value.nombre }}{% endif %} {% endblock %}
+
+{% block error_text %}
+    {% for tipo, mensajes in app.session.flashbag.all() %}
+        {% for mensaje in mensajes %}
+            <div class="{{ tipo }}">{{ mensaje }}</div>
+        {% endfor %}
+    {% endfor %}
+    {{ form_errors(form) }}
+{% endblock %}
+{% block from_declare %}{{ form_start(form, { attr:{id:form.vars.id} } ) }} {% endblock %}
+
+{% block form_body %}
+
+
+
+    <div class="row form-group">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-xs-2">
+                    {% set p = form.vars.data.path %}
+                    {% if p=="" %}
+                    {% set p=p~'user.png' %}
+                    {% endif %}
+       <img src="{{ base_dir~p }}" height="64px">
+                </div>
+                <div class="col-xs-8">
+                    {{ form_row(form.file) }}
+                </div>
+            </div>
+       </div>
+
+    </div>
+    <div class="row form-group">
+        <div class="col-md-4">
+            {{ form_row(form.nombre ) }}
+        </div>
+        <div class="col-md-4">
+            {{ form_row(form.primerApellido) }}
+        </div>
+        <div class="col-md-4">
+            {{ form_row(form.segundoApellido) }}
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-md-6">
+            {{ form_row(form.username, {'attr':{'class': 'form-control'} }) }}
+        </div>
+        <div class="col-md-6">
+            {{ form_row(form.email, {'attr':{'class': 'form-control'} }) }}
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-md-6">
+            {{ form_row(form.password.first, {'attr':{'class': 'form-control'} }) }}
+        </div>
+        <div class="col-md-6">
+            {{ form_row(form.password.second, {'attr':{'class': 'form-control'} }) }}
+        </div>
+    </div>
+    <div class="row form-group">
+        {% if is_granted('ROLE_GRUPO_USUARIO_NEW') %}
+            <div class="col-md-6">
+                {{ form_row(form.grupoid, {'attr':{'class': 'form-control'} }) }}
+            </div>
+
+        {% endif %}
+        <div class="col-md-6 group_cliente">
+            <div class="col-xs-6">
+
+
+                {{ form_row(form.idcliente) }}
+            </div>
+            <div class="col-xs-6 ">
+
+                <label for="combo_cliente"> {% trans %}clients{% endtrans %}</label>
+                <select id="combo_cliente" name="combo_cliente" class="js-example-basic-single">
+                    {% for client in clientes %}
+                        <option value="{{ client.Id }}">{{ client.nombre }}</option>
+                    {% endfor %}
+                </select>
+
+                <script type="text/javascript">
+
+                    var control = null;
+                    $(function () {
+                        control = $(".js-example-basic-single").select2();
+                        $('#usuario_idcliente').keydown(function (event) {
+                            if (event.keyCode == 13) {
+
+                                event.preventDefault();
+                                control.val(usuario_idcliente.value).trigger("change");
+
+                                return false;
+                            }
+                        });
+                        $('select').on('select2:select', function (evt) {
+                            usuario_idcliente.value = control[0].value;
+
+                        });
+                        {% if isNew==false %}
+                        control.val("{{ form.vars.value.idcliente }}").trigger("change");
+
+                        {% endif %}
+                    });
+                </script>
+         </div>
+        </div>
+           <div class="col-xs-6 " id="comercial" style="display:none;">
+                    {{ form_row(form.idcomercial) }}
+
+
+
+            </div>
+      {#  <div class="col-xs-6">
+            {{ form_row(form.company) }}
+
+
+
+        </div>#}
+            <script type="text/javascript">
+                function onchange()
+                {  var s =$( "#usuario_grupoid option:selected" ).text();
+
+                    if(s.indexOf('Comercial')!=-1)
+                    {
+                        $('.group_cliente').hide();
+                        $('#comercial').show();
+                    }
+
+                    else
+                    {
+                        $('.group_cliente').show();
+                        $('#comercial').hide();
+                    }
+                       }
+                $(function () {
+                    $('#usuario_grupoid').on('change',function(e){
+                        onchange();
+
+                    });
+                });
+                onchange();
+            </script>
+
+
+    </div>
+
+    <script>
+       /* assign_event('.content-wrapper', null, '.content-wrapper a');
+*/
+    </script>
+
+{% endblock %}
+{% block cancel_ref %}{{ url('seguridad_list_users') }}{% endblock %}
+{% block submit_url %}
+    {% if isNew %}     '{{ url('seguridad_register_create') }}'
+
+    {% else %}
+        '{{ url('seguridad_register_update',{'id':form.vars.data.id}) }}'
+
+    {% endif %}
+
+
+{% endblock %}
+     {% block java_data %}
+         var data = new FormData(this);
+     {% endblock %}
+{% block ajax_file %}true{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'CommonAdminBaseBundle:Default:_list.html.twig' %}
+{% block breadcumb_child %}
+    <li>{% trans %} usergroups.list{% endtrans %}</li>
+{% endblock %}
+
+{% block title  %} {% trans %}usergroups.list{% endtrans %}{% endblock %}
+
+    {% block header_url %}
+        '{{ url('grupo') }}'
+    {% endblock %}
+
+    {% block form_action %}
+        {{ url('grupo') }}
+    {% endblock %}
+
+    {% block columns%}
+        <tr>
+            <th style="width: 25px;">
+                <input type="checkbox" id="chkall" class="chkall" />
+            </th>
+            <th>{{ knp_pagination_sortable(entities, 'nombre' | trans({}, 'seguridad'), 'g.nombreGrupo', {'direction': 'desc'}) }}</th>
+
+            <th >
+                {% trans %} actions.label{% endtrans %}
+            </th>
+        </tr>
+
+        <tr>
+            <th></th>
+            <th >        <input type="text" id="nombre" name="nombre" class="form-control" value="{{ app.request.get('nombre') }}">
+
+            </th>
+            <th >
+                <button type="submit" class="btn blue fa fa-search"></button>
+            </th>
+
+        </tr>
+
+    {% endblock columns%}
+    {% block top_navigation %}
+        {% for tipo, mensajes in app.session.flashbag.all() %}
+            {% for mensaje in mensajes %}
+                <div class="{{ tipo }}">{{ mensaje }}</div>
+            {% endfor %}
+        {% endfor %}
+
+
+
+    {% endblock %}
+
+    {% block list_content %}
+    {% for entity in entities %}
+        <tr id="rw{{ entity.id }}">
+            <td>
+                <input type="checkbox" name="idcheck[]" value="{{ entity.id }}" id="id{{ entity.id }}" class="selitm" />
+                <label for="id{{ entity.id }}"></label>
+            </td>
+            <td><a href="{{ path('grupo_edit', { 'id': entity.id }) }}" class="edit">{{ entity.nombreGrupo }}</a></td>
+        </tr>
+    {% endfor %}
+
+    <script type="text/javascript">
+        jQuery(function () {
+
+
+            MKAjax.setAjaxUpdateForm('frmsearch', '', 'content-wrapper', function () {
+                /// Materialize.updateTextFields();
+            });
+            MKAjax.paginate('.pagination a, th a, .edit, .new', 'content-wrapper', 'frmsearch');
+
+        });
+    </script>
+
+{% endblock %}
+
+    {% block delete_item %}
+        '{{ path('grupo_delete') }}'
+    {% endblock %}
+{% block new_item %}{{ path('grupo_new') }}{% endblock %}

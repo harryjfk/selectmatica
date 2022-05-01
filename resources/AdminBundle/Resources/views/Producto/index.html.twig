@@ -1,0 +1,31 @@
+{% extends "StoreAdminBundle:Layouts:_index.html.twig" %}
+{% block mod_name %}Producto list{% endblock %}
+
+
+    {% block headers %}
+        <th>Producto</th>
+
+        <th>Acciones</th>
+    {% endblock headers %}
+ {% block tablecontent %}
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('producto_show', { 'id': entity.id }) }}">{{ entity.idproducto }}</a></td>
+
+                <td>
+                <ul class="grid_actions">
+                    <li>
+                        <a href="{{ path('producto_new') }}">
+                            new
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ path('producto_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+
+ {% endblock tablecontent %}

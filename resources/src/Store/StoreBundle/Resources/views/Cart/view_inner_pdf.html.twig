@@ -1,0 +1,35 @@
+    <div class="content-header">
+        <div class="col-xs-6">
+        <h1>
+            {% trans %}cart.name{% endtrans %}
+
+        </h1> </div>
+        <div class="col-xs-6" style="padding-top: 25px">
+
+            {% trans %} cart.total {% endtrans %}
+           {{ entities.totalprice(tarifa)}}€
+        </div>
+    </div>
+     <div class="col-xs-12 cart">
+<div class="row">
+    <div class="col-xs-6">
+        {% trans %}product.name{% endtrans %}
+    </div>
+    <div class="col-xs-2">
+        {% trans %}cart.amount{% endtrans %}
+    </div>
+    <div class="col-xs-3">
+        {% trans %}price.amount{% endtrans %}
+    </div>
+    <div class="col-xs-1">
+
+    </div>
+</div>
+
+{% for lines in form.children  %}
+    {% for line in lines %}
+            {% include "@StoreStore/Cart/line_item_view.html.twig" with {line:line,tarifa:tarifa} %}
+    {% endfor %}
+{% endfor %}
+
+         </div>

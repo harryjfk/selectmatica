@@ -1,0 +1,164 @@
+{% extends 'CommonAdminBaseBundle:Default:_edit.html.twig' %}
+
+{% block breadcumb_child %}
+
+    {% include 'CommonAdminBaseBundle:Default:_bread_item.html.twig' with {last:false,name:('bill.list' |trans),url: url('facturas') } %}
+
+    <li>
+        {% if isNew %}
+            {% trans %} entity.new  {% endtrans %}
+        {% else %}
+            {% trans %} entity.edit  {% endtrans %}   {{ entity.numero }}
+        {% endif %}
+
+    </li>
+{% endblock %}
+ {% block inner_title %}  {% if isNew ==false%}{{ entity.numero }} {% endif %} {% endblock %}
+{% block submit_url%}
+    {% if isNew %}
+            '{{ url('facturas_new') }}'
+        {% else %}
+            '{{ url('facturas_edit',{id:entity.id}) }}'
+    {% endif %}
+{% endblock %}
+{% block cancel_ref%}
+    {{ url('facturas') }}
+{% endblock %}
+{% block form_body %}
+{% block from_declare %}{{ form_start(form, { attr:{id:form.vars.id} } ) }} {% endblock %}
+
+    {% if isNew==true %}
+    <div class="row">
+        <div class="col-xs-4">{% trans %}cart.customer.info{% endtrans %}</div>
+        <div class="col-xs-2" ><label for="id_cliente">{% trans %}cart.customer.id{% endtrans %}</label> <input type="text" name="id_cliente" style="background-color: #fff;
+    border: 1px solid #aaa;height: 28px;
+    border-radius: 4px;" class="form-control" id="id_cliente"></div>
+    <div class="col-xs-4">
+
+
+        <label for="idcliente"> {% trans %}clients{% endtrans %}</label>
+        <select  id="idcliente" name="idcliente" class="js-example-basic-single">
+            {% for client in clientes %}
+            <option value="{{ client.Id }}">{{ client.nombre }}</option>
+            {% endfor %}
+        </select>
+
+        <script type="text/javascript">
+
+            var control = null;
+            $(function() {
+                control=  $(".js-example-basic-single").select2();
+                $('#id_cliente').keydown(function(event){
+                    if(event.keyCode == 13) {
+
+                        event.preventDefault();
+                      control.val(id_cliente.value).trigger("change");
+
+                        return false;
+                    }
+                });
+                $('select').on('select2:select', function (evt) {
+                    id_cliente.value=  control[0].value;
+                });
+            });
+        </script>
+     </div>
+    </div>
+    <div class="row">
+
+        {% set c = {'bill.serie':'serie','bill.ano':'ano' ,'bill.numero':'numero','bill.importe':'importe','bill.file':'file' } %}
+        {% include '@StoreStore/Facturas/child_form.html.twig' with {child:form.Facturas,columns:c}  %}
+
+    </div>
+        {% else %}
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <div>  <label for="idcliente"> {% trans %}cart.customer.name{% endtrans %}</label>
+                            <select  id="idcliente" name="idcliente" class="js-example-basic-single">
+                                {% for client in clientes %}
+                                    <option value="{{ client.Id }}">{{ client.nombre }}</option>
+                                {% endfor %}
+                            </select>
+
+                            <script type="text/javascript">
+
+                                var control = null;
+                                $(document).ready(function() {
+                                    control=  $(".js-example-basic-single").select2();
+                                    control.val("{{ entity.idcliente }}").trigger("change");
+                                });
+                            </script>
+                        </div>
+                </div>
+                <div class="col-xs-12">
+                    <div><label >{% trans %}bill.numero{% endtrans %}</label>{{ form_row(form.numero) }}</div>
+                </div>
+                <div class="col-xs-12">
+                    <div><label >{% trans %}bill.serie{% endtrans %}</label>{{ form_row(form.serie) }}</div>
+                </div>
+                <div class="col-xs-12">
+                    <div><label >{% trans %}bill.ano{% endtrans %}</label>{{ form_row(form.ano) }}</div>
+                </div>
+                <div class="col-xs-12">
+                    <div><label >{% trans %}bill.importe{% endtrans %}</label>{{ form_row(form.importe) }}</div>
+                </div>
+
+            </div>
+
+
+{% endif %}
+    {{ form_widget(form) }}
+    <script>
+
+        function SetOnChange()
+        {
+            $("input[type='file']").on('change',function(q){
+
+                var base=    q.target.id.toString().replace("file","");
+                var file =  q.target.value.toString();
+                file = file.substr(file.lastIndexOf("\\")+1);
+                //  var file = "134_456_789_234.jpg";
+                var ext = file.substr(file.lastIndexOf(".")+1,file.length -file.lastIndexOf(".")).trim().toLowerCase();
+               if(ext!='pdf')
+               {
+                   alert('{{ 'bill.file.ext'|trans }}');
+                   q.target.value='';
+                   return;
+               }
+                file =file.substr(0,file.lastIndexOf("."));
+
+
+
+                if(file.indexOf("_")==-1)
+               return;
+                var names =  file.split("_");
+
+
+                if(names.length>0)
+                    $("#"+base+"serie")[0].value = names[0];
+                if(names.length>1)
+                    $("#"+base+"ano")[0].value = names[1];
+                if(names.length>2)
+                    $("#"+base+"numero")[0].value = names[2];
+                if(names.length>3)
+                    $("#"+base+"importe")[0].value = names[3];
+
+                //  serie.value = ;
+
+
+            });}
+        {% if isNew==false %}
+      //  SetOnChange();
+        $("input[type='file']")[0].required=false;
+        $("input[type='file']").hide();
+        {% endif %}
+    </script>
+
+
+{% endblock %}
+   {% block java_data %}
+var data = new FormData(this);{% endblock %}
+{% block ajax_file %}
+    true
+{% endblock %}

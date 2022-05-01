@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Store\RestBundle\Entity\PreciosEspeciales" table="precios-venta" repository-class="Store\RestBundle\Repository\PreciosEspecialesRepository">
+      <id name="id" type="string" column="id"   >
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </id>
+
+      <field name="idTipoCliente" type="string" column="idTipoCliente"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="idZona" type="string" column="idZona"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="idObra" type="string" column="idObra"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="idCliente" type="string" column="idCliente"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="idCentro" type="string" column="idCentro"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="idProveedor" type="string" column="idProveedor"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="idSeccion" type="string" column="idSeccion"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="idFamilia" type="string" column="idFamilia"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="idSubfamilia" type="string" column="idSubfamilia"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+
+
+      <field name="tipo" type="string" column="tipo"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="precioFijo" type="string" column="precioFijo"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="dto1" type="string" column="dto1"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="dto2" type="string" column="dto2"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="dto3" type="string" column="dto3"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="desglosar" type="string" column="desglosar"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="fechaInicio" type="date" column="fechaInicio"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="fechaFin" type="date" column="fechaFin"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="regalo" type="string" column="regalo"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="comision" type="string" column="comision"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="tarifa" type="string" column="tarifa"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="ordenBusqueda" type="string" column="ordenBusqueda"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="escalado" type="string" column="escalado"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="datosEscalado" type="string" column="datosEscalado"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="largo" type="string" column="largo"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="ancho" type="string" column="ancho"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="idMatrizPropiedades" type="string" column="idMatrizPropiedades"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="alto" type="string" column="alto"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="patronArticulos" type="string" column="patronArticulos"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="tipoPrecioEmbalajes" type="string" column="tipoPrecioEmbalajes"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="idPromocion" type="string" column="idPromocion"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="marca" type="string" column="marca"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="idArticulo" type="string" column="idArticulo"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+
+  </entity>
+</doctrine-mapping>

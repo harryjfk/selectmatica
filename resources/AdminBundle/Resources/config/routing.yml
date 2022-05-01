@@ -1,0 +1,17 @@
+store_admin_cart:
+    resource: "@StoreAdminBundle/Resources/config/routing/cart.yml"
+    prefix:   /cart
+
+store_admin_category:
+    resource: "@StoreAdminBundle/Resources/config/routing/category.yml"
+    prefix:   /category
+
+store_admin_producto:
+    resource: "@StoreAdminBundle/Resources/config/routing/producto.yml"
+    prefix:   /producto
+
+store_admin_homepage:
+    path:     /
+    defaults: { _controller: StoreAdminBundle:Default:index,locale:en }
+    requirements:
+      _locale: en|es

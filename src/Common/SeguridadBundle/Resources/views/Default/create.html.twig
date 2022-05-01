@@ -1,0 +1,83 @@
+{% extends app.request.isXmlHttpRequest ? 'CommonAdminBaseBundle:Default:_ajax_layout.html.twig' : 'CommonAdminBaseBundle:Default:index.html.twig' %}
+
+{% set titlePage = 'usuario' | trans({}, 'seguridad') %}
+{% set tit = 'crear_X' | trans({'%nombre%':  titlePage }, 'backend') %}
+{% block title %} {{ tit }} {% endblock %}
+{% set paramsUrl = {itemid: app.request.get('itemid')} %}
+{% block content %}
+
+    <div class="portlet">
+        <div class="portlet-title">
+            <div class="caption">{{ tit }}</div>            
+        </div>
+
+        {% for tipo, mensajes in app.session.flashbag.all() %}
+            {% for mensaje in mensajes %}
+                <div class="{{ tipo }}">{{ mensaje }}</div>
+            {% endfor %}
+        {% endfor %}
+
+        {{ form_start(form, { attr:{id: form.vars.id} }) }}
+        <div class="sepnorth">
+            <div class="row">
+                <div class="col-md-4">
+                    {{ form_row(form.nombre, {'attr':{'class': 'form-control'} }) }} 
+                </div> 
+                <div class="col-md-4">
+                    {{ form_row(form.primerApellido, {'attr':{'class': 'form-control'} }) }} 
+                </div> 
+                <div class="col-md-4">
+                    {{ form_row(form.segundoApellido, {'attr':{'class': 'form-control'} }) }} 
+                </div> 
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(form.username, {'attr':{'class': 'form-control'} }) }} 
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.email, {'attr':{'class': 'form-control'} }) }} 
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(form.password.first, {'attr':{'class': 'form-control'} }) }} 
+                </div>
+                <div class="col-md-6">
+                    {{ form_row(form.password.second, {'attr':{'class': 'form-control'} }) }} 
+                </div>
+            </div> 
+
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form_row(form.grupoid, {'attr':{'class': 'form-control'} }) }} 
+                </div>
+                <div class="col-md-6">
+                  {#  {{ form_row(form.idcargo, {'attr':{'class': 'form-control'} }) }} #}
+                </div>
+            </div>    
+
+            <div class=" tc">
+                {{ form_row(form.submit, {'attr': {'class': 'btn blue'} }) }}
+                {{ form_row(form.button, {'attr': {'class': 'btn', 'id': 'btnback'} }) }}
+            </div>
+        </div>
+        {{ form_end(form) }}
+
+    </div>
+
+
+    <script type="text/javascript">
+
+        jQuery(document).ready(function () {
+
+            jQuery('#{{ form.vars.id }}_button').on('click', function () {
+                MKLib.AjaxUpdate('{{ path('seguridad_list_users', paramsUrl) }}', 'dvupdate', '');
+            });
+
+            // jQuery('select').material_select();
+            //Materialize.updateTextFields();
+
+        });
+    </script>
+
+{% endblock %}

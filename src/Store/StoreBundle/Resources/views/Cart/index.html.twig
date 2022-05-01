@@ -1,0 +1,226 @@
+{% extends 'CommonAdminBaseBundle:Default:_ajax_layout.html.twig' %}
+{% block breadcumb_child %}
+
+            <li >{% trans %}cart.name{% endtrans %}</li>
+
+{% endblock %}
+{% block title %}  {% trans %}cart.name{% endtrans %}{% endblock %}
+
+
+{% block error_text %}{{ form_errors(form) }}{% endblock %}
+{% block content %}
+
+    {% if entities.Lines|length==0 %}
+
+<div class="empty-page" data-test="empty-cart">
+    <i class="fa fa-shopping-cart fa-3x"></i>
+
+    <h2 class="product-title">{% trans %}cart.empty.long{% endtrans %}</h2>
+    <a class="button " href="{{ url('store_start') }}">{% trans %}cart.continue{% endtrans %}
+        <i class="fa fa-arrow-right"></i></a>
+</div>
+{% else %}
+
+
+    <script xmlns="http://www.w3.org/1999/html">
+        var total = {{ entities.totalprice(tarifa)}};
+
+    </script>
+    {{ form_start(form, { attr:{id:form.vars.id} } ) }}
+    <div style="display: none;"> {{ form_errors(form) }}</div>
+    <div class="col-xs-12 cart">
+
+<script>
+    function formatearNumero(nStr) {
+        nStr += '';
+        x = nStr.split('.');
+        x1 = x[0];
+        x2 = x.length > 1 ? ',' + x[1] : '';
+        var rgx = /(\d+)(\d{3})/;
+        while (rgx.test(x1)) {
+            x1 = x1.replace(rgx, '$1' + '.' + '$2');
+        }
+        return x1 + x2;
+    }
+    function roundToTwo(num) {
+      num=  +(Math.round(num + "e+3")  + "e-3");
+
+       // alert(formatearNumero(num));
+
+return formatearNumero(num);
+    }
+</script>
+        <div class="row">
+            <div class="col-md-12 col-sm-12">
+                <div class="portlet grey-cascade box">
+                    <div class="portlet-title">
+                        <div class="caption">
+                            <i class="fa fa-cogs"></i>{% trans %}product.list{% endtrans %} </div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th> {% trans %}image.name{% endtrans %} </th>
+                                    <th> {% trans %}product.id  {% endtrans %} </th>
+                                    <th> {% trans %}product.name{% endtrans %} </th>
+                                    <th> {% trans %}price.amount{% endtrans %}</th>
+                                    <th> {% trans %}cart.amount{% endtrans %} </th>
+                                    <th>{% trans %}price.discount{% endtrans %} </th>
+                                    <th> {% trans %}price.gift{% endtrans %} </th>
+                                    <th></th>
+                                    <th> {% trans %}cart.reducedprice{% endtrans %}  </th>
+                                    <th> {% trans %}cart.subtotal{% endtrans %}  </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for lines in form.children  %}
+                                    {% for line in lines %}
+                                        {% include "@StoreStore/Cart/line_item.html.twig" with {line:line,tarifa:tarifa} %}
+                                    {% endfor %}
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-xs-4"> {{ form_row(form.nocliente) }}</div>
+                    <div class="col-xs-12"> {{ form_row(form.observaciones) }}</div>
+                </div>
+               </div>
+            <div class="col-md-6">
+                <div class="well">
+                    <div class="row static-info align-reverse">
+                        <div class="col-md-8 name"> {% trans %} total.amount{% endtrans %}: </div>
+                        <div class="col-md-3 value cart-amount">{{ entities.TotalAmount}} </div>
+                    </div>
+                    <div class="row static-info align-reverse">
+                        <div class="col-md-8 name"> {% trans %} total.gift{% endtrans %}:</div>
+                        <div class="col-md-3 value total-gift">{{ entities.TotalGift}} </div>
+                    </div>
+                    <div class="row static-info align-reverse">
+                        <div class="col-md-8 name">   {% trans %} cart.subtotal {% endtrans %}: </div>
+                        <div class="col-md-3 value cart-sub-total"> {{ entities.totalprice(tarifa)}}€ </div>
+                    </div>
+
+                    <div class="row static-info align-reverse">
+                        <div class="col-md-8 name">   IVA: </div>
+                        <div class="col-md-3 value cart-total-iva"> {{ entities.IVAValue(tarifa) }}€ </div>
+                    </div>
+                    <div class="row static-info align-reverse">
+
+                        <div class="col-md-8 name">   {% trans %} cart.total {% endtrans %}: </div>
+                        <div class="col-md-3 value cart-total"> {{ entities.IVAPrice(tarifa)}}€</div>
+                    </div>
+                    <div class="row static-info align-reverse">
+
+                        <div class="col-md-12 value">    <input onclick="OnSave()"   class="btn btn-primary" type="button" value=" {% trans %}actions.submit {% endtrans %}">   <input    class="btn btn-primary" type="submit" value=" {% trans %}cart.end {% endtrans %}">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        {{ form_widget(form) }}
+        </form>
+</div>
+
+    <script>
+
+        function getNumber(number)
+        {
+         var n=number.toString().replace('.','').replace(',','.').replace('-',',');
+
+            return parseFloat(n);
+        }
+        function updateTotal()
+        {
+            var t = [
+                {% for lines in form.children  %}
+                {% for line in lines %}
+                    '{{ line.vars.data.id }}',
+                {% endfor %}{% endfor %}
+            ];
+            var c =0;
+            for(var i=0;i< t.length;i++)
+            c+=parseFloat($('#total_'+t[i]).attr('value'));
+            $('.cart-sub-total')[0].innerHTML =  roundToTwo(c)+'€';
+
+            var c =0;
+            for(var i=0;i< t.length;i++)
+                c+=getNumber($('#total_iva_'+t[i])[0].innerHTML.replace('€',''));
+            $('.cart-total-iva')[0].innerHTML =  roundToTwo(c)+'€';
+
+            var c =0;
+            for(var i=0;i< t.length;i++)
+                c+=getNumber($('#total_price_'+t[i])[0].innerHTML.replace('€',''));
+            $('.cart-total')[0].innerHTML =  roundToTwo(c)+'€';
+
+
+           var w = $('.cart-line input');
+            c=0;
+            for(var i=0;i< w.length;i++)
+            c+= parseFloat(w[i].value);
+            $('.cart-amount')[0].innerHTML =c;
+             c =0;
+            var f = null;
+            for(var i=0;i< t.length;i++)
+            {
+                f = $('#gift_'+t[i]);
+                if(f.length>0)
+                    c+=parseFloat(f[0].innerHTML);
+            }
+
+
+            $('.total-gift')[0].innerHTML =c;
+        }
+        updateTotal();
+        function OnSave()
+        {
+            var c= '.content-wrapper';
+            var data=  jQuery('#{{ form.vars.id }}').serialize();
+            //   alert(data);
+            executeajax('{{ url('cart_save') }}',data,'POST',function(r){ $(c).html(r);
+
+                assign_event(c,null,'.content-wrapper a');
+                UpdateCart();
+            },function(r){ alert('error');},false);
+            event.stopPropagation();
+            event.preventDefault();
+
+        }
+        $('#{{ form.vars.id }}').bind('submit',function(event)
+        {
+          var c= '.content-wrapper';
+            var data=  jQuery('#{{ form.vars.id }}').serialize();
+         //   alert(data);
+            executeajax('{{ url('cart_view') }}',data,'POST',function(r){ $(c).html(r);
+                $(store_storebundle_cart[1]).hide();
+                assign_event(c,null,'.content-wrapper a');
+            UpdateCart();
+            },function(r){ alert(r.responseText);},false);
+            event.stopPropagation();
+            event.preventDefault();
+        });
+        {% if form_errors(form)!=null %}
+        $('.alert').show();
+        {% endif %}
+
+    </script>
+
+{% endif %}
+{% endblock %}
+

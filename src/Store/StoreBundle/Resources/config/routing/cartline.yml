@@ -1,0 +1,34 @@
+cartline:
+    path:     /
+    defaults: { _controller: "StoreStoreBundle:Cartline:index" }
+
+cartline_show:
+    path:     /{id}/show
+    defaults: { _controller: "StoreStoreBundle:Cartline:show" }
+
+cartline_new:
+    path:     /new
+    defaults: { _controller: "StoreStoreBundle:Cartline:new" }
+
+cartline_create:
+    path:     /create
+    defaults: { _controller: "StoreStoreBundle:Cartline:create" }
+    methods:  POST
+
+cartline_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "StoreStoreBundle:Cartline:edit" }
+
+cartline_update:
+    path:     /{id}/update
+    defaults: { _controller: "StoreStoreBundle:Cartline:update" }
+    methods:  [POST, PUT]
+
+cartline_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "StoreStoreBundle:Cartline:delete" }
+    methods:  [POST, DELETE]
+
+cartline_remove:
+    path:     /{id}/remove
+    defaults: { _controller: "StoreStoreBundle:Cartline:remove" }

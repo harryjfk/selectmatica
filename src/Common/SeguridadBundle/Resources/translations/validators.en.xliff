@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="es" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>valor_numerico</source>
+                <target>You must introduce a number value</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>contresenyas_no_coinciden</source>
+                <target>Passwords doesn't match</target>
+            </trans-unit>           
+            <trans-unit id="3">
+                <source>seleccionar_grupo</source>
+                <target>You must select at least one user group</target>
+            </trans-unit>           
+            <trans-unit id="4">
+                <source>campo_requerido</source>
+                <target>Field required</target>
+            </trans-unit> 
+            <trans-unit id="5">
+                <source>usuario_pass_distintos</source>
+                <target>User and password doesn't match</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>pass_min_caracteres</source>
+                <target>The password must have at least %car% characters</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

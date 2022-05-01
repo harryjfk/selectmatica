@@ -1,0 +1,100 @@
+{% extends 'CommonAdminBaseBundle:Default:_list.html.twig' %}
+{% block breadcumb_child %}
+    <li>{% trans %}  languages.list{% endtrans %}</li>
+{% endblock %}
+{% block new_item %}{% endblock %}
+{% block delete_item %}
+    ''
+{% endblock %}
+{% block title  %} {% trans %}  languages.list{% endtrans %}{% endblock %}
+
+{% block header_url %}
+    '{{ url('languages') }}'
+{% endblock %}
+  {% block form_action %}
+      {{ url('languages') }}
+  {% endblock %}
+{% block columns%}
+
+    <th style="width: 25px;">
+        <input type="checkbox" id="chkall" class="chkall" />
+    </th>
+    <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+        aria-sort="ascending"
+        aria-label="Rendering engine: activate to sort column descending">{{ knp_pagination_sortable(entities,  'language.name' , 'a.name') }}</th>
+
+    <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+        aria-sort="ascending"
+        aria-label="Rendering engine: activate to sort column descending">{{ knp_pagination_sortable(entities,  'language.locale' , 'a.locale') }}</th>
+
+    <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+        aria-sort="ascending"
+        aria-label="Rendering engine: activate to sort column descending">{{ knp_pagination_sortable(entities,  'language.enabled' , 'a.enabled') }}</th>
+    <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+        aria-sort="ascending"
+        aria-label="Rendering engine: activate to sort column descending">{{ knp_pagination_sortable(entities,  'language.primary' , 'a.principal') }}</th>
+
+
+    <th>     {% trans %} actions.label{% endtrans %}
+    </th>
+
+{% endblock columns%}
+{% block list_content %}
+    {% for entity in entities %}
+        <tr id="rw{{ entity.id }}" class="odd">
+            <td>
+                <img src="{{ base_dir~entity.img  }}" width="32px" height="32px" >
+            </td>
+            <td class="sorting_1">
+
+              {{ entity.name }}
+
+
+            </td>
+            <td class="sorting_2">
+                {{ entity.locale }}
+            </td>
+            <td >
+                <div class="switch">
+                    <input id="enable-{{ entity.locale }}" type="hidden" value="" />
+                    <input id="disable-{{ entity.locale }}" type="hidden" value="" />
+                    <input id="{{ entity.locale }}" type="checkbox" {% if entity.enabled %}checked="checked"{% endif %} disabled />
+                    <label for="{{ entity.locale }}"></label>
+                </div>
+
+            </td>
+            <td >
+                <div class="switch">
+                    <input id="enable-{{ entity.locale }}" type="hidden" value="" />
+                    <input id="disable-{{ entity.locale }}" type="hidden" value="" />
+                    <input id="{{ entity.locale }}" type="checkbox" {% if  entity.id == primary %}checked="checked"{% endif %} disabled />
+                    <label for="{{ entity.locale }}"></label>
+                </div>
+
+            </td>
+            <td> <ul class="list-actions">
+                       <li>
+                            <a href="{{ path('languages_edit', { 'id': entity.id }) }}"> <span class="glyphicon glyphicon-edit"></span></a>
+                        </li>
+                        {#      <li>
+                                   <a aria-controls="gridview" href="{{ path('producto_delete', { 'id': entity.id }) }}"> <span class="glyphicon glyphicon-remove"></span></a>
+                               </li>#}
+                    <li>
+                              </li>
+                </ul></td>
+        </tr>
+
+    {% endfor %}
+
+
+{% endblock %}
+{% block list_footer %}
+    <th rowspan="1" colspan="1">{% trans %} bill.numero{% endtrans %}</th>
+    <th rowspan="1" colspan="1">{% trans %} bill.ano{% endtrans %}</th>
+    <th rowspan="1" colspan="1">{% trans %}bill.serie{% endtrans %}</th>
+    <th rowspan="1" colspan="1">{% trans %} bill.importe{% endtrans %}</th>
+
+    <th rowspan="1" colspan="1">  {% trans %} actions.label{% endtrans %}</th>
+{% endblock %}
+
+

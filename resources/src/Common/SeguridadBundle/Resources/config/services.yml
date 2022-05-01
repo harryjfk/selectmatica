@@ -1,0 +1,12 @@
+services:
+#    seguridad.example:
+#        class: Bandec\SeguridadBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+    seguridad.listener:
+        class: Common\SeguridadBundle\Listener\LogListener
+        arguments: [@service_container]
+        tags:
+            - { name: doctrine.event_listener, event: postPersist }
+            - { name: doctrine.event_listener, event: postRemove }
+            - { name: doctrine.event_listener, event: postUpdate }
+            - { name: kernel.event_listener,   event: security.interactive_login }

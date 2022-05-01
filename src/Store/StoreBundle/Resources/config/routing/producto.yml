@@ -1,0 +1,55 @@
+producto_list:
+    path:     /list/{search}/
+    defaults: { _controller: "StoreStoreBundle:Producto:index", search: "null" }
+
+
+producto_show:
+    path:     /{id}/show
+    defaults: { _controller: "StoreStoreBundle:Producto:show" }
+producto_view_item:
+    path:     /{id}/item
+    defaults: { _controller: "StoreStoreBundle:Producto:view_item" }
+
+producto_new:
+    path:     /new
+    defaults: { _controller: "StoreStoreBundle:Producto:new" }
+
+producto_create:
+    path:     /create
+    defaults: { _controller: "StoreStoreBundle:Producto:create" }
+    methods:  POST
+
+producto_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "StoreStoreBundle:Producto:edit" }
+
+producto_update:
+    path:     /{id}/update
+    defaults: { _controller: "StoreStoreBundle:Producto:update" }
+    methods:  [POST, PUT]
+
+producto_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "StoreStoreBundle:Producto:delete" }
+    methods:  [POST, DELETE]
+producto_sync:
+    path:     /sync
+    defaults: { _controller: "StoreStoreBundle:Producto:sync" }
+
+producto_upload:
+    path:     /upload/{editId}
+    defaults: { _controller: "StoreStoreBundle:Producto:upload" }
+   # methods:  [POST, DELETE]
+
+producto_search:
+    path:    /search
+    defaults: { _controller: "StoreStoreBundle:Producto:search" }
+producto_getidimage:
+    path:    /{path}/image
+    defaults: { _controller: "StoreStoreBundle:Producto:getImageId" }
+product_related:
+    path:    /{id}/related
+    defaults: { _controller: "StoreStoreBundle:Producto:related" }
+product_max_price:
+    path:    /max_price
+    defaults: { _controller: "StoreStoreBundle:Producto:max_price" }

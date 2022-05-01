@@ -1,0 +1,19 @@
+{% set lineObject = line.vars.data %}
+{% set producto = lineObject %}
+<div class="row ">
+
+    <div class="col-xs-6 ">
+
+            {{ form_row(line.cantidad) }}
+
+    </div>
+    <div class="col-xs-2">
+
+        {{ form_row(line.precio) }}</div>
+    <div class="col-xs-2">
+
+        {{ form_row(line.precioiva) }}</div>
+    <div class="col-xs-1">
+        <a href="{{ url('cartline_remove',{id: lineObject.id }) }}" class="fa remove button"><i class="fa fa-fw fa-remove"></i></a></div>
+
+</div>

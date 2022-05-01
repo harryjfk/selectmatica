@@ -1,0 +1,110 @@
+{% extends  app.request.isXmlHttpRequest ?'CommonAdminBaseBundle:Default:_ajax_layout.html.twig':'CommonAdminBaseBundle:Default:_layout.html.twig' %}
+{% block error_text %}
+    {{ form_errors(form) }}
+{% endblock %}
+
+{% block title  %}
+    {% if isNew %}
+        {% trans %} entity.new  {% endtrans %}
+    {% else %}
+        {% trans %} entity.edit  {% endtrans %}
+    {% endif %}
+    {% block inner_title %} {% endblock %}
+{% endblock title %}
+{% block content %}
+
+
+
+    <!-- /.box-header -->
+    <!-- form start -->
+    {% block from_declare %} {% endblock %}
+
+        <div class="box-body">
+            {% block form_body %}
+            {% endblock %}
+        </div>
+        <!-- /.box-body -->
+{% block buttons %}
+        <div class="box-footer">
+            <button id="{{ form.vars.id }}_button" type="button"  onclick="doclick(this)"   class="btn btn-primary">{% trans %}actions.submit{% endtrans %}</button>
+            <a class="btn btn-cancel" href="{% block cancel_ref %}{% endblock %}">{% trans %}actions.cancel{% endtrans %}</a>
+        </div>
+    {% endblock  %}
+
+ {{ form( form._token) }}
+    </form>
+
+    {% block scripts %}
+
+    <script>
+        var w= null;
+
+
+
+        function doclick(e)
+        {
+            $('#{{ form.vars.id }}').submit()
+        }
+
+        $('#{{ form.vars.id }}').validate({
+
+            debug: true,
+            errorElement: 'div',
+            submitHandler: function(form){
+
+
+            }
+        });
+
+        var t =null;
+        $('#{{ form.vars.id }}').on('submit',
+        function (e)
+        {
+
+            e.stopPropagation();
+            e.preventDefault();
+         //   t =    $("#{{ form.vars.id }}").validate();
+            var valid =  $("#{{ form.vars.id }}").validate().checkForm();
+
+            if( valid==true){
+            var c= '.content-wrapper';
+            {% block java_data %}
+            var data=  jQuery('#{{ form.vars.id }}').serialize();
+            {% endblock %}
+                {{ form.vars.id }}_button.disabled=true;
+            executeajax({% block submit_url%}
+
+                    {% endblock %},data,'POST',function(r){ $(c).html(r);
+
+                        assign_event(c,null,'.content-wrapper a');
+                        $t = $('.alert div');
+                        if($t.length>0)
+                        {
+                                if($t[0].innerHTML.trim()=='')
+                            {
+                                $('.alert').attr('class',"alert alert-success alert-dismissible");
+                                $('.alert div')[0].innerHTML="{{ 'js_datos_guardados'|trans }}";
+                                $('.alert i').attr('class','icon fa fa-check')
+                            }
+
+                            $('.alert').show();}
+                        {% block on_edited %}
+                        {% endblock %}
+                    },function(r){
+                       {{ form.vars.id }}_button.disabled=false;
+                        $('.alert').attr('class',"alert alert-danger alert-dismissible");
+                        $('.alert i').attr('class','icon fa fa-ban');
+
+                        $('.alert div')[0].innerHTML= r.responseText;
+                        $('.alert').show();
+
+
+                    },{% block ajax_file %}false{% endblock %});
+
+
+          }}
+        );
+
+    </script>
+    {% endblock %}
+{% endblock %}

@@ -1,0 +1,34 @@
+facturas:
+    path:     /
+    defaults: { _controller: "StoreStoreBundle:Facturas:index" }
+
+facturas_show:
+    path:     /{id}/show
+    defaults: { _controller: "StoreStoreBundle:Facturas:show" }
+
+facturas_new:
+    path:     /new
+    defaults: { _controller: "StoreStoreBundle:Facturas:new" }
+
+facturas_create:
+    path:     /create
+    defaults: { _controller: "StoreStoreBundle:Facturas:create" }
+    methods:  POST
+
+facturas_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "StoreStoreBundle:Facturas:edit" }
+
+facturas_update:
+    path:     /{id}/update
+    defaults: { _controller: "StoreStoreBundle:Facturas:update" }
+    methods:  [POST, PUT]
+
+facturas_delete:
+    path:     /delete
+    defaults: { _controller: "StoreStoreBundle:Facturas:delete" }
+    methods:  [POST, DELETE]
+facturas_download:
+    path:     /{id}/download
+    defaults: { _controller: "StoreStoreBundle:Facturas:download" }
+    methods:  [GET]

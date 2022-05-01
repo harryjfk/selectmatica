@@ -1,0 +1,64 @@
+{% extends "StoreAdminBundle:Layouts:layout.html.twig" %}
+{% block mod_name %}Producto edit{% endblock %}
+{% block innerbody %}
+
+    {# Underscore templates for the uploader #}
+    {% include "PunkAveFileUploaderBundle:Default:templates.html.twig" %}
+
+
+    <form class="edit-form" action="{{ path('producto_edit', { id: entity.id, editId: editId }) }}"
+          method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <div class="col-2-3">
+
+
+
+                <div class="file-uploader">
+                </div>
+
+                <p class="fz-s">Formato JPG, PNG o GIF de un máximo 20 MB</p>
+            </div>
+            {# Hydrated by javascript #}
+
+
+            <button class="btn btn-primary" type="submit">{{ isNew ? "Save New Listing" : "Save Changes" }}</button>
+            <a class="btn" href="{{ path('producto') }}">Cancel</a>
+            {% if not isNew %}
+                <a class="btn btn-danger" href="{{ url('producto_delete', {
+                    id: entity.id,
+                }) }}">Delete</a>
+            {% endif %}
+
+    </form>
+
+
+{% endblock %}
+
+{% block additional_javascripts %}
+
+
+    <script></script>
+    {% javascripts
+
+    '@PunkAveFileUploaderBundle/Resources/public/js/jquery.fileupload.js'
+    '@PunkAveFileUploaderBundle/Resources/public/js/jquery.iframe-transport.js'
+    '@PunkAveFileUploaderBundle/Resources/public/js/FileUploader.js'%}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+    <script type="text/javascript">
+
+        // Enable the file uploader
+      $(function () {
+
+         var s =   new PunkAveFileUploader({
+                'uploadUrl': {{ path('producto_upload', { editId: editId }) | json_encode | raw }},
+                'viewUrl': {{ ('http://localhost/store/web/uploads/tmp/attachments/' ~ editId) | json_encode | raw }},
+                'el': '.file-uploader',
+
+                'existingFiles': {{ punkave_get_files('tmp/attachments/' ~ editId) | json_encode | raw }},
+                'delaySubmitWhileUploading': '.edit-form'
+            });
+
+        });
+    </script>
+{% endblock %}

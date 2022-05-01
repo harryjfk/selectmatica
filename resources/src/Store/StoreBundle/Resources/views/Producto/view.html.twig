@@ -1,0 +1,49 @@
+{% extends  app.request.isXmlHttpRequest ?'CommonAdminBaseBundle:Default:_ajax_layout.html.twig':'CommonAdminBaseBundle:Default:_layout.html.twig' %}
+{% block breadcumb_child %}
+
+    {% if category==null %}
+        <li >{{ tree }}</li>
+        {% else %}
+
+    {% for cat in tree %}
+{% if cat.id == category.id %}
+   {% include 'CommonAdminBaseBundle:Default:_bread_item.html.twig' with {last:true,name:category.name} %}
+    {% else %}
+        {% include 'CommonAdminBaseBundle:Default:_bread_item.html.twig' with {last:false,name:cat.name,url: url('category_prods',{id:cat.id}) } %}
+    {% endif %}
+        {% endfor %}
+    {% endif %}
+    {% endblock %}
+{% block title %} {% if category==null %}{{ tree }}{% else %}{{ category.name }}{% endif %}{% endblock %}
+{% block content %}
+<div class="row products-search">
+
+
+    <div class="col-xs-12 with-border">
+        <div class="row"></div>
+        <div class="row ">
+              {% if products|length==0 %}
+                <div class="thanks white-panel">
+                    <div class="thanks-img ">
+
+                        <div class="thanks-text">
+                            {{ 'product.sync.found'|trans({'%count%':0}) }}
+
+                        </div>
+                        <div class="thanks-desc">
+                            {% trans %}product.search.msg{% endtrans %}
+
+                        </div></div>
+
+
+                </div>
+                {% else %}
+                    {% include 'StoreStoreBundle:Producto:_product_list.html.twig' with {products:products,base_dir:base_dir,related:false}  %}
+
+              {% endif %}
+    </div></div>
+</div>
+
+
+
+{% endblock %}

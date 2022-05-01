@@ -1,0 +1,273 @@
+{% extends  app.request.isXmlHttpRequest ?'CommonAdminBaseBundle:Default:_ajax_layout.html.twig':'CommonAdminBaseBundle:Default:_layout.html.twig' %}
+
+
+{% block breadcumb_child %}
+
+    <li >{% trans %}cart.graph{% endtrans %}</li>
+{% endblock %}
+
+ {% block title %}{% trans %}cart.graph{% endtrans %}{% endblock %}
+{% block content %}
+    <div class="row">
+        {% if global!=null %}
+        <div class="col-xs-12">
+            <div class="box box-success">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{% trans %}cart.graph.sales{% endtrans %}</h3>
+
+                </div>
+                <div class="box-body">
+                    <div class="chart" id="barChartG">
+                        <canvas id="saleChart"></canvas>
+
+
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% if seccion!=null %}
+        <div class="col-xs-12">
+            <div class="box box-success">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{% trans %}cart.graph.section{% endtrans %}</h3>
+
+                </div>
+                <div class="box-body">
+                    <div class="chart" id="barChartG">
+                        <canvas id="sectionChart"></canvas>
+
+
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% if familia!=null %}
+        <div class="col-xs-12">
+            <div class="box box-success">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{% trans %}cart.graph.family{% endtrans %}</h3>
+
+                </div>
+                <div class="box-body">
+                    <div class="chart" id="barChartG">
+                        <canvas id="familiaChart"></canvas>
+
+
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% if subfamilia!=null %}
+        <div class="col-xs-12">
+            <div class="box box-success">
+                <div class="box-header with-border">
+                    <h3 class="box-title">{% trans %}cart.graph.subfamily{% endtrans %}</h3>
+
+                </div>
+                <div class="box-body">
+                    <div class="chart" id="barChartG">
+                        <canvas id="subfamiliaChart"></canvas>
+
+
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+
+{% endblock %}
+            {% block additional_scripts %}
+                <script>
+
+                    function formatearNumero(nStr) {
+                        nStr += '';
+                        x = nStr.split('.');
+                        x1 = x[0];
+                        x2 = x.length > 1 ? ',' + x[1] : '';
+                        var rgx = /(\d+)(\d{3})/;
+                        while (rgx.test(x1)) {
+                            x1 = x1.replace(rgx, '$1' + '.' + '$2');
+                        }
+                        return x1 + x2;
+                    }
+                    function roundToTwo(num) {
+                        num=  +(Math.round(num + "e+3")  + "e-3");
+
+                        // alert(formatearNumero(num));
+
+                        return formatearNumero(num);
+                    }
+
+                    $(function () {
+                        {% if global!=null %}
+                        var ctx = document.getElementById("saleChart");
+                        var myChart = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: [{% for m in global.columns %}"{{ m }}", {% endfor %}],
+                                datasets: [
+                                    {% for g in global.values %}
+                                    {
+                                        label: '{{ g['y'] }}',
+                                        data: [{% for m in g %}
+                                            {% if m !=g['y'] %}
+                                            {{ m }},
+                                            {% endif %}
+                                            {% endfor %}],
+                                        backgroundColor: [
+                                            {% for m in g %}
+                                            {% if m !=g['y'] %}
+                                            'rgba({{ random(colors) }}, {{ random(colors) }}, {{ random(colors) }}, 1)',
+                                            {% endif %}
+                                            {% endfor %}
+
+
+                                        ],
+                                        borderColor: [
+                                            'rgba(255,99,132,1)',
+                                            'rgba(54, 162, 235, 1)',
+                                            'rgba(255, 206, 86, 1)',
+
+                                        ],
+                                        borderWidth: 1
+                                    },
+                                    {% endfor %}]
+                            },
+                            options: {
+                                tooltips: {
+                                    enabled: true,
+                                   /* mode: 'single',*/
+                                    callbacks: {
+                                        label: function(tooltipItems, data) {
+                                            return  data.datasets[tooltipItems.datasetIndex].label+':'+roundToTwo(tooltipItems.yLabel) + ' €';
+                                        }
+                                    }
+                                },
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true
+                                        }
+                                    }]
+                                },
+                                legend: {
+                                    display: false,
+                                    labels: {
+                                        fontColor: 'rgb(128, 99, 132)'
+                                    }
+                                }
+                            }
+                        });
+
+                        {% endif %}
+
+
+
+                        var options = {
+                            // String - Template string for single tooltips
+
+                            legend: {
+                                display: false,
+                                labels: {
+                                    fontColor: 'rgb(128, 99, 132)'
+                                }
+                            }
+                        };
+                        {% if seccion!=null %}
+                        ctx = document.getElementById("sectionChart").getContext("2d");
+                        var seccionData = {
+                            labels:[{% for m in seccion.columns %}"{{ m }}", {% endfor %}],
+                            showInLegend:true,
+                            datasets: [
+                                {% for g in seccion.values %}
+
+                                {
+                                    label: "{{ g['y']  }}",
+
+                                    fill: false,
+                                    /*  lineTension: 0.1,*/
+                                    backgroundColor: "{{ seccion.colors[ g['y']].fillColor }}",
+                                    borderColor: "{{ seccion.colors[ g['y']].lineColor }}",
+                                    pointBorderColor: "rgba(75,192,192,1)",
+                                    pointBackgroundColor: "#fff",
+                                    pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                                    pointHoverBorderColor: "{{ seccion.colors[ g['y']].StrokeColor }}",
+                                    data: [{% for m in seccion.columns %}"{{ g[m] }}", {% endfor %}
+
+
+                                    ]
+                                },
+                                {% endfor %}
+                            ]
+                        };
+                        myLineChart = Chart.Line(ctx, {
+                            data: seccionData,
+                            options:options
+                        });
+                        {% endif %}
+                        {% if familia!=null %}
+                        var familiaData = {
+                            labels: [ {% for g in familia.columns %}"{{ g }}", {% endfor %}],
+                            datasets: [
+                                {% for g in familia.values %}
+
+                                {
+                                    label: "{{ g['y'] }}",
+                                    fill: false,
+                                    /*  lineTension: 0.1,*/
+                                    backgroundColor: "{{ familia.colors[ g['y']].fillColor }}",
+                                    borderColor: "{{ familia.colors[ g['y']].lineColor }}",
+                                    pointBorderColor: "rgba(75,192,192,1)",
+                                    pointBackgroundColor: "#fff",
+                                    pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                                    pointHoverBorderColor: "{{ familia.colors[ g['y']].StrokeColor }}",
+                                    data: [{% for m in familia.columns %}"{{ g[m] }}", {% endfor %}]
+                                },
+                                {% endfor %}
+                            ]
+                        };
+                        ctx = document.getElementById("familiaChart").getContext("2d");
+                        myLineChart = Chart.Line(ctx, {
+                            data: familiaData,
+                            options:options
+                        });
+                        {% endif %}
+                        {% if subfamilia!=null %}
+
+                        ctx = document.getElementById("subfamiliaChart").getContext("2d");
+                        var subfamiliaData = {
+                            labels: [ {% for g in subfamilia.columns %}"{{ g }}", {% endfor %}],
+                            datasets: [
+                                {% for g in subfamilia.values %}
+
+                                {
+                                    label: "{{ g['y'] }}",
+
+                                    fill: false,
+                                    /*  lineTension: 0.1,*/
+                                    backgroundColor: "{{ subfamilia.colors[ g['y']].fillColor }}",
+                                    borderColor: "{{ subfamilia.colors[ g['y']].lineColor }}",
+                                    pointBorderColor: "rgba(75,192,192,1)",
+                                    pointBackgroundColor: "#fff",
+                                    pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                                    pointHoverBorderColor: "{{ subfamilia.colors[ g['y']].StrokeColor }}",
+                                    data: [{% for m in subfamilia.columns %}"{{ g[m] }}", {% endfor %}]
+                                },
+                                {% endfor %}
+                            ]};
+                        myLineChart = Chart.Line(ctx, {
+                            data: subfamiliaData,
+                            options:options
+                        });
+                        {% endif %}
+                    });</script>
+            {% endblock %}

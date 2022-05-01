@@ -1,0 +1,150 @@
+{% set simple = false %}
+
+
+<style type="text/css">
+
+    .items_prods{
+        margin-left: 0px;
+        margin-right: 0px;
+        margin-top: 25px;
+    }
+
+    .items_prods .row{
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    .items_prods .image_container {
+        border: 1px solid #d2d6de;
+        padding: 3px;
+        height: 200px;
+        position: relative;
+    }
+
+    .items_prods .image_container .img-responsive {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    .items_prods .title {
+        margin-top: 10px;
+    }
+
+    .tr {
+        text-align: right;
+    }
+</style>
+
+{% set total = products | length %}
+{% set currentRow = 1 %}
+{% set currentIndex = 1 %}
+
+{% for product in products %}
+
+{% if currentIndex == 1 %}
+<div class="row items_prods">
+{% endif %}
+<div class="col-md-3">
+    <div class="image_container">
+        {% set tarifavalue = product.producto.TarifaValue(tarifa) %}
+        {% set disc_t = product.producto.promocionType(tarifa) %}
+        {% if disc_t==1 or disc_t==2 %}
+            <img class=" left-promo" src="{{ asset("bundles/adminbundle/css/images/sup-promo.png") }}">
+        {% endif %}
+        {% if disc_t==2 %}
+            <img class=" right-promo  " src="{{ asset("bundles/adminbundle/css/images/dto.png") }}">
+        {% endif %}
+
+        {% set img = product.PrincipalImage %}
+        {% set ran = img.Random %}
+        {% set img = (img.webpath('medium')) %}
+        <a href="{{ url('producto_view_item',{id:product.id}) }}" {% if product.images|length==0 %}{% endif %}>
+            <img class="profile-user-img img-responsive"
+                 src="{{ base_dir~ img }}{#{ (('uploads/images/'~ img)| imagine_filter('thumb_200x150')) |raw }}#}?{{ ran }}"
+                 alt="">
+        </a>
+    </div>
+
+
+    {% if  product.producto!=null %}
+        <div class="title">
+            {{ product.producto.nombre }}
+        </div>
+    {% endif %}
+
+    <div class="row product-number">
+        <div class="col-xs-4">
+            {% trans %}product.id{% endtrans %}:
+        </div>
+        <div class="col-xs-8 tr">
+            {{ product.producto.id }}
+        </div>
+    </div>
+
+
+    <div class="row price">
+        {% set tarifavalue = product.producto.TarifaValue(tarifa) %}
+        {% set disc_t= product.producto.getDiscount(tarifavalue,1) %}
+
+        <div class="row">
+            <div class="col-md-2">{% trans %} price.amount{% endtrans %}:</div>
+            <div class="col-md-10">
+                <div class="col-md-2">
+                 {{ tarifavalue.pvp|number_format(3,',','.') }}€
+                </div>
+                <div class="col-md-2">
+                    {% trans %} price.amount.abs{% endtrans %}
+                </div>
+                <div class="col-md-2">
+                    {{ disc_t|number_format(0) }}%
+                </div>
+                <div class="col-md-2">
+                    {{ product.baseprice( tarifa,1)|number_format(3,',','.') }}€
+                </div>
+                <div class="col-xs-1 col-sm-2 iva pdleft">+IVA</div>
+            </div>
+            {% if simple==false %}
+                <div class="row edit-button">
+
+                        <button onclick="DoAddtoCart({{ product.id }},1,'{{ product.producto.nombre }}')"
+                                class="btn btn-primary btn-block"><b>{% trans %}cart.addto{% endtrans %}</b></button>
+                </div>
+            {% endif %}
+        </div>
+
+
+    </div>
+
+
+</div>
+
+{% if currentIndex == 4 or currentRow >= total %}
+    {% set currentIndex = 1 %}
+    </div>
+{% else %}
+    {% set currentIndex = currentIndex + 1 %}
+{% endif %}
+   {% set currentRow = currentRow + 1 %}
+{% endfor %}
+
+
+<script>
+
+    function DoAddtoCart(id, cant, producto) {
+        var c = '.content-wrapper';
+        var data = null;
+        //alert(data);
+        var t = '{{ app.request.server.get('SCRIPT_NAME') }}/cart/add/' + id + '/' + cant;
+        //   alert(t);
+        executeajax(t, data, 'POST', function (r) {
+            UpdateCart(cant, producto);
+            //   $(c).html(r);
+
+            //  assign_event(c,null,'.content-wrapper a');
+        }, function (r) {
+            alert(r.responseText);
+        }, false);
+    }
+</script>
+
+

@@ -1,0 +1,30 @@
+cart:
+    path:     /
+    defaults: { _controller: "StoreAdminBundle:Cart:index" }
+
+cart_show:
+    path:     /{id}/show
+    defaults: { _controller: "StoreAdminBundle:Cart:show" }
+
+cart_new:
+    path:     /new
+    defaults: { _controller: "StoreAdminBundle:Cart:new" }
+
+cart_create:
+    path:     /create
+    defaults: { _controller: "StoreAdminBundle:Cart:create" }
+    methods:  POST
+
+cart_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "StoreAdminBundle:Cart:edit" }
+
+cart_update:
+    path:     /{id}/update
+    defaults: { _controller: "StoreAdminBundle:Cart:update" }
+    methods:  [POST, PUT]
+
+cart_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "StoreAdminBundle:Cart:delete" }
+    methods:  [POST, DELETE]

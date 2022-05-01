@@ -1,0 +1,24 @@
+common_base_app:
+    resource: "@CommonBaseAppBundle/Resources/config/routing.yml"
+    prefix:   /
+
+common_admin_base:
+    resource: "@CommonAdminBaseBundle/Resources/config/routing.yml"
+    prefix:   /
+
+common_seguridad:
+    resource: "@CommonSeguridadBundle/Resources/config/routing.yml"
+    prefix:   /seguridad
+
+
+store_rest:
+    resource: "@StoreRestBundle/Resources/config/routing.yml"
+    prefix:   /rest
+
+store:
+    resource: "@StoreStoreBundle/Resources/config/routing.yml"
+    prefix:   /
+
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"
+

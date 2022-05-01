@@ -1,0 +1,546 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+
+            <trans-unit id="2">
+               <source>cart.emptyit</source>
+               <target>Empty Cart</target>
+            </trans-unit>
+            <trans-unit id="3">
+               <source>categories.name</source>
+               <target>Categories</target>
+            </trans-unit>
+            <trans-unit id="4">
+               <source>category.list</source>
+               <target>Categories list</target>
+            </trans-unit>
+            <trans-unit id="5">
+               <source>category.name</source>
+               <target>Category</target>
+            </trans-unit>
+            <trans-unit id="6">
+               <source>actions.label</source>
+               <target>Actions</target>
+            </trans-unit>
+            <trans-unit id="7">
+               <source>category.sync</source>
+               <target>Synchronize</target>
+            </trans-unit>
+
+            <trans-unit id="9">
+               <source>entity.edit</source>
+               <target>Edit</target>
+            </trans-unit>
+            <trans-unit id="10">
+               <source>actions.submit</source>
+               <target>Save</target>
+            </trans-unit>
+            <trans-unit id="11">
+               <source>actions.cancel</source>
+               <target>Cancel</target>
+            </trans-unit>
+            <trans-unit id="12">
+               <source>product.edit</source>
+               <target>Edit</target>
+            </trans-unit>
+            <trans-unit id="13">
+               <source>product.name</source>
+               <target>Product</target>
+            </trans-unit>
+            <trans-unit id="14">
+               <source>product.list</source>
+               <target>Products list</target>
+            </trans-unit>
+            <trans-unit id="15">
+               <source>product.sync</source>
+               <target>Synchronize</target>
+            </trans-unit>
+            <trans-unit id="16">
+               <source>price.amount</source>
+               <target>Price</target>
+            </trans-unit>
+            <trans-unit id="8">
+               <source>price.before</source>
+               <target>Original Price</target>
+            </trans-unit>
+            <trans-unit id="1">
+               <source>product.id</source>
+               <target>Product ID</target>
+            </trans-unit>
+            <trans-unit id="17">
+               <source>cart.products.count</source>
+               <target>Products count</target>
+            </trans-unit>
+            <trans-unit id="18">
+               <source>cart.empty</source>
+               <target>Empty Cart</target>
+            </trans-unit>
+            <trans-unit id="19">
+               <source>cart.view</source>
+               <target>See Cart</target>
+            </trans-unit>
+            <trans-unit id="20">
+               <source>cart.addto</source>
+               <target>Add to cart</target>
+            </trans-unit>
+            <trans-unit id="21">
+               <source>cart.name</source>
+               <target>Cart</target>
+            </trans-unit>
+            <trans-unit id="22">
+               <source>cart.amount</source>
+               <target>Amount</target>
+            </trans-unit>
+            <trans-unit id="23">
+               <source>categories.edit</source>
+               <target>Manage Categories</target>
+            </trans-unit>
+            <trans-unit id="24">
+               <source>products.edit</source>
+               <target>Manage Products</target>
+            </trans-unit>
+            <trans-unit id="25">
+               <source>navigation.showing</source>
+               <target>Showing</target>
+            </trans-unit>
+            <trans-unit id="26">
+               <source>navigation.to</source>
+               <target>To</target>
+            </trans-unit>
+            <trans-unit id="27">
+               <source>navigation.of</source>
+               <target>From</target>
+            </trans-unit>
+           <trans-unit id="28">
+               <source>navigation.entries</source>
+               <target>Entries</target>
+            </trans-unit>
+           <trans-unit id="29">
+               <source>navigation.search</source>
+               <target>Search</target>
+            </trans-unit>
+           <trans-unit id="30">
+               <source>navigation.show</source>
+               <target>Show</target>
+            </trans-unit>
+
+           <trans-unit id="32">
+               <source>images.names</source>
+               <target>Images</target>
+            </trans-unit>
+           <trans-unit id="33">
+               <source>images.list</source>
+               <target>All Images</target>
+            </trans-unit>
+           <trans-unit id="34">
+               <source>image.name</source>
+               <target>Image</target>
+            </trans-unit>
+           <trans-unit id="35">
+               <source>cart.total</source>
+               <target>Total</target>
+            </trans-unit>
+           <trans-unit id="36">
+               <source>cart.end</source>
+               <target>Finish</target>
+            </trans-unit>
+           <trans-unit id="37">
+               <source>product.description</source>
+               <target>Description</target>
+            </trans-unit>
+            <trans-unit id="38">
+               <source>cart.empty.long</source>
+               <target>Your cart is empty</target>
+            </trans-unit>
+            <trans-unit id="39">
+               <source>cart.continue</source>
+               <target>Continue buying</target>
+            </trans-unit>
+            <trans-unit id="40">
+               <source>file.uploading</source>
+               <target>Uploading....</target>
+            </trans-unit>
+
+            <trans-unit id="48">
+               <source>product.byamount</source>
+               <target>Price by amount</target>
+            </trans-unit>
+
+            <trans-unit id="52">
+               <source>upload.text</source>
+               <target> JPG, PNG or GIF Format, 20 MB max size</target>
+            </trans-unit>
+
+          <trans-unit id="62">
+               <source>search</source>
+               <target>Search</target>
+            </trans-unit>
+
+          <trans-unit id="63">
+               <source>cart.list</source>
+               <target>Orders list</target>
+            </trans-unit>
+          <trans-unit id="64">
+               <source>cart.pdf</source>
+               <target>Export to PDF</target>
+            </trans-unit>
+          <trans-unit id="65">
+               <source>price.gift</source>
+               <target>Gift</target>
+            </trans-unit>
+          <trans-unit id="66">
+               <source>price.discount.from</source>
+               <target>From</target>
+            </trans-unit>
+          <trans-unit id="67">
+               <source>price.discount.to</source>
+               <target>To</target>
+            </trans-unit>
+          <trans-unit id="68">
+               <source>price.discount</source>
+               <target>Discount</target>
+            </trans-unit>
+       <trans-unit id="69">
+               <source>start</source>
+               <target>Start</target>
+            </trans-unit>
+          <trans-unit id="70">
+               <source>products.related</source>
+               <target>Related products</target>
+            </trans-unit>
+          <trans-unit id="71">
+               <source>products.observation</source>
+               <target>Observations</target>
+            </trans-unit>
+          <trans-unit id="72">
+               <source>total.gift</source>
+               <target>Total gift</target>
+            </trans-unit>
+          <trans-unit id="73">
+               <source>total.amount</source>
+               <target>Total Amount</target>
+            </trans-unit>
+          <trans-unit id="74">
+               <source>cart.reducedprice</source>
+               <target>Final Price</target>
+            </trans-unit>
+          <trans-unit id="75">
+               <source>cart.observations</source>
+               <target>Observations</target>
+            </trans-unit>
+          <trans-unit id="76">
+               <source>cart.thanks</source>
+               <target>Thanks for buying</target>
+            </trans-unit>
+          <trans-unit id="77">
+               <source>cart.thanks.message</source>
+               <target>In shortly you will recieve a email with your order </target>
+            </trans-unit>
+          <trans-unit id="78">
+               <source>cart.id</source>
+               <target>No.</target>
+            </trans-unit>
+          <trans-unit id="79">
+               <source>cart.user</source>
+               <target>User</target>
+            </trans-unit>
+          <trans-unit id="80">
+               <source>cart.date</source>
+               <target>Created Date</target>
+            </trans-unit>
+         <trans-unit id="81">
+               <source>cart.order.view</source>
+               <target>View Order</target>
+            </trans-unit>
+         <trans-unit id="82">
+               <source>order.details</source>
+               <target>Details</target>
+            </trans-unit>
+         <trans-unit id="83">
+               <source>order.mailsend</source>
+               <target>Email has been send with the order</target>
+            </trans-unit>
+         <trans-unit id="84">
+               <source>cart.status</source>
+               <target>Status</target>
+            </trans-unit>
+         <trans-unit id="85">
+               <source>cart.status.closed</source>
+               <target>Closed</target>
+            </trans-unit>
+         <trans-unit id="86">
+               <source>cart.status.open</source>
+               <target>Open</target>
+            </trans-unit>
+         <trans-unit id="87">
+               <source>cart.payment</source>
+               <target>Payment Information</target>
+            </trans-unit>
+         <trans-unit id="88">
+               <source>cart.customer.info</source>
+               <target>Customer Information</target>
+            </trans-unit>
+         <trans-unit id="89">
+               <source>cart.customer.name</source>
+               <target>Name</target>
+            </trans-unit>
+         <trans-unit id="90">
+               <source>cart.customer.mail</source>
+               <target>E-Mail</target>
+            </trans-unit>
+         <trans-unit id="91">
+               <source>bill.edit</source>
+               <target>Manage Bills</target>
+            </trans-unit>
+         <trans-unit id="92">
+               <source>bill.list</source>
+               <target>Bills list</target>
+            </trans-unit>
+         <trans-unit id="93">
+               <source>bill.serie</source>
+               <target>Serie</target>
+            </trans-unit>
+         <trans-unit id="94">
+               <source>bill.ano</source>
+               <target>Year</target>
+            </trans-unit>
+         <trans-unit id="95">
+               <source>bill.numero</source>
+               <target>Number</target>
+            </trans-unit>
+         <trans-unit id="96">
+               <source>bill.importe</source>
+               <target>Amount</target>
+            </trans-unit>
+         <trans-unit id="97">
+               <source>bill.file</source>
+               <target>File</target>
+            </trans-unit>
+         <trans-unit id="98">
+               <source>cart.customer.id</source>
+               <target>ID</target>
+            </trans-unit>
+         <trans-unit id="99">
+               <source>order.mailsenderror</source>
+               <target>The mail with the order can't be sent, Message:</target>
+            </trans-unit>
+         <trans-unit id="100">
+               <source>order.mail.send</source>
+               <target>A order has been created</target>
+            </trans-unit>
+         <trans-unit id="101">
+               <source>bill.file.ext</source>
+               <target>The extension of the file must be PDF</target>
+            </trans-unit>
+         <trans-unit id="102">
+               <source>product.primary.show</source>
+               <target>Show In Main Screen</target>
+            </trans-unit>
+         <trans-unit id="103">
+               <source>product.primary.text</source>
+               <target>Highlighted Products</target>
+            </trans-unit>
+         <trans-unit id="104">
+               <source>product.synchronizing</source>
+               <target>Synchronizing</target>
+            </trans-unit>
+         <trans-unit id="105">
+               <source>product.sync.done</source>
+               <target>Sync Done</target>
+            </trans-unit>
+         <trans-unit id="106">
+               <source>product.sync.error</source>
+               <target>Error Synchronizing</target>
+            </trans-unit>
+         <trans-unit id="107">
+               <source>product.sync.found</source>
+               <target>%count% products has been found</target>
+            </trans-unit>
+         <trans-unit id="108">
+               <source>product.sync.init</source>
+               <target>Sync Inizialiting</target>
+            </trans-unit>
+         <trans-unit id="109">
+               <source>product.sync.category</source>
+               <target>Category: '%count%' has been synchronized</target>
+            </trans-unit>
+         <trans-unit id="110">
+               <source>product.sync.products</source>
+               <target>Product: '%count%'  has been synchronized</target>
+            </trans-unit>
+         <trans-unit id="111">
+               <source>product.sync.end</source>
+               <target>The synchronization ended with  %prods% products and  %cat% categories </target>
+            </trans-unit>
+          <trans-unit id="112">
+               <source>product.search</source>
+               <target>Product Search Results</target>
+            </trans-unit>
+          <trans-unit id="113">
+               <source>product.search.byprice</source>
+               <target>Search By Price</target>
+            </trans-unit>
+       <trans-unit id="114">
+               <source>product.search.msg</source>
+               <target>Please check your filters</target>
+            </trans-unit>
+          <trans-unit id="115">
+               <source>product.car.added</source>
+               <target>You added %cant% of %prods%  </target>
+            </trans-unit>
+          <trans-unit id="116">
+               <source>user.api</source>
+               <target>Using Api </target>
+            </trans-unit>
+            <trans-unit id="117">
+                          <source>user.api.explication</source>
+                           <target>Explanation </target>
+                       </trans-unit>
+                       <trans-unit id="118">
+                          <source>user.api.example</source>
+                           <target>Example </target>
+                       </trans-unit>
+                       <trans-unit id="119">
+                          <source>user.api.exp1</source>
+                           <target> In order to use this functionality is necessary to insert in the destiny web a  iframe that link this control with the store and add the string /frame, example: http://localhost:8080/store/web/frame, .
+                            </target>
+                       </trans-unit>
+                       <trans-unit id="120">
+                          <source>user.api.exp2</source>
+                           <target>
+                                         </target>
+              </trans-unit>
+          <trans-unit id="121">
+               <source>product.sync.progress</source>
+               <target>Progress</target>
+            </trans-unit>
+            <trans-unit id="122">
+               <source>product.sync.log</source>
+               <target>Log</target>
+            </trans-unit>
+            <trans-unit id="123">
+               <source>cart.totaliva</source>
+               <target>Total / IVA</target>
+            </trans-unit>
+            <trans-unit id="124">
+               <source>cart.nocliente</source>
+               <target>Client Order Number</target>
+            </trans-unit>
+
+          <trans-unit id="125">
+               <source>sales.name</source>
+               <target>Salesman Name</target>
+            </trans-unit>
+          <trans-unit id="126">
+               <source>series.name</source>
+               <target>Series Name</target>
+            </trans-unit>
+          <trans-unit id="127">
+               <source>cart.send.error</source>
+               <target>Error sending the order. Please contact with the system administrator</target>
+            </trans-unit>
+         <trans-unit id="128">
+               <source>product.related.cant</source>
+               <target>Products related Amount</target>
+            </trans-unit>
+           <trans-unit id="129">
+               <source>cart.subtotal</source>
+               <target>SubTotal</target>
+            </trans-unit>
+       <trans-unit id="130">
+               <source>price.amount.abs</source>
+               <target>Disc</target>
+            </trans-unit>
+       <trans-unit id="131">
+               <source>cart.recharge.name</source>
+               <target>% Recharge</target>
+            </trans-unit>
+       <trans-unit id="132">
+               <source>store.name</source>
+               <target>Name</target>
+            </trans-unit>
+       <trans-unit id="133">
+               <source>store.picture</source>
+               <target>Picture</target>
+            </trans-unit>
+       <trans-unit id="134">
+               <source>store.resp</source>
+               <target>Responsible</target>
+            </trans-unit>
+       <trans-unit id="135">
+               <source>store.cif</source>
+               <target>CIF</target>
+            </trans-unit>
+       <trans-unit id="136">
+               <source>store.resp2</source>
+               <target>Responsible 2</target>
+            </trans-unit>
+       <trans-unit id="137">
+               <source>store.address</source>
+               <target>Address</target>
+            </trans-unit>
+       <trans-unit id="138">
+               <source>store.phone</source>
+               <target>Phone</target>
+            </trans-unit>
+       <trans-unit id="139">
+               <source>store.mail</source>
+               <target>E-Mail</target>
+            </trans-unit>
+
+         <trans-unit id="140">
+                 <source>cart.graph</source>
+                 <target>Charts</target>
+              </trans-unit>
+       <trans-unit id="141">
+               <source>cart.graph.sales</source>
+               <target>Sales</target>
+            </trans-unit>
+       <trans-unit id="142">
+               <source>cart.graph.section</source>
+               <target>Section</target>
+            </trans-unit>
+       <trans-unit id="143">
+               <source>cart.graph.family</source>
+               <target>Family</target>
+            </trans-unit>
+       <trans-unit id="144">
+               <source>cart.graph.subfamily</source>
+               <target>SubFamily</target>
+            </trans-unit>
+       <trans-unit id="145">
+               <source>cart.graph.buy</source>
+               <target>Bayed</target>
+            </trans-unit>
+       <trans-unit id="146">
+               <source>cart.graph.from</source>
+               <target>From</target>
+            </trans-unit>
+       <trans-unit id="147">
+               <source>cart.graph.to</source>
+               <target>To</target>
+            </trans-unit>
+       <trans-unit id="148">
+               <source>store.mail.text</source>
+               <target>Mail Text</target>
+            </trans-unit>
+       <trans-unit id="149">
+               <source>product.section</source>
+               <target>Section</target>
+            </trans-unit>
+       <trans-unit id="150">
+               <source>product.family</source>
+               <target>Family</target>
+            </trans-unit>
+       <trans-unit id="151">
+               <source>product.subfamily</source>
+               <target>SubFamily</target>
+            </trans-unit>
+
+        </body>
+
+
+
+    </file>
+</xliff>

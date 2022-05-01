@@ -1,0 +1,10 @@
+services:
+    app.locale_listener:
+        class: Common\BaseAppBundle\EventListener\LocaleListener
+        arguments: ['%kernel.default_locale%', @doctrine ]
+        tags:
+
+            - { name: kernel.event_subscriber}
+
+
+

@@ -1,0 +1,27 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/book/security.html
+security:
+  firewalls:
+    admin:
+      pattern: ^/*
+      anonymous: ~
+      switch_user: { role: ROLE_USER }
+      form_login:
+         login_path: seguridad_login
+         check_path: seguridad_login_check
+         default_target_path: store_homepage
+      logout:
+         path: seguridad_logout
+         target: seguridad_login
+  access_control:
+    - { path: ^/seguridad/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/seguridad/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/seguridad/create, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/seguridad/logout, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: /frame, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+    - { path: ^/*, roles: ROLE_USER }
+  providers:
+    usuarios:
+      entity: { class: Common\SeguridadBundle\Entity\Usuario, property: email}
+  encoders:
+     Common\SeguridadBundle\Entity\Usuario:  {algorithm: sha512, iterations: 15}

@@ -1,0 +1,51 @@
+{% extends  'CommonAdminBaseBundle:Default:_edit.html.twig'  %}
+{% block breadcumb_child %}
+
+    {% include 'CommonAdminBaseBundle:Default:_bread_item.html.twig' with {last:false,name:('usergroups.list' |trans),url: url('grupo') } %}
+
+    <li>
+        {% if isNew %}
+            {% trans %} entity.new  {% endtrans %}
+        {% else %}
+            {% trans %} entity.edit  {% endtrans %}   {{ entity.nombregrupo }}
+        {% endif %}
+
+    </li>
+{% endblock %}
+ {% block inner_title %} {{ entity.nombregrupo }}{% endblock %}
+{% set paramsUrl = {itemid: app.request.get('itemid')} %}
+
+{% block error_text %}
+    {% for tipo, mensajes in app.session.flashbag.all() %}
+        {% for mensaje in mensajes %}
+            <div class="{{ tipo }}">{{ mensaje }}</div>
+        {% endfor %}
+    {% endfor %}
+    {{ form_errors(form) }}
+{% endblock %}
+{% block from_declare %}{{ form_start(form, { attr:{id:form.vars.id} } ) }} {% endblock %}
+{% block form_body %}
+    <div class="row">
+        <div class="col-md-12">
+            {{ form_row(form.nombreGrupo, {'attr':{'class': 'form-control'} }) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            {{ form_row(form.rol, {'attr':{'class': 'form-control'} }) }}
+        </div>
+    </div>
+<script>
+    assign_event('.content-wrapper',null,'.content-wrapper a');
+</script>
+{% endblock %}
+{% block cancel_ref %}{{ url('grupo') }}{% endblock %}
+{% block submit_url%}
+    {% if isNew %}     '{{ url('grupo_create')}}'
+
+    {% else %}
+        '{{ url('grupo_update',{'id':form.vars.data.id}) }}'
+
+    {% endif %}
+
+{% endblock %}

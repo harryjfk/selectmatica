@@ -1,0 +1,15 @@
+
+error_500:
+    path:     /500
+    defaults: { _controller: CommonBaseAppBundle:Default:error500 }
+error_400:
+    path:     /400
+    defaults: { _controller: CommonBaseAppBundle:Default:error400 }
+
+acceso_denegado:
+    path:     /500
+    defaults: { _controller: CommonBaseAppBundle:Default:error500 }
+
+language_set:
+    path:    /language/{lang}
+    defaults: { _controller: CommonBaseAppBundle:Default:language }

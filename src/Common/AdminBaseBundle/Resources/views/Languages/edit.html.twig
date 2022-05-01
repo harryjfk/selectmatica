@@ -1,0 +1,93 @@
+{% extends 'CommonAdminBaseBundle:Default:_edit.html.twig' %}
+
+{% block breadcumb_child %}
+
+    {% include 'CommonAdminBaseBundle:Default:_bread_item.html.twig' with {last:false,name:('languages.list' |trans),url: url('languages') } %}
+
+    <li>
+        {% if isNew %}
+            {% trans %} entity.new  {% endtrans %}
+        {% else %}
+            {% trans %} entity.edit  {% endtrans %}   {{ entity.name }}
+        {% endif %}
+
+    </li>
+{% endblock %}
+
+ {% block inner_title %}  {% if isNew ==false%}{{ entity.name }} {% endif %} {% endblock %}
+{% block submit_url%}
+    {% if isNew %}
+        '{{ url('languages_new') }}'
+    {% else %}
+        '{{ url('languages_edit',{id:entity.id}) }}'
+    {% endif %}
+{% endblock %}
+{% block cancel_ref%}
+    {{ url('languages') }}
+{% endblock %}
+{% block form_body %}
+    {% block from_declare %}{{ form_start(form, { attr:{id:form.vars.id} } ) }} {% endblock %}
+
+
+
+        <div class="row">
+
+            <div class="col-xs-12">
+                <div class="row">
+                    <div class=" col-xs-2 col-lg-1">
+                        <img src="{{ base_dir~entity.img  }}" width="32px" height="32px" style="margin: 15px;" >
+                    </div>
+                    <div class="col-xs-5 col-lg-4">
+                        <div><label >{% trans %}language.name{% endtrans %}</label>{{ form_row(form.name) }}</div>
+                    </div>
+                    <div class="col-xs-3 col-lg-2">
+                        <div><label >{% trans %}language.locale{% endtrans %}</label>{{ form_row(form.locale) }}</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-xs-12">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <label>{% trans %}language.enabled{% endtrans %}</label>
+
+                            <div class="switch " >
+                                      <input id="common_adminbasebundle_languages_enabled" name="common_adminbasebundle_languages[enabled]" type="checkbox" {% if entity.enabled %}checked="checked"{% endif %}/>
+                                <label for="common_adminbasebundle_languages_enabled">{% trans %}language.enabled{% endtrans %}</label>
+                            </div>
+
+                    </div>
+                    <div class="col-xs-6">
+                        <label>{% trans %}language.primary{% endtrans %}</label>
+
+                        <div class="switch " >
+                            <input id="primary" name="primary" type="checkbox" {% if entity.id==primary %}checked="checked"{% endif %}/>
+                            <label for="primary">{% trans %}language.primary{% endtrans %}</label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-xs-12">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div><label >{% trans %}file{% endtrans %}</label>{{ form_row(form.file) }}</div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+{% endblock %}
+   {% block java_data %}
+       var data = new FormData(this);{% endblock %}
+{% block ajax_file %}
+    true
+{% endblock %}

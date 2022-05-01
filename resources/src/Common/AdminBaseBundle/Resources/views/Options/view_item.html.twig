@@ -1,0 +1,22 @@
+<div class="col-md-6 col-sm-12">
+    <div class="portlet blue-hoki box">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-cogs"></i>{{ view.name }} </div>
+            <div class="actions">
+                <a href="{{ path('options_edit', { 'id': view.id,'view':'true' }) }}" class="btn btn-default btn-sm">
+                    <i class="fa fa-pencil"></i> {% trans %}entity.edit{% endtrans %} </a>
+            </div>
+        </div>
+        <div class="portlet-body">
+            {% for column in view.getColumnsName %}
+
+            <div class="row static-info">
+                <div class="col-md-5 name"> {{ view.columnData(column).label|trans }} </div>
+                <div class="col-md-7 value">{{ view.ConvertedData(column,controller) }}  </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+
+{% set locale = app.session.get('_locale') %}
+{% if locale ==null %}
+    {% set locale =app.request.locale%}
+    {% endif %}
+{% for entity in entities %}
+    {% if entity.enabled %}
+
+    <li><!-- start message -->
+        <a class="non-ajax" href="{{ url('language_set',{'lang':entity.locale}) }}"
+                {% if entity.locale == locale %}
+                    style="background-color:  lightgrey;"
+                {% endif %}
+                >
+            <div>
+
+                <img src="{{ base_dir~entity.img }}" width="19px" height="19px" alt="">
+
+            </div>
+        {#   <p>
+
+                {{entity.name  }}
+
+
+            </p>#}
+
+        </a>
+    </li>
+        {% endif %}
+{% endfor %}

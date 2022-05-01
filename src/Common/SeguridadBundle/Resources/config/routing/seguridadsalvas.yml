@@ -1,0 +1,14 @@
+seguridadsalvas:
+    path:     /
+    defaults: { _controller: "SeguridadBundle:SeguridadSalvas:index" }
+    
+seguridadsalvas_new:
+    path:     /new
+    defaults: { _controller: "SeguridadBundle:SeguridadSalvas:newSalva" }
+    
+seguridadsalvas_download:
+    path:     /{id}/download
+    defaults: { _controller: "SeguridadBundle:SeguridadSalvas:download" }
+
+
+

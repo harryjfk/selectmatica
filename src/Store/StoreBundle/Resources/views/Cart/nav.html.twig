@@ -1,0 +1,78 @@
+<a href="#" class="dropdown-toggle non-ajax" data-toggle="dropdown">
+    <i class="fa fa-shopping-cart"></i>
+    <span class="label label-success">{{ cart.TotalAmount }}</span>
+</a>
+<ul class="dropdown-menu">
+
+    <li>
+        <!-- inner menu: contains the actual data -->
+        <ul class="menu">
+            {% for line in cart.lines %}
+
+                <li class="cart-line"><!-- start message -->
+                    <a class="non-ajax" href="#">
+                        <div class="col-xs-2 pd0">
+                            <img  src="{{base_dir  ~  line.idproducto.principalimage.webpath() }}" class="img-circle" alt="">
+                        </div>
+                        <div class="col-xs-8 pd0">
+                            {{ line.idproducto.producto.nombre }}
+                        </div>
+                        <div class="col-xs-3"> Subtotal:</div>
+                        <div class="col-xs-3 ">
+                            {{ line.cantidad }}
+                        </div>
+                        <div class="col-xs-3 ">
+                            {{ line.Finalprice(tarifa)|number_format(3,',','.') }}€
+                        </div>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </li>
+    {% if cart.lines|length==0 %}
+        <li class="empty-cart">  {% trans %}cart.empty{% endtrans %}
+        </li>
+    {% else %}
+        <li > <div class="col-xs-5"> Total:</div>
+            <div class="col-xs-3">
+                {{ cart.totalAmount }}
+            </div>
+            <div class="col-xs-3">
+                {{ cart.totalPrice(tarifa)|number_format(3,',','.') }}€
+            </div></li>
+    {% endif %}
+    <li class="cart-line-buttons" >
+        {% if cart.lines|length>0 %}
+            <div class="pull-left"> <a onclick="$($('nav #cart-container ')[0]).attr('class','dropdown messages-menu')"  class="btn btn-primary"  href="{{ url('cart_view') }}">{% trans %}cart.view{% endtrans %}</a></div>
+
+            <div class="pull-right"> <a   class="btn btn-danger non-ajax" onclick="Empty()"   href="#">{% trans %}cart.emptyit{% endtrans %}</a></div>
+
+        {% else %}
+            <div class="pull-left"></div>
+            <div class="pull-right"> <a class="btn btn-primary" onclick="$($('nav #cart-container ')[0]).attr('class','dropdown messages-menu')"  href="{{ url('cart_view') }}">{% trans %}cart.view{% endtrans %}</a></div>
+
+
+        {% endif %}
+    </li>
+
+
+</ul>
+<script>
+    function Empty(e)
+    {
+        var t =  '{{ url('cart_empty') }}';
+        var data='';
+        //   alert(t);
+        executeajax(t,data,'POST',function(r){
+            UpdateCart();
+            try {
+            if(store_storebundle_cart !=null)
+                $('.content-wrapper').html(r);
+            }
+            catch (w){}
+            //   $(c).html(r);
+$($('nav #cart-container ')[0]).attr('class','dropdown messages-menu');
+            assign_event(c,null,'.content-wrapper a'); },function(r){ alert(r.responseText);},false);
+    }
+
+</script>

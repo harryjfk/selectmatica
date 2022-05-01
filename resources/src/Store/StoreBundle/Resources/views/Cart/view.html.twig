@@ -1,0 +1,46 @@
+{% extends  app.request.isXmlHttpRequest ?'CommonAdminBaseBundle:Default:_ajax_layout.html.twig':'CommonAdminBaseBundle:Default:_layout.html.twig' %}
+{% block breadcumb_child %}
+
+    {% if app.user.esadmin==true %}
+    {% include '@CommonAdminBase/Default/_bread_item.html.twig' with {name:('cart.list'|trans),url:url('cart_list'),last:false} %}
+{% endif %}
+    {% include '@CommonAdminBase/Default/_bread_item.html.twig' with {name:('cart.order.view'|trans),last:true} %}
+
+{% endblock %}
+{% block title %}  {% trans %}cart.order.view {% endtrans %} {{ entities.no }}{% endblock %}
+
+
+
+{% block content %}
+
+    {% if entities.Lines|length==0 %}
+
+<div class="empty-page" data-test="empty-cart">
+    <i class="fa fa-shopping-cart fa-3x"></i>
+
+    <h2 class="product-title">{% trans %}cart.empty.long{% endtrans %}</h2>
+    <a class="button " href="{{ url('store_homepage') }}">{% trans %}cart.continue{% endtrans %}
+        <i class="fa fa-arrow-right"></i></a>
+</div>
+{% else %}
+
+
+
+
+        {% include "@StoreStore/Cart/view_inner.html.twig" %}
+<div class="col-xs-12">
+    <div class="row static-info align-reverse">
+
+        <div class="col-md-12 value">      <a  target="_blank" href="{{ url('cart_view_pdf',{'id':entities.id}) }}"   class="btn btn-primary non-ajax" type="button" >{% trans %}cart.pdf {% endtrans %}</a>
+            {% if app.user.esadmin==true %}
+            <a href="{{ url('cart_list') }}"   class="btn btn-primary" type="button" >{% trans %}actions.cancel {% endtrans %}</a>
+{% else %}
+    <a href="{{ url('seguridad_view',{'id':entities.iduser}) }}"   class="btn btn-primary" type="button" >{% trans %}actions.cancel {% endtrans %}</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endif %}
+{% endblock %}
+

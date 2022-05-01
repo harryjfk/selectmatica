@@ -1,0 +1,32 @@
+{% set serv = "" %}
+{% if server==true  %}
+{% set serv = 'http://'~app.request.server.get("HTTP_HOST") %}
+{% endif  %}
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<link rel="stylesheet" href="{{ serv~asset('bundles/adminbundle/css/bootstrap.min.css')}}">
+      <!-- Font Awesome -->
+      <link rel="stylesheet" href="{{ serv~asset('bundles/adminbundle/css/font-awesome.min.css')}}">
+      <!-- Ionicons -->
+      <link rel="stylesheet" href="{{ serv~asset('bundles/adminbundle/css/ionicons.min.css')}}">
+<link rel="stylesheet" href="{{ serv~asset('bundles/adminbundle/css/ion.rangeSlider.css')}}">
+<!-- ion slider Nice -->
+<link rel="stylesheet" href="{{ serv~asset('bundles/adminbundle/css/ion.rangeSlider.skinFlat.css')}}">
+      <!-- Theme style -->
+      <link rel="stylesheet" href="{{ serv~asset('bundles/adminbundle/css/AdminLTE.min.css')}}">
+<link rel="stylesheet" href="{{ serv~asset('bundles/adminbundle/css/slider.css')}}">
+      <!-- bootstrap wysihtml5 - text editor -->
+      <link rel="stylesheet" href="{{ serv~asset('bundles/adminbundle/css/bootstrap3-wysihtml5.min.css')}}">
+      <link rel="stylesheet" href="{{ serv~asset('bundles/adminbundle/css/skins/_all-skins.min.css')}}">
+      <link rel="stylesheet" href="{{ serv~asset('bundles/adminbundle/css/main.css')}}">
+      <link rel="stylesheet" href="{{ serv~asset('bundles/adminbundle/css/components-md.min.css')}}">
+      <link rel="stylesheet" href="{{ serv~asset('bundles/adminbundle/css/pace.min.css')}}">
+      <link rel="stylesheet" href="{{ serv~asset('bundles/adminbundle/css/supersized.css')}}" type="text/css" media="screen" />
+      <link rel="stylesheet" href="{{ serv~asset('bundles/adminbundle/css/supersized.shutter.css')}}" type="text/css" media="screen" />
+      <link href="{{ serv~asset('bundles/adminbundle/css/select2.min.css')}}" rel="stylesheet" />
+<link rel="stylesheet" href="{{ serv~asset('bundles/adminbundle/css/jquery-ui.min.css')}}">
+<link href="{{ serv~asset('bundles/adminbundle/css/toastr.css')}}" rel="stylesheet" type="text/css" />
+
+
+

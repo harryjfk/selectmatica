@@ -1,0 +1,373 @@
+{% extends  app.request.isXmlHttpRequest ?'CommonAdminBaseBundle:Default:_ajax_layout.html.twig':'CommonAdminBaseBundle:Default:_layout.html.twig' %}
+
+ {% block breadcumb_child %}
+     {% for cat in tree %}
+         {% if cat.id == producto.idcategory.id %}
+             <li >{{ cat.name }}</li>
+         {% else %}
+             <li ><a href="{{ url('category_prods',{id:cat.id}) }}">{{ cat.name }}</a></li>
+             <i class="fa fa-chevron-right"></i>
+         {% endif %}
+     {% endfor %}
+ {% endblock %}
+{% block  title_block %} {% endblock %}
+{% block content %}
+
+
+    <div class="row product ">
+        <div class="col-xs-12 ">
+            <div class="row">
+
+                <div class="col-xs-12 col-sm-12 ">
+                    <div class="row ">
+                        <div class="col-xs-12  col-md-6 view ">
+
+
+                            <div class="content">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">{% trans %}image.name {% endtrans %}</h3>
+                                </div>
+
+
+                                <!-- Adding gallery images. We use resized thumbnails here for better performance, but it’s not necessary -->
+
+                                <div id="galleria" style="height:400px;">
+
+                                    {% if producto.images|length>0  %}
+                                    {% for image in producto.images  %}
+
+                                    <a href="{{base_dir  ~  image.webpath("") }}">
+                                        <img
+                                                src="{{base_dir  ~  image.webpath("medium") }}",
+                                                data-big="{{base_dir  ~  image.webpath() }}"
+
+                                                >
+                                    </a>
+
+                                    {% endfor %}
+                                    {% else %}
+                                        <a href="{{base_dir  ~   producto.principalimage.webpath("") }}">
+                                            <img
+                                                    src="{{base_dir  ~  producto.principalimage.webpath("medium") }}",
+                                                    data-big="{{base_dir  ~  producto.principalimage.webpath() }}"
+
+                                                    >
+                                        </a>
+                                    {% endif %}
+                             {#   <a href="http://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Biandintz_eta_zaldiak_-_modified2.jpg/800px-Biandintz_eta_zaldiak_-_modified2.jpg">
+                                        <img
+                                                src="http://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Biandintz_eta_zaldiak_-_modified2.jpg/100px-Biandintz_eta_zaldiak_-_modified2.jpg",
+                                                data-big="http://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Biandintz_eta_zaldiak_-_modified2.jpg/1280px-Biandintz_eta_zaldiak_-_modified2.jpg"
+                                                data-title="Biandintz eta zaldiak"
+                                                data-description="Horses on Bianditz mountain, in Navarre, Spain."
+                                                >
+                                    </a>#}
+
+
+                                </div>
+
+
+                            </div>
+
+
+
+
+
+                        </div>
+
+                        <div class="col-xs-12 col-md-6 ">
+                            <section class="product-view">
+                                <!-- title row -->
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <h2 class="page-header">
+                                            <i class=""></i> {{ producto.producto.nombre }}
+
+                                        </h2>
+                                    </div>
+                                    <!-- /.col -->
+                                </div>
+                                <!-- info row -->
+                                <div class="row invoice-info">
+                                    <div class="col-sm-12 invoice-col">
+
+                                        <address>
+                                            <strong> {% trans %} product.description{% endtrans %}</strong><br>
+                                            {{ producto.producto.descripcion }}
+                                        </address>
+                                    </div>
+
+
+                                    <!-- /.col -->
+                                </div>
+                                <div class="col-xs-12 mrg-0">
+                                    <div class="box">
+                                        <div class="box-header">
+                                        <h3 class="box-title product-number">{% trans %}product.id{% endtrans %}: {{ producto.idproducto }}</h3>
+                                        </div>
+
+                                        {% set tarifavalue = producto.producto.TarifaValue(tarifa) %}
+                                            <!-- /.box-header -->
+                                            <div class="box-body table-responsive no-padding">
+<div class="row mrg-0">
+                                                <div class=" precio_anterior col-xs-6">
+                                                    <div class="row">
+
+                                                    <div id="precio_ventaspan" class="col-xs-8">{% trans %}cart.amount{% endtrans %}</div>
+                                                   <div class="col-xs-4">
+                                                    <p id="precio_venta" class=" " style="text-decoration: line-through;">     {{ tarifavalue.pvp|number_format(3,',','.')}}€</p>
+                                                   </div> </div>
+                                                </div>
+                                                <div class=" precio_actual col-xs-6">
+
+                                                    <p id="total_control" >{{ producto.baseprice(tarifa,1)|number_format(3,',','.') }}€</p>
+
+                                                </div>
+</div>
+                                                <div class="row mrg-0">
+                                                    <form id="cart" name="cart">
+                                                        <div class="col-xs-4">
+                                                        <input type="number" min="1" id="cart_cant" name="cart_cant" required="required" value="1" class="form-control pull-right" placeholder="{% trans %}cart.addto{% endtrans %}">
+                                                        </div>
+                                                        <div class="col-xs-4">
+                                                            <button type="submit"  class="btn btn-primary">{% trans %}cart.addto{% endtrans %}    <i class="fa fa-shopping-cart"></i></button>
+                                                        </div>
+                                                    </form>
+
+                                                </div>
+
+                                                {% set precios = producto.producto.precioespecial %}
+                                                {% if precios!=null %}
+
+                                                    {% if  precios.escalado %}
+                                                <table class="table table-hover">
+                                                    <tbody><tr>
+                                                        <th>{% trans %}price.discount.from{% endtrans %}</th>
+                                                        <th>{% trans %}price.discount.to{% endtrans %}</th>
+                                                        <th>{% trans %}price.discount{% endtrans %}</th>
+                                                    </tr>
+
+                                                    {% for precio in  precios.datosescaladoObject %}
+                                                        {% if precio.descuento !=0  %}
+                                                            <tr>
+                                                                <td>{{ precio.desde|number_format(3,',','.') }}</td>
+                                                                <td>{{ precio.hasta |number_format(3,',','.') }}</td>
+
+                                                                <td>{{ precio.descuento }}% -> {{ (tarifavalue.pvp - (precio.descuento*tarifavalue.pvp/100)) |number_format(3, ',', '.') }}€</td>
+
+                                                            </tr>
+                                                        {% endif %}
+                                                    {% endfor %}
+
+                                                    </tbody></table>  {% endif %} {% endif %}
+                                            </div>
+
+                                        <!-- /.box-body -->
+                                    </div>
+                                    <!-- /.box -->
+                                </div>
+
+
+
+
+                                {% if precios!=null %}
+                                    {% if precios.regalo!=null and precios.regaloObject.cantidadMinima>0 %}
+                                {#      {{ precios.regaloObject.cantidadMinima }}
+aaa  {{ precios.regaloObject.cantidadRegalada }} #}
+                                        <div class="col-xs-12 mrg-0 gift">
+                                            <div class="box">
+                                                <div class="box-header">
+                                                    <h3 class="box-title">{% trans %}price.gift{% endtrans %}</h3>
+                                                </div>
+
+                                                <!-- /.box-header -->
+                                                <div class="box-body table-responsive no-padding">
+                                                    <table class="table table-hover">
+                                                        <tbody><tr>
+                                                            <th>Imagen</th>
+                                                            <th>Articulo</th>
+                                                            <th>Cantidad</th>
+                                                            <th>A Llevar</th>
+                                                        </tr>
+
+
+                                                        <tr>
+                                                            <td style="width: 25%;"> <img src="{{base_dir  ~  precios.ArticuloRegaloObject.producto.principalimage.webpath() }}"/></td>
+                                                            <td>
+
+                                                                {{ precios.ArticuloRegaloObject.nombre }}</td>
+                                                            <td>{{ precios.regaloObject.cantidadMinima }}</td>
+                                                            <td id="gift"></td>
+                                                        </tr>
+
+
+                                                        </tbody></table>
+                                                </div>
+
+                                                <!-- /.box-body -->
+                                            </div>
+                                            <!-- /.box -->
+                                        </div>   {% endif %}
+                                {% endif %}
+                                <!-- /.row -->
+
+                                <!-- Table row -->
+
+                                <!-- /.row -->
+
+
+                                <!-- /.row -->
+
+                                <!-- this row will not appear when printing -->
+
+                            </section>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-xs-12 ">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">{% trans %}products.observation{% endtrans %}</h3>
+                        </div>
+
+                        <!-- /.box-header -->
+                        <div class="box-body table-responsive no-padding">
+                        {{ producto.producto.Observaciones }}
+                        </div>
+
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 ">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">{% trans %}products.related{% endtrans %}</h3>
+                        </div>
+
+                        <!-- /.box-header -->
+                        <div class="box-body table-responsive no-padding">
+                            {{ render(url('product_related',{id:producto.id})) }}
+                        </div>
+
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
+{% block additional_scripts %}
+<script>
+
+    // Load the classic theme
+    Galleria.loadTheme('{{ asset('bundles/adminbundle/js/galleria.classic.js')  }}');
+    Galleria.configure({
+
+    });
+    Galleria.ready(function(options) {
+
+        this.bind('image', function(e) {
+            $('.galleria-images .galleria-image img').on('click',function(w){
+
+                $('#galleria').data('galleria').enterFullscreen();
+            });
+        });
+    });
+    // Initialize Galleria
+    Galleria.run('#galleria');
+
+</script>
+<script>
+    var edit =   cart_cant;
+    edit.onchange=onclickitem;
+    {{ producto.producto.scriptcalc(tarifa)|raw }}
+
+    {% set precios = producto.producto.precioespecial %}
+    {% if precios!=null %}
+    {{ precios.RegaloScript(producto.producto.id)|raw }}
+    {% endif %}
+    function onclickitem(Sender)
+    {
+        var t2 =  roundToTwo(getPrice_{{ producto.producto.id }}(edit.value) ).toString();
+        total_control.innerHTML=t2+'€';
+
+        {% if precios!=null %}
+
+        if(total_control.innerHTML!=precio_venta.innerHTML )
+        {
+            precio_venta.style.display="inline-block";
+            precio_ventaspan.innerHTML = '{% trans %} cart.amount{% endtrans %}';
+        }
+
+        else
+        {
+            precio_ventaspan.innerHTML = '{% trans %}cart.amount{% endtrans %}';
+            precio_venta.style.display = "none";
+        }
+        {% else %}
+        precio_ventaspan.innerHTML = '{% trans %}cart.amount{% endtrans %}';
+        precio_venta.style.display = "none";
+        {% endif %}
+
+          {% if precios!=null %}
+        {% if precios.regaloObject.cantidadMinima>0 %}
+        gift.innerHTML = getRegalo_{{ producto.producto.id }}Cantidad(edit.value).toString();
+        {% endif %}
+        {% endif %}
+    }
+    onclickitem(null);
+    {% if producto.producto.preciosespeciales|length>0 %}
+    precio_venta.innerHTML = roundToTwo({{ producto.producto.TarifaValue(tarifa).pvp|number_format(3,',','.') }})+'€';
+    {% endif %}
+    function formatearNumero(nStr) {
+        nStr += '';
+        x = nStr.split('.');
+        x1 = x[0];
+        x2 = x.length > 1 ? ',' + x[1] : '';
+        var rgx = /(\d+)(\d{3})/;
+        while (rgx.test(x1)) {
+            x1 = x1.replace(rgx, '$1' + '.' + '$2');
+        }
+        return x1 + x2;
+    }
+    function roundToTwo(num) {
+        num=  +(Math.round(num + "e+3")  + "e-3");
+
+        // alert(formatearNumero(num));
+
+        return formatearNumero(num);
+    }
+    $('#cart').on('submit',function(event)
+    {
+        event.stopPropagation();
+        event.preventDefault();
+        var c= '.content-wrapper';
+        var data=  null;
+        //alert(data);
+        var t =  '{{ app.request.server.get('SCRIPT_NAME') }}/cart/add/{{ producto.id }}/'+cart_cant.value;
+        //   alert(t);
+        executeajax(t,data,'POST',function(r){
+            UpdateCart(cart_cant.value,'{{ producto.producto.nombre }}');
+            //   $(c).html(r);
+
+            assign_event(c,null,'.content-wrapper a'); },function(r){ alert(r.responseText);},false);
+    });
+
+
+</script>
+
+{% endblock %}
+

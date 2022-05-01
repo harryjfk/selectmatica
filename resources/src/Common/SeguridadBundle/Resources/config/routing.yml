@@ -1,0 +1,63 @@
+seguridad_traza:
+    resource: "@CommonSeguridadBundle/Resources/config/routing/seguridadtraza.yml"
+    prefix:   /traza
+
+seguridad_seguridadsalvas:
+    resource: "@CommonSeguridadBundle/Resources/config/routing/seguridadsalvas.yml"
+    prefix:   /seguridadsalvas
+
+seguridad_grupo:
+    resource: "@CommonSeguridadBundle/Resources/config/routing/seguridadgrupo.yml"
+    prefix:   /grupo
+
+
+seguridad_list_users:
+    path: /usuarios
+    defaults: {_controller: CommonSeguridadBundle:Default:index}
+
+seguridad_login:
+    path:     /login
+    defaults: { _controller: CommonSeguridadBundle:Default:login }
+    
+seguridad_register:
+    path:     /register
+    defaults: { _controller: CommonSeguridadBundle:Default:register }
+    
+seguridad_register_create:
+    path:     /create
+    defaults: { _controller: CommonSeguridadBundle:Default:registerCreate }
+    methods: [GET,POST]
+
+seguridad_register_edit:
+    path:     /{id}/edit
+    defaults: { _controller: CommonSeguridadBundle:Default:edit }
+    
+seguridad_register_update:
+    path:     /{id}/update
+    defaults: { _controller: CommonSeguridadBundle:Default:update }
+    methods: POST
+
+seguridad_view:
+    path:     /{id}/view
+    defaults: { _controller: CommonSeguridadBundle:Default:view }
+
+seguridad_register_delete_user:
+    path:     /delete_user
+    defaults: { _controller: CommonSeguridadBundle:Default:deleteUser }
+    methods: DELETE
+
+seguridad_login_check:
+    path: /login_check
+    
+seguridad_logout:
+    path: /logout
+
+seguridad_control:
+    path:     /control
+    defaults: { _controller: CommonSeguridadBundle:Default:control }
+seguridad_control_user:
+    path:     /control/{user}
+    defaults: { _controller: CommonSeguridadBundle:Default:control_user }
+seguridad_nav:
+    path:     /nav
+    defaults: { _controller: CommonSeguridadBundle:Default:nav }

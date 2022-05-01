@@ -1,0 +1,58 @@
+{% extends '::base.html.twig' %}
+{% block title %}Store Admin{% endblock %}
+   {% block stylesheets %}
+       <link rel="stylesheet" type="text/css"  href="{{ asset('bundles/adminbundle/css/bootstrap.css') }}" media="all">
+       <link rel="stylesheet" type="text/css"  href="{{ asset('bundles/adminbundle/css/icons.css') }}" media="all">
+
+       <link rel="stylesheet" type="text/css"  href="{{ asset('bundles/adminbundle/css/main.css') }}" media="all">
+
+       <link rel="stylesheet" type="text/css"  href="{{ asset('bundles/adminbundle/css/jquery-ui.css') }}" media="all">
+       <link rel="stylesheet" type="text/css"  href="{{ asset('bundles/adminbundle/css/jquery-ui.min.css') }}" media="all">
+       <link rel="stylesheet" type="text/css"  href="{{ asset('bundles/adminbundle/css/jquery-ui.structure.css') }}" media="all">
+       <link rel="stylesheet" type="text/css"  href="{{ asset('bundles/adminbundle/css/jquery-ui.structure.min.css') }}" media="all">
+
+       <link rel="stylesheet" type="text/css"  href="{{ asset('bundles/adminbundle/css/jquery-ui.theme.css') }}" media="all">
+       <link rel="stylesheet" type="text/css"  href="{{ asset('bundles/adminbundle/css/jquery-ui.theme.min.css') }}" media="all">
+
+   {% endblock %}
+
+{% block body %}
+    {% include "StoreAdminBundle:Layouts:top.html.twig" %}
+
+
+
+    <div class="container-fluid">
+        <div class="row">
+            {% include "StoreAdminBundle:Layouts:left.html.twig" %}
+
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+                <h1 class="page-header">{% block mod_name %}{% endblock %}</h1>
+
+                {% block innerbody %}{% endblock %}
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+
+    {% javascripts
+    '@StoreAdminBundle/Resources/public/js/jquery-3.0.0.min.js'
+    '@StoreAdminBundle/Resources/public/js/jquery-ui-1.11.4.min.js'
+    '@StoreAdminBundle/Resources/public/js/underscore-min.js'
+   '@PunkAveFileUploaderBundle/Resources/public/js/jquery.fileupload.js'
+    '@PunkAveFileUploaderBundle/Resources/public/js/jquery.iframe-transport.js'
+    '@PunkAveFileUploaderBundle/Resources/public/js/FileUploader.js'%}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+{% endblock %}
+{% block additional_javascripts %}
+
+{% endblock %}

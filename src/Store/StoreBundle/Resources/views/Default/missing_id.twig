@@ -1,0 +1,31 @@
+{% extends  'base.html.twig' %}
+{% block body %}
+    {% include '@CommonAdminBase/Default/_links.html.twig' with {'server':false} %}
+<style >
+    body{ background-color: white}
+</style>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="thanks white-panel">
+            <div class="thanks-img ">
+                <img src="{{  asset('bundles/adminbundle/img/error.png') }}">
+                <div class="thanks-text">
+                    {% trans %}missing.title{% endtrans %}
+                </div>
+                <div class="thanks-desc">
+                    {% trans %}missing.text{% endtrans %}
+
+                </div></div>
+
+
+        </div>
+        <div style="text-align: center">
+            <a  href="{{ url('seguridad_logout') }}" class="non-ajax btn btn-danger btn-flat">{% trans %}user.logout{% endtrans %}</a>
+
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}

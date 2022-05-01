@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Store\RestBundle\Entity\Clientes" table="clientes" repository-class="Store\RestBundle\Repository\ClientesRepository">
+      <id name="id" type="string" column="id"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </id>
+      <field name="nombre" type="string" column="nombre"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="razon" type="string" column="razon"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="denominacion" type="string" column="denominacion"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="nif" type="string" column="nif"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="direccion" type="string" column="direccion"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="poblacion" type="string" column="poblacion"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="codPostal" type="string" column="codPostal"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="provincia" type="string" column="provincia"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="telefono1" type="string" column="telefono1"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="telefono2" type="string" column="telefono2"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="telefono3" type="string" column="telefono3"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="email" type="string" column="email"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="idZona" type="string" column="idZona"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="idTipo" type="string" column="idTipo"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="idRuta" type="string" column="idRuta"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="idActividad" type="string" column="idActividad"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="idFormaPago" type="string" column="idFormaPago"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="dto1" type="string" column="dto1"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="dto2" type="string" column="dto2"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="dtoPP" type="string" column="dtoPP"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="aviso" type="string" column="aviso"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="notas" type="string" column="notas"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="riesgoConcedido" type="string" column="riesgoConcedido"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="recargoEquivalencia" type="string" column="recargoEquivalencia"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="tarifa" type="string" column="tarifa"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="idTransportista" type="string" column="idTransportista"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="agente" type="string" column="agente"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="cobrador" type="string" column="cobrador"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="usuario" type="string" column="usuario"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="baja" type="string" column="baja"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="directo" type="string" column="directo"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="subcuenta" type="string" column="subcuenta"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="tipoBloqueo" type="string" column="tipoBloqueo"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="periodoFacturacion" type="string" column="periodoFacturacion"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="tipoOperacion" type="string" column="tipoOperacion"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="tipoIRPF" type="string" column="tipoIRPF"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="diaPago1" type="string" column="diaPago1"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="diaPago2" type="string" column="diaPago2"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="diaPago3" type="string" column="diaPago3"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="mesNoPagos" type="string" column="mesNoPagos"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="tipoFacturacion" type="string" column="tipoFacturacion"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="pagaEnvase" type="string" column="pagaEnvase"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+
+  </entity>
+</doctrine-mapping>

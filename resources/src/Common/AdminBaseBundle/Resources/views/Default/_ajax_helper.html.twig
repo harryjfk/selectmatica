@@ -1,0 +1,155 @@
+<script>
+
+    function executeajax(url,data,method,success,error,file)
+    {
+        if(file)
+        $.ajax({
+            url: url,
+           /* method:method,*/
+            data : data,
+            type : method,
+          /*  dataType : 'html',*/
+            enctype: 'multipart/form-data',
+            success: success ,
+            error: error,
+            processData: false,
+            contentType: false
+
+        });
+        else
+            $.ajax({
+                url: url,
+                /* method:method,*/
+                data : data,
+                type : method,
+                /*  dataType : 'html',*/
+                success: success ,
+                error: error
+            });
+    }
+
+    function dimPadre(ele,loading)
+    {
+        var parent = ele.parent();
+        if(loading)
+            ele.css({'width': '100%',
+                'height': '150%',
+                'position': 'absolute',
+                'z-index': 150,
+                'top':'0'  ,
+                'padding-top':'25%'  ,'padding-left':'45%'
+            });
+
+
+        else
+            ele.css({'width': '100%',
+                'height': '100%',
+                'position': 'absolute',
+                'z-index': 150,
+                'top':'0'
+            });
+
+    }
+
+
+    function blockScreen(loading)
+    {
+
+        var block = $('#blockscreen');
+        if(block.get(0))
+        {
+            dimPadre(block,true);
+            block.show();
+        }
+        else
+        {
+            block = $('<div></div>');
+            block.attr('id', 'blockscreen').addClass('opaco_block');
+            block.appendTo('body');
+            dimPadre(block,true);
+            var dvIndicador = $('<div></div>');
+
+            var imgcargador = $('<img>').attr({'src':'{{ asset('bundles/adminbundle/css/images/loading.gif') }}', 'align':'absmiddle'});
+            dvIndicador.append(imgcargador);
+
+            dvIndicador.addClass('dvc w20p indicador').append(loading);
+
+            block.append(dvIndicador);
+            block.show();
+        }
+    }
+    function getForms()
+    {
+      var forms=  $('form');
+        var r=  Object();
+        for(var i=0;i<forms.length;i++)
+            r[forms[i].name] =$(forms[i]).serialize();
+        return r;
+   }
+
+  function assign_event(e,w,c) {
+
+
+        $(c).on('click', function(event) {
+
+                    var    ajax= !this.classList.contains('non-ajax');
+
+                    if(ajax)
+                    {
+						var p = event.target.parentNode;
+                   // alert();  
+					 var r =false;
+						for($i=0;$i<p.childNodes.length;$i++)
+							if($(p.childNodes[$i]).hasClass('treeview-menu'))
+							{ r=true;
+							 break;}
+						
+				var	t_data = getForms();
+
+					///	alert($(this).attr('class'));
+                     // //  alert($(this).attr('class').indexOf('cart-gest'));
+                      var url = w;
+                        if(w==null)
+                            url =$(this).attr('href');
+                        var control = e;
+                        var pc= $(this).attr('class');
+
+                        $(control).html('');
+
+                        executeajax(url,t_data,'POST',function(data) {
+
+
+                            if(pc!=null)
+                            {
+                                if( pc.indexOf('cart-gest')>0)
+                                    UpdateCart();
+                            else
+                            if( pc.indexOf('category-gest')>0)
+                                UpdateCategories();
+                            }
+                            $(control).html(data);
+
+                            assign_event(e,w,'.content-wrapper a');
+
+                        },function(data) {
+
+
+                            $.ajax({
+                                url: "{{ url('error_500') }}",
+                                success: function(data) {
+                                    $(control).html(data);
+                                    assign_event(e,w,'.content-wrapper a');
+                                }
+                            });});
+
+
+                        return r;
+                    }
+                    return true
+                            ;
+            
+                });
+        
+    }
+
+</script>

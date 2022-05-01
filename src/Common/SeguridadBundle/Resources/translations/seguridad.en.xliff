@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="es" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>nombre</source>
+                <target>Name</target>
+            </trans-unit>                         
+            <trans-unit id="2">
+                <source>primer_apellido</source>
+                <target>First Name</target>
+            </trans-unit>                         
+            <trans-unit id="3">
+                <source>segundo_apellido</source>
+                <target>Second Name</target>
+            </trans-unit>                         
+            <trans-unit id="4">
+                <source>usuario</source>
+                <target>User</target>
+            </trans-unit>                         
+            <trans-unit id="5">
+                <source>email</source>
+                <target>E-mail</target>
+            </trans-unit>                         
+            <trans-unit id="6">
+                <source>contrasenya</source>
+                <target>Password</target>
+            </trans-unit>                         
+            <trans-unit id="7">
+                <source>contresenyas_no_coinciden</source>
+                <target>Passwords doesn't match</target>
+            </trans-unit>                         
+            <trans-unit id="8">
+                <source>rep_contrasenya</source>
+                <target>Repeat Password</target>
+            </trans-unit>                         
+            <trans-unit id="9">
+                <source>Guardar</source>
+                <target>Save</target>
+            </trans-unit>                         
+            <trans-unit id="10">
+                <source>cancelar</source>
+                <target>Cancel</target>
+            </trans-unit>                         
+                <trans-unit id="14">
+                <source>grupo_usuario</source>
+                <target>User Group</target>
+            </trans-unit>                         
+            <trans-unit id="15">
+                <source>grupos_usuarios</source>
+                <target>Users Groups</target>
+            </trans-unit>                         
+            <trans-unit id="16">
+                <source>roles</source>
+                <target>Roles</target>
+            </trans-unit>                         
+            <trans-unit id="17">
+                <source>creado</source>
+                <target>Created</target>
+            </trans-unit>                         
+            <trans-unit id="18">
+                <source>entrar</source>
+                <target>Login</target>
+            </trans-unit>         
+            <trans-unit id="19">
+                <source>fecha_inicio</source>
+                <target>Start Date</target>
+            </trans-unit>         
+            <trans-unit id="20">
+                <source>fecha_fin</source>
+                <target>End Date</target>
+            </trans-unit>         
+            <trans-unit id="21">
+                <source>salvas</source>
+                <target>Backup</target>
+            </trans-unit>         
+            <trans-unit id="22">
+                <source>crear_respaldo</source>
+                <target>Make Backup</target>
+            </trans-unit>         
+            <trans-unit id="23">
+                <source>fichero</source>
+                <target>File</target>
+            </trans-unit>         
+            <trans-unit id="24">
+                <source>accion</source>
+                <target>Action</target>
+            </trans-unit>         
+            <trans-unit id="25">
+                <source>ip</source>
+                <target>IP</target>
+            </trans-unit>         
+            <trans-unit id="26">
+                <source>tabla</source>
+                <target>Table</target>
+            </trans-unit>         
+            <trans-unit id="27">
+                <source>id_registro</source>
+                <target>Register Id</target>
+            </trans-unit>         
+            <trans-unit id="28">
+                <source>modificacion</source>
+                <target>Edit</target>
+            </trans-unit>         
+            <trans-unit id="29">
+                <source>trazas</source>
+                <target>Traces</target>
+            </trans-unit>         
+            <trans-unit id="30">
+                <source>entrar_tu_cuenta</source>
+                <target>Access</target>
+            </trans-unit>
+             <trans-unit id="31">
+                 <source>clients</source>
+                 <target>Clients</target>
+             </trans-unit>
+             <trans-unit id="32">
+                 <source>phone</source>
+                 <target>Phone Number</target>
+             </trans-unit>
+             <trans-unit id="33">
+                 <source>address</source>
+                 <target>Address</target>
+             </trans-unit>
+             <trans-unit id="34">
+                 <source>district</source>
+                 <target>District</target>
+             </trans-unit>
+             <trans-unit id="35">
+                 <source>province</source>
+                 <target>Province</target>
+             </trans-unit>
+             <trans-unit id="36">
+                 <source>postal_code</source>
+                 <target>Postal Code</target>
+             </trans-unit>
+             <trans-unit id="37">
+                 <source>payment</source>
+                 <target>Payment</target>
+             </trans-unit>
+             <trans-unit id="38">
+                 <source>company</source>
+                 <target>Company</target>
+             </trans-unit>
+        </body>
+    </file>
+</xliff>

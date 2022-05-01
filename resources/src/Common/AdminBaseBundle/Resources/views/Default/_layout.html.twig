@@ -1,0 +1,222 @@
+{% extends '::base.html.twig' %}
+
+  {% block stylesheets %}
+   {% include '@CommonAdminBase/Default/_links.html.twig' with {'server':false} %}
+  {% endblock %}
+
+{% block body %}
+
+    <div class="wrapper">
+        <header class="main-header">
+        {% include 'CommonAdminBaseBundle:Default:_top.html.twig' %}
+        </header>
+        <aside class="main-sidebar">
+
+           {% include 'CommonAdminBaseBundle:Default:_left.html.twig' %}
+            </aside>
+
+        <div id="content-wrapper" class="content-wrapper" >
+<div class="col-xs-12">
+            <div class="row">
+{% block breadcumb %}
+    {% block additional_controls %}
+
+    {% endblock %}
+    <ul class="breadcumb">
+        <li ><a href="{{ url('store_start') }}">{% trans %}start{% endtrans %} </a>    <i class="fa fa-chevron-right"></i></li>
+        {% block breadcumb_child %}
+        {% endblock %}
+    </ul>
+
+
+{% endblock %}
+</div>
+ {% block title_block %}
+    <div class="row page-title">
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title">{% block title %}{% endblock %}</h3>
+
+                <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <!-- /.box-body -->
+        </div>
+
+
+    </div>
+{% endblock %}
+ </div>
+           {% block content %}
+{% endblock content %}
+
+
+                </div>
+                <!-- /.row -->
+
+
+                <!-- /.row -->
+
+
+
+            <!----
+            alert-danger alert-success
+            <div class="alert alert-success  alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-check"></i> Alert!</h4>
+                Success alert preview. This alert is dismissable.
+            </div>
+
+            <!-- Content Header (Page header) -->
+
+
+        </div>
+    <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+            <b>Version</b> 2.3.3
+        </div>
+        <strong>Copyright © 2016 <a href="{{ url('store_start') }}">SelectMática</a>.</strong>.
+    </footer>
+</div>
+    {% endblock body %}
+
+   {% block javascripts %}
+
+
+       <!-- jQuery 2.2.0 -->
+       <script src="{{ asset('bundles/storebundle/js/jQuery-2.2.0.min.js') }}"></script>
+       <!-- jQuery UI 1.11.4 -->
+       <script src="{{ asset('bundles/adminbundle/js/jquery-ui.min.js') }}"></script>
+       <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+       <script>
+           $.widget.bridge('uibutton', $.ui.button);
+       </script>
+       <!-- Bootstrap 3.3.6 -->
+       <script src="{{ asset('bundles/adminbundle/js/bootstrap.min.js') }}"></script>
+       <script src="{{ asset('bundles/adminbundle/js/app.min.js') }}"></script>
+       <!-- Bootstrap WYSIHTML5 -->
+       <script src="{{ asset('bundles/adminbundle/js/bootstrap3-wysihtml5.all.min.js') }}"></script>
+       <!-- PACE -->
+       <script src="{{ asset("bundles/adminbundle/js/fastclick.js") }}"></script>
+       <script src="{{ asset('bundles/adminbundle/js/pace.min.js') }}"></script>
+       <script src="{{ asset('bundles/adminbundle/js/functions.js') }}"></script>
+       <script src="{{ asset("bundles/adminbundle/js/select2.min.js") }}"></script>
+       <script src="{{ asset("bundles/adminbundle/js/jquery_validate.js") }}"></script>
+       <script src="{{ asset("bundles/adminbundle/js/ion.rangeSlider.min.js") }}"></script>
+       <script src="{{ asset("bundles/adminbundle/js/bootstrap-slider.js") }}"></script>
+       <script src="{{ asset("bundles/adminbundle/js/jquery-ui.min.js") }}"></script>
+       <script src="{{ asset("bundles/adminbundle/js/toastr.min.js") }}"></script>
+       <script src="{{ asset('bundles/adminbundle/js/galleria-1.4.2.min.js') }}"></script>
+       <script src="{{ asset('bundles/adminbundle/js/Chart.min.js') }}"></script>
+       {% include 'CommonAdminBaseBundle:Default:_ajax_helper.html.twig' %}
+       {% block additional_scripts %}{% endblock %}
+       <script>
+
+
+$(function(e){
+
+
+
+  $(document).ajaxStart(function() { Pace.restart(); });
+   assign_event('.content-wrapper',null,'a');
+    });
+
+
+toastr.options = {
+    "closeButton": false,
+    "debug": false,
+    "newestOnTop": false,
+    "progressBar": true,
+    "positionClass": "toast-top-right",
+    "preventDuplicates": false,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+};
+{{ render(url('product_max_price')) }}
+
+$("#more-search").on('click',function(e){
+    if($('#price-group')[0].style.display=="none")
+    {
+        $("#more-search i").attr('class','fa  fa-search-minus');
+        $('#price-group').fadeIn();
+    }
+
+    else
+    {
+        $("#more-search i").attr('class','fa  fa-search-plus');
+        $('#price-group').fadeOut();
+        range.value="";
+    }
+
+
+
+});
+jQuery('#search-form').on('submit', function(e){
+    e.preventDefault();
+
+    var c= '.content-wrapper';
+    var data=  jQuery('#search-form').serialize();
+
+
+    executeajax('{{ url('producto_search') }}',data,'POST',function(r){ $(c).html(r);
+
+        assign_event(c,null,'.content-wrapper a');},function(r){ alert(r.responseText);},false);
+
+});
+
+{% if app.request.server.get('PATH_INFO')=='/' %}
+c= ".content-wrapper";
+executeajax('{{ url('store_start') }}',null,'GET',function(r){ $(c).html(r);
+
+    assign_event(c,null,'.content-wrapper a');
+
+},function(r){ /*alert('error')*/;},false);
+{% endif %}
+
+function UpdateCart(cant,producto)
+{
+
+    var c= '#cart-container';
+    //   alert(data);
+    executeajax('{{ url('cart_nav') }}',null,'GET',function(r){ $(c).html(r);
+
+        assign_event('.content-wrapper',null,'#cart-container a');
+        assign_event('.content-wrapper',null,'.content-wrapper a');
+
+    },function(r){ /*alert('error');*/},false);
+
+    if(cant!=null && producto!=null)
+    {
+        $t = "{% trans %}product.car.added{% endtrans %}";
+        $s = $t.replace('%cant%',cant).replace('%prods%',producto);
+
+        toastr["success"]($s);}
+
+}
+function UpdateCategories()
+{
+    var c= '.sidebar-menu';
+    //   alert(data);
+    executeajax('{{ url('category_nav') }}',null,'GET',function(r){
+
+
+        $(c).html(r);
+        assign_event('.content-wrapper',null,'.sidebar-menu a');
+        assign_event(c,null,'.content-wrapper a');
+
+
+
+    },function(r){ /*alert('error');*/},false);
+}
+       </script>
+
+
+
+   {% endblock %}
+

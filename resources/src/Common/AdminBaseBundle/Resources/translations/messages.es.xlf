@@ -1,0 +1,139 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+             <trans-unit id="44">
+               <source>email.server</source>
+               <target>Servidor</target>
+            </trans-unit>
+            <trans-unit id="45">
+               <source>email.port</source>
+               <target>Puerto</target>
+            </trans-unit>
+            <trans-unit id="46">
+               <source>email.name</source>
+               <target>Nombre de usuario</target>
+            </trans-unit>
+            <trans-unit id="1">
+               <source>email.email</source>
+               <target>Correo Electronico</target>
+            </trans-unit>
+            <trans-unit id="47">
+               <source>email.password</source>
+               <target>Constraseña</target>
+            </trans-unit>
+            <trans-unit id="41">
+               <source>options.list</source>
+               <target>Lista de opciones</target>
+            </trans-unit>
+            <trans-unit id="42">
+               <source>options.edit</source>
+               <target>Administrar Opciones</target>
+            </trans-unit>
+            <trans-unit id="43">
+               <source>options.name</source>
+               <target>Nombre</target>
+            </trans-unit>
+            <trans-unit id="6">
+               <source>actions.label</source>
+               <target>Acciones</target>
+            </trans-unit>
+            <trans-unit id="9">
+               <source>entity.edit</source>
+               <target>Editar</target>
+            </trans-unit>
+            <trans-unit id="59">
+               <source>userlist.edit</source>
+               <target>Administrar Grupo</target>
+            </trans-unit>
+            <trans-unit id="60">
+               <source>member.since</source>
+               <target>Miembro desde %date%</target>
+            </trans-unit>
+            <trans-unit id="61">
+               <source>user.logout</source>
+               <target>Cerrar sesión</target>
+            </trans-unit>
+            <trans-unit id="25">
+               <source>navigation.showing</source>
+               <target>Mostrando</target>
+            </trans-unit>
+            <trans-unit id="26">
+               <source>navigation.to</source>
+               <target>Hasta</target>
+            </trans-unit>
+            <trans-unit id="27">
+               <source>navigation.of</source>
+               <target>De</target>
+            </trans-unit>
+           <trans-unit id="28">
+               <source>navigation.entries</source>
+               <target>Entradas</target>
+            </trans-unit>
+           <trans-unit id="29">
+               <source>navigation.search</source>
+               <target>Buscar</target>
+            </trans-unit>
+           <trans-unit id="30">
+               <source>navigation.show</source>
+               <target>Mostrar</target>
+            </trans-unit>
+            <trans-unit id="10">
+               <source>actions.submit</source>
+               <target>Guardar</target>
+            </trans-unit>
+            <trans-unit id="11">
+               <source>actions.cancel</source>
+               <target>Cancelar</target>
+            </trans-unit>
+            <trans-unit id="12">
+               <source>message.text</source>
+               <target>Mensaje</target>
+            </trans-unit>
+            <trans-unit id="56">
+               <source>users.edit</source>
+               <target>Administrar Usuarios</target>
+            </trans-unit>
+            <trans-unit id="57">
+               <source>admin.title</source>
+               <target>Administrar</target>
+            </trans-unit>
+            <trans-unit id="58">
+               <source>cart.edit</source>
+               <target>Administrar Ordenes</target>
+            </trans-unit>
+            <trans-unit id="70">
+               <source>cart.edit.view</source>
+               <target>Ver Ordenes</target>
+            </trans-unit>
+           <trans-unit id="13">
+               <source>languages.edit</source>
+               <target>Administrar Lenguajes</target>
+            </trans-unit>
+           <trans-unit id="14">
+               <source>languages.list</source>
+               <target>Lista de Lenguajes</target>
+            </trans-unit>
+           <trans-unit id="15">
+               <source>language.name</source>
+               <target>Idioma</target>
+            </trans-unit>
+           <trans-unit id="16">
+               <source>language.locale</source>
+               <target>ISO</target>
+            </trans-unit>
+           <trans-unit id="17">
+               <source>language.enabled</source>
+               <target>Activo</target>
+            </trans-unit>
+           <trans-unit id="18">
+               <source>language.primary</source>
+               <target>Idioma Principal</target>
+            </trans-unit>
+        <trans-unit id="19">
+               <source>file</source>
+               <target>Archivo</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

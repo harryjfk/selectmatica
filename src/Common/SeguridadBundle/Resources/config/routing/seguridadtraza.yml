@@ -1,0 +1,6 @@
+traza:
+    path:     /
+    defaults: { _controller: "SeguridadBundle:SeguridadTraza:index" }
+
+
+

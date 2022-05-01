@@ -1,0 +1,114 @@
+{% extends 'CommonAdminBaseBundle:Default:_edit.html.twig' %}
+{% block breadcumb_child %}
+
+  {% include 'CommonAdminBaseBundle:Default:_bread_item.html.twig' with {last:false,name:('category.list' |trans),url: url('category_list') } %}
+
+    <li>
+        {% if isNew %}
+            {% trans %} entity.new  {% endtrans %}
+        {% else %}
+            {% trans %} entity.edit  {% endtrans %} {{ entity.name }}
+        {% endif %}
+
+    </li>
+{% endblock %}
+ {% block inner_title %}{{ entity.name }} {% endblock %}
+{% block from_declare %} {{ form_start(form, { attr:{id:form.vars.id} } ) }} {% endblock %}
+
+{% block form_body %}
+
+    {% include "StoreStoreBundle:Producto:_upload_control.html.twig" %}
+    <div class="file-uploader">
+    </div>
+{% endblock %}
+
+{% block cancel_ref %}{{ url('category_list') }}{% endblock %}
+{% block submit_url%}
+    '{{ url('category_edit',{'id':entity.id}) }}'
+{% endblock %}
+
+ {% block javascript %}
+     <script src="{{ asset('bundles/adminbundle/js/underscore-min.js') }}"></script>
+     <script src="{{ asset('bundles/punkavefileuploader/js/jquery.fileupload.js') }}"></script>
+     <script src="{{ asset('bundles/punkavefileuploader/js/jquery.iframe-transport.js') }}"></script>
+     <script src="{{ asset('bundles/punkavefileuploader/js/FileUploader.js') }}"></script>
+
+     <script src="{{ asset_url }}"></script>
+
+     <script type="text/javascript">
+
+         /*  function createbuttons()
+          {
+          var thmbs=  $('.thumbnails')[0];
+          for(var i= 0;i<thmbs.childNodes.length;i++)
+          {
+          var li = thmbs.childNodes[i].innerHTML;
+          //   alert(li);
+          }
+          }*/
+         // Enable the file uploader
+         $(function () {
+
+
+             var s =   new PunkAveFileUploader({
+                 'uploadUrl': {{ path('producto_upload', { editId: entity.sessionid }) | json_encode | raw }},
+                 'viewUrl': {{ ( url~'tmp/attachments/' ~  entity.sessionid) | json_encode | raw }},
+                 'el': '.file-uploader',
+
+                 'existingFiles': {{ punkave_get_files('tmp/attachments/' ~  entity.sessionid) | json_encode | raw }},
+                 'delaySubmitWhileUploading': '.edit-form'
+                 ,alwaysCallback: function(){
+                     //   createbuttons();
+                     //    alert('aaa');
+                 }
+
+             });
+
+         });
+         /*   $(function(){ alert('a');  createbuttons();});*/
+
+
+
+         function setDefault(e)
+         {
+             var base =  '{{ url('store_homepage') }}'+'producto/{path}/image';
+             var str = $(e.parentNode.parentNode).attr("data-name");
+             base= base.replace('{path}',str);
+             executeajax(base,null,'POST', function (e) {
+                 if(e.id==null)
+                     alert('Por favor, primero guarde los cambios para poder establecer esta imagen como principal.');
+                 else
+                 {
+                     store_storebundle_producto_headimg.value = e.id;
+                     updateLabel(str);
+                 }
+
+
+             }, function (w) {
+
+             },false);
+
+         }
+
+         function updateLabel(src)
+         {
+
+             $('.thumbnail-principal').each(function(e,w){
+                 //  alert($(w.parentNode.parentNode).attr("data-name")+'-'+src);
+                 if($(w.parentNode.parentNode).attr("data-name")==src)
+                     $(w).show();
+                 else
+                     $(w).hide();
+
+
+
+             });
+         }
+
+         updateLabel($("#store_storebundle_producto_headimg option:selected").html());
+
+     </script>
+
+
+
+ {% endblock %}

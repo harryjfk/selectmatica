@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Store\RestBundle\Entity\Familias" table="familias">
+      <id name="id" type="string" column="id"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </id>
+      <field name="descripcion" type="string" column="descripcion"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="sctaCompras" type="string" column="sctaCompras"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="sctaVentas" type="string" column="sctaVentas"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="sctaAbonoCompras" type="string" column="sctaAbonoCompras"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="sctaAbonoVentas" type="string" column="sctaAbonoVentas"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="porcTarifa1" type="float" column="porcTarifa1"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="porcTarifa2" type="float" column="porcTarifa2"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="porcTarifa3" type="float" column="porcTarifa3"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="porcTarifa4" type="float" column="porcTarifa4"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="porcTarifa5" type="float" column="porcTarifa5"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="venta" type="boolean" column="venta"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="validaVentas" type="boolean" column="validaVentas"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="validaCompras" type="boolean" column="validaCompras"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="noUsarEnNecesidadesCompra" type="boolean" column="noUsarEnNecesidadesCompra"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="noPermitirPedidoSinPrecioEspecial" type="boolean" column="noPermitirPedidoSinPrecioEspecial"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="zonaComanda" type="string" column="zonaComanda"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="seriePrevento" type="string" column="seriePrevento"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="pasarADispositivo" type="boolean" column="pasarADispositivo"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <one-to-many target-entity="Store\RestBundle\Entity\Articulos" mapped-by="idFamilia" field="Articulos" >
+      </one-to-many>
+  </entity>
+</doctrine-mapping>

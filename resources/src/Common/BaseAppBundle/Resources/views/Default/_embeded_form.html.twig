@@ -1,0 +1,108 @@
+{% extends 'CommonAdminBaseBundle:Default:_list.html.twig' %}
+          {% set beginr = '<tr role="row" class="odd">' %}
+          {% set endr = '</tr>' %}
+          {% set begint = ' <td> ' %}
+          {% set endt = ' </td> ' %}
+{% block breadcumb %}
+
+{% endblock %}
+ {% block title_block %}{% endblock %}
+  {% block top_navigation %}
+  {% endblock %}
+
+  {% block columns %}
+      {% for c in columns|keys %}
+          <th> {{ c|trans }}</th>
+      {% endfor %}
+      <th>{% trans %}actions.label{% endtrans %}</th>
+  {% endblock %}
+  {% block bottom_navigation %}
+  {% endblock %}
+
+      {% block list_content %}
+
+       <div class="prototype"   data-prototype="
+
+
+  {% for c in columns %}
+    {{ begint|raw }}
+  {{ form_widget(child.vars.prototype[c])|e('html_attr') }}
+{{ endt|raw }}
+
+  {% endfor %}
+
+
+       "></div>
+
+          {% if child|length==0  %}
+              <script>gridview.style.display="none";</script>
+              <a onclick="doClick(this,'add');" class="add_new non-ajax" href="#">{% trans %} entity.new{% endtrans %} <span class="glyphicon glyphicon-new-window"></span></a>
+
+          {% endif %}
+          {% for form_line in child %}
+              {{ beginr|raw }}
+
+                  {% for c in columns %}
+              <td> {{ form_row(form_line[c]) }}</td>
+                      {% endfor %}
+
+                  <td> <ul class="list-actions">
+                          <li>
+                              <a onclick="doClick(this,'add');" class="add_new non-ajax" href="#"> <span class="glyphicon glyphicon-new-window"></span></a>
+                          </li>
+                          <li>
+                              <a onclick="doClick(this,'delete');" class="delete non-ajax" href="#"> <span class="glyphicon glyphicon-remove"></span></a>
+                          </li>
+
+                      </ul></td>
+              {{ endr|raw }}
+              {% endfor %}
+
+
+
+      {% endblock list_content %}
+{% block javascript %}
+    <script>
+
+        function onAdded(e)
+        {
+            {% block on_add_item %}
+
+            {% endblock %}
+        }
+       function doClick(e,w)
+       {
+           if(w=="add")
+           {
+         if(gridview.style.display="none")
+         {
+             gridview.style.display="";
+           //  $(e).hide();
+         }
+
+           $prototype = $('.prototype');
+           $collectionHolder=$('#gridview');
+           index= $('#gridview tr.odd').length;
+           $collectionHolder.data('index',index );
+
+           var prototype = $prototype.data('prototype');
+           var newForm = prototype.replace(/__name__/g, index);
+
+           // increase the index with one for the next item
+           $collectionHolder.data('index', index + 1);
+
+           // Display the form in the page in an li, before the "Add a tag" link li
+           var $newFormLi = $('{{ beginr|raw }}{{ endr|raw }}').append(newForm);
+           $collectionHolder.append($newFormLi);
+               onAdded($newFormLi);
+           }
+           else
+
+               e.parentNode.parentNode.parentNode.parentNode.remove();
+       }
+
+    </script>
+    {% block actions %}
+        {% endblock %}
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends  app.request.isXmlHttpRequest ?'CommonAdminBaseBundle:Default:_ajax_layout.html.twig':'CommonAdminBaseBundle:Default:_layout.html.twig' %}
+
+{% block breadcumb_child %}
+    {% include 'CommonAdminBaseBundle:Default:_bread_item.html.twig' with {last:true,name:('options.list'|trans)} %}
+
+
+{% endblock %}
+{% block error %}
+    {% endblock %}
+{% block top_navigation %}
+{% endblock %}
+{% block title %}   {% trans %} options.list{% endtrans %}{% endblock %}
+{% block content %}
+    <div class="view_options">
+
+
+    {% for entity in entities %}
+ {% include 'CommonAdminBaseBundle:Options:view_item.html.twig' with {view:entity} %}
+        {% endfor %}  </div>
+    {% endblock %}
+{% block javascript %}
+
+<script>
+
+    assign_event('.content-wrapper',null,'.content-wrapper a');
+    </script>
+    {% endblock %}

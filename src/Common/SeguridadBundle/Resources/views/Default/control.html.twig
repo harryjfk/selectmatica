@@ -1,0 +1,80 @@
+{% extends  'CommonAdminBaseBundle:Default:_list.html.twig'  %}
+{% block breadcumb_child %}
+    <li>{% trans %} users.list{% endtrans %}</li>
+{% endblock %}
+{% block title  %} {% trans %}users.list{% endtrans %}{% endblock %}
+
+{% set paramsUrl = {itemid: app.request.get('itemid')} %}
+{% block header_url %}
+    '{{ url('seguridad_control') }}'
+{% endblock %}
+       {% block form_action %}
+{{ path('seguridad_control', paramsUrl) }}
+    {% endblock %}
+ {% block top_navigation %}
+
+{% endblock %}
+{% block columns%}
+        <tr>
+
+            <th>{{ knp_pagination_sortable(entities, 'nombre' | trans({}, 'seguridad'), 'u.nombre') }}</th>
+
+    <th >
+        {% trans %} actions.label{% endtrans %}
+    </th>
+</tr>
+
+    <tr>
+
+        <th >     <input type="text" id="nombrec" name="nombrec" value="{{ app.request.get('nombrec') }}" class="form-control" />
+        </th>
+
+        <th >
+            <button type="submit" class="btn blue fa fa-search"></button>
+        </th>
+
+    </tr>
+
+{% endblock columns%}
+
+{% block list_content %}
+    {% set usersess = app.user %}
+    {% set puedeEditar = priviligies['edit'] %}
+
+    {% for entity in entities %}
+{% if entity.nombre!=app.user.nombre %}
+        {% set showEdit = (not entity.esadmin and puedeEditar) ? true : usersess.id == entity.id %}
+
+        <tr id="rw{{ entity.id }}">
+
+ {{ controller.BindCliente(controller,entity) }}
+              <td>{{ entity.cliente.nombre}}</td>
+               <td><a href="{{ url('seguridad_control_user',{user:entity.email}) }}" class="non-ajax">
+
+                    <span class="glyphicon glyphicon-user"></span>
+                </a></td>
+        </tr>
+        {% endif %}
+    {% endfor %}
+
+</form>
+    <script type="text/javascript">
+        jQuery(function () {
+
+
+
+
+            MKAjax.paginate('.pagination a, th a, .edit, .new', 'content-wrapper', 'frmsearch');
+            //jQuery('label').asetAjaxUpdateFormddClass('active');
+
+            //App.init();//inicializa los controles
+
+        });
+    </script>
+
+{% endblock %}
+
+{% block delete_item %}
+    '{{ path('seguridad_register_delete_user', paramsUrl) }}'
+{% endblock %}
+{% block new_item %}{{ path('seguridad_register_create', paramsUrl) }}{% endblock %}

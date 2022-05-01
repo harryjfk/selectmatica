@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pdf SYSTEM "%resources%/dtd/doctype.dtd">
+<pdf>
+    <dynamic-page>
+        <placeholders>
+            <header>
+                <div height="65px">
+                    <img float="left" height="65px" width="65px" src="{{ app_file  }}" />
+
+                    <div float="right" color="#0e6cab" width="90%"  text-align="center" font-size="60px" font-style="bold" >
+                        {{ app_name|raw|upper }}
+                    </div>
+                </div>
+            </header>
+            {#
+            <footer>
+                <div class="footer">
+                    <table>
+                        <tr>
+                            <td><b>Invoice Date: </b> 01/27/2010</td>
+                            <td><b>Due Date: </b> 01/27/2010</td>
+                            <td><b>Terms: </b> Due Upon Receipt</td>
+                            <td><b>Customer Id: </b> 0123456789SomeId</td>
+                        </tr>
+                    </table>
+                </div>
+            </footer>#}
+        </placeholders>
+
+        <div class="top-info">
+        <div class="left-info w50">
+        <div>
+            <p>{{ app_resp }}</p>
+            <p>CIF: {{ app_cif }}</p>
+            <p>{{ app_resp2 }}</p>
+        </div>
+        <div>
+            <p>{{ app_dir }}</p>
+            <p>Telf:{{ app_telf }} - Fax</p>
+            <p>{{ app_mail }}</p>
+        </div>
+            <div class="left-footer">
+                <div class="w50"><p>Presupuesto</p></div>
+                <div class="w50"><p>Código cliente :{{ entities.user.cliente.id }}</p></div>
+            </div>
+        </div>
+        <div class="right-info w49">
+            <div >
+                <p>{{ entities.user.cliente.nombre }}</p>
+            </div>
+            <div>
+                <p> {{ entities.user.cliente.direccion }}</p>
+            </div>
+            <div >
+                <p>NIF : CIF {{ entities.user.cliente.nif }}</p>
+            </div>
+        </div>
+
+        </div>
+        <table class="invoice">
+            <tr class="head">
+                <td>No</td>
+                <td>Fecha</td>
+                <td width="140">Fecha aprox. de entrega</td>
+
+                <td>Forma de pago</td>
+                <td>Página</td>
+            </tr>
+            <tr>
+                <td class="center">{% if entities.clave=="" %} - {% else %}{{ entities.clave }}{% endif %}</td>
+                <td>{{ entities.date|date('d-m-Y') }}</td>
+                <td class="center">{{ (entities.deliveraprox)|date('d-m-Y') }}</td>
+                <td class="center">{{ entities.user.cliente.FormaPagoObject.descripcion }}</td>
+                <td class="center"><page-number /></td>
+            </tr>
+
+        </table>
+        <table class="invoice">
+            <tr class="head">
+                <td>Articulo</td>
+
+                <td width="140">Descripcion</td>
+
+                <td>Unid.</td>
+                <td>Precio</td>
+                <td>Descuento</td>
+
+                <td>Importe</td>
+
+            </tr>
+            {% for lines in form.children  %}
+                {% for line in lines %}
+                    {% include "@StoreStore/Cart/line_item_view_pdf.html.twig" with {line:line,tarifa:tarifa} %}
+                {% endfor %}
+            {% endfor %}
+            <tr>
+                <td></td>
+                <td></td>
+                <td class="center">{{ entities.totalamount}}</td>
+                <td></td>   <td></td>
+                <td class="center">{{ entities.totalprice(tarifa)|number_format(3,',','.') }}€</td>
+            </tr>
+
+        </table>
+        <div class="before-sumary">
+           <p>Portes: </p>
+        <p>Gastos: </p>
+        </div>
+        <table class="invoice">
+            <tr class="head">
+                <td>Total Neto</td>
+
+                <td >%</td>
+
+                <td>Desc. PP</td>
+                <td>Base Imp</td>
+                <td>%</td>
+
+                <td>Cuota IVA</td>
+                <td>%</td>
+
+                <td>Cuota RE</td>
+                <td>Total</td>
+            </tr>
+            <tr>
+                <td class="center">{{ entities.totalprice(tarifa)|number_format(3,',','.') }}€</td>
+                <td class="center">{{ entities.pp|number_format(3,',','.')  }}</td>
+                <td class="center">{{ entities.ppvalue(tarifa)|number_format(3,',','.')  }}</td>
+                <td class="center">{{ entities.baseimporte(tarifa)|number_format(3,',','.') }}€</td>
+                <td class="center">{{ entities.iva|number_format(3,',','.')  }}</td>
+                <td class="center">{{ entities.ivavalue(tarifa)|number_format(3,',','.')  }}€</td>
+                <td class="center">{{ entities.re |number_format(3,',','.') }}</td>
+                <td class="center">{{ entities.revalue(tarifa)|number_format(3,',','.')  }}€</td>
+                <td class="center">{{ entities.ImpuestoPrice(tarifa)|number_format(3,',','.')  }}€</td>
+            </tr>
+            </table>
+        <table class="invoice">
+            <tr class="head">
+                <td>Observaciones</td>
+
+                <td >Condiciones de presupuesto</td>
+
+            </tr>
+            <tr>
+                <td >{{ entities.observaciones}}</td>
+                <td ><p>Este presupuesto solo hace referencia a lo aquí
+                        presupuestado.
+                       </p>
+                    <p>
+                        Cualquier material adicional a este presupuesto y que sea
+                        necesario, se presupuesta aparte.
+                       </p>
+                    <p>
+                        Este presupuesto tiene una validez de 7 días a partir de la
+                        fecha del mismo.</p></td>
+            </tr>
+        </table>
+    </dynamic-page>
+</pdf>

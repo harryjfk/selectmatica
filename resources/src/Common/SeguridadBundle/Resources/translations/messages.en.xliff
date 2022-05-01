@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="es" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>js_seleccionar_elemento</source>
+                <target>You must select at least one item from the list</target>
+            </trans-unit>             
+            <trans-unit id="2">
+                <source>js_eliminar_seleccionados</source>
+                <target>Are you sure that you want to delete the selected items?</target>
+            </trans-unit>             
+            <trans-unit id="3">
+                <source>js_eliminados_correctamente</source>
+                <target>The data has been deleted successfully</target>
+            </trans-unit>             
+            <trans-unit id="4">
+                <source>js_datos_guardados</source>
+                <target>The data  has been saved successfully</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>js_datos_no_guardados</source>
+                <target>The data doesn't has been saved successfully </target>
+            </trans-unit>           
+            <trans-unit id="6">
+                <source>acceso_denegado</source>
+                <target>Access denied</target>
+            </trans-unit> 
+            <trans-unit id="7">
+                <source>no_eliminar_admin</source>
+                <target>You can't delete a administrator account</target>
+            </trans-unit> 
+            <trans-unit id="8">
+                <source>fecha_inicio_mayor_fin</source>
+                <target>The start date must be minor or equal that the end date</target>
+            </trans-unit> 
+            <trans-unit id="9">
+                <source>bd_no_respaldada</source>
+                <target>The database doesn't has been backup</target>
+            </trans-unit> 
+            <trans-unit id="10">
+                <source>bd_respaldada</source>
+                <target>LThe database has been backup successfully</target>
+            </trans-unit> 
+            <trans-unit id="11">
+                <source>usuario_pass_nocoincide</source>
+                <target>User and password doesn't match</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>users.list</source>
+                <target>Users List</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>usergroups.list</source>
+                <target>Users Groups List</target>
+            </trans-unit>
+            <trans-unit id="14">
+                <source>clients</source>
+                <target>Client</target>
+            </trans-unit>
+           <trans-unit id="15">
+                <source>entity.new</source>
+                <target>New</target>
+             </trans-unit>
+           <trans-unit id="16">
+                <source>entity.delete</source>
+                <target>Delete</target>
+             </trans-unit>
+           <trans-unit id="17">
+                <source>entity.edit</source>
+                <target>Edit</target>
+             </trans-unit>
+           <trans-unit id="18">
+                <source>profile</source>
+                <target>Profile</target>
+             </trans-unit>
+           <trans-unit id="19">
+                <source>profile.change</source>
+                <target>Change</target>
+             </trans-unit>
+           <trans-unit id="20">
+                <source>user.control</source>
+                <target>Buy as user</target>
+             </trans-unit>
+           <trans-unit id="21">
+                <source>user.control.exit</source>
+                <target>Exit Control</target>
+             </trans-unit>
+           <trans-unit id="22">
+                <source>comercial</source>
+                <target> ERP Manage Correspondence</target>
+             </trans-unit>
+           <trans-unit id="23">
+                <source>user.info</source>
+                <target>General</target>
+             </trans-unit>
+        </body>
+    </file>
+</xliff>

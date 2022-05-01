@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Store\StoreBundle\Entity\Facturas" table="factura">
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="idcliente" type="integer" column="idcliente" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+      <field name="serie" type="string" column="serie" nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="ano" type="integer" column="ano" nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="importe" type="string" column="importe" nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="path" type="string" column="path" nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="numero" type="string" column="numero" nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+  </entity>
+</doctrine-mapping>

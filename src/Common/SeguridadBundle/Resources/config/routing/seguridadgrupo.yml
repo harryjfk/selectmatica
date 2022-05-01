@@ -1,0 +1,30 @@
+grupo:
+    path:     /
+    defaults: { _controller: "CommonSeguridadBundle:SeguridadGrupo:index" }
+
+grupo_show:
+    path:     /{id}/show
+    defaults: { _controller: "CommonSeguridadBundle:SeguridadGrupo:show" }
+
+grupo_new:
+    path:     /new
+    defaults: { _controller: "CommonSeguridadBundle:SeguridadGrupo:new" }
+
+grupo_create:
+    path:     /create
+    defaults: { _controller: "CommonSeguridadBundle:SeguridadGrupo:create" }
+    methods:  POST
+
+grupo_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "CommonSeguridadBundle:SeguridadGrupo:edit" }
+
+grupo_update:
+    path:     /{id}/update
+    defaults: { _controller: "CommonSeguridadBundle:SeguridadGrupo:update" }
+    methods:  [POST, PUT]
+
+grupo_delete:
+    path:     /delete
+    defaults: { _controller: "CommonSeguridadBundle:SeguridadGrupo:delete" }
+    methods:  [POST, DELETE]

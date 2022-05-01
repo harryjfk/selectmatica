@@ -1,0 +1,47 @@
+{% extends 'CommonAdminBaseBundle:Default:_list.html.twig' %}
+{% block breadcumb_child %}
+    <li>{% trans %} category.list{% endtrans %}</li>
+    {% endblock %}
+
+{% block new_item %}{% endblock %}
+{% block delete_item %}''{% endblock %}
+{% block form_action %}{{ url('category_list') }}{% endblock %}
+{% block title  %} {% trans %} category.list{% endtrans %}{% endblock %}
+   {% block additional_controls %}
+   {#    {% include "@StoreStore/Producto/_syncronize.html.twig" %} #}  {% endblock %}
+{% block header_url %}
+    '{{ url('category_list') }}'
+{% endblock %}
+{% block columns%}
+
+    <th> {% trans %} product.id{% endtrans %}</th>
+    <th>{{ knp_pagination_sortable(entities,'category.name' , 'a.name') }}</th>
+
+
+    {% endblock columns%}
+
+{% block list_content %}
+
+
+    {% for entity in entities %}
+        <tr role="row" class="odd">
+            <td class="sorting_1 {% if entity.length==1  %} familia {% else %} {% if entity.length==2  %}subfamilia{% endif %}{% endif %}"><a href="{{ path('category_edit', { 'id': entity.id }) }}">{{ entity.idsrc }}</a></td>
+            <td class="sorting_1 {% if entity.length==1  %} familia {% else %} {% if entity.length==2  %}subfamilia{% endif %}{% endif %}"><a href="{{ path('category_edit', { 'id': entity.id }) }}">{{ entity.name }}</a></td>
+            <td> <ul class="list-actions">
+       {#        <li>
+                        <a href="{{ path('category_new') }}"> <span class="glyphicon glyphicon-plus"></span></a>
+                    </li>
+                    <li>
+                        <a href="{{ path('category_edit', { 'id': entity.id }) }}"> <span class="glyphicon glyphicon-edit"></span></a>
+                    </li>
+                    <li>
+                        <a href="{{ path('category_delete', { 'id': entity.id }) }}"> <span class="glyphicon glyphicon-remove"></span></a>
+                    </li>#}
+                </ul></td>
+        </tr>
+    {% endfor %}
+{% endblock %}
+
+{% block list_footer %}
+    <th rowspan="1" colspan="1">{% trans %} category.name{% endtrans %}</th>
+{% endblock %}

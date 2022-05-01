@@ -1,0 +1,131 @@
+{% extends 'CommonAdminBaseBundle:Default:_list.html.twig' %}
+{% block breadcumb_child %}
+    <li>{% trans %}  product.list{% endtrans %}</li>
+{% endblock %}
+
+{% block title  %} {% trans %}  product.list{% endtrans %}{% endblock %}
+   {% block additional_controls %}
+     {#  {% include "@StoreStore/Producto/_syncronize.html.twig" %}#}
+   {% endblock %}
+{% block data_filter %}
+    {% endblock %}
+{% block new_item %}{% endblock %}
+{% block delete_item %}''{% endblock %}
+{% block form_action %}{{ url('producto_list') }}{% endblock %}
+
+{% block header_url %}
+    '{{ url('producto_list') }}'
+    {% endblock %}
+
+{% block columns%}
+
+    <tr>
+<th>{% trans %}product.id{% endtrans %}</th>
+    <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+        aria-sort="ascending"
+        aria-label="Rendering engine: activate to sort column descending">{{ knp_pagination_sortable(entities,  'product.name' , 'a.idproducto') }}</th>
+        {% if ops==true %}
+        <th>{% trans %}product.section{% endtrans %}</th>
+        {% endif %}
+        {% if opf==true %}
+        <th>{% trans %}product.family{% endtrans %}</th>
+        {% endif %}
+        {% if opsf==true %}
+        <th>{% trans %}product.subfamily{% endtrans %}</th>
+{% endif %}
+    <th >
+
+        {% trans %} actions.label{% endtrans %}
+    </th>
+    </tr>
+    <tr>
+        <th> <input type="text" id="codigo" name="codigo" value="{{ search==null? app.request.get('codigo'):search['codigo'] }}" class="form-control" /></th>
+        <th> <input type="text" id="producto" name="producto" value="{{search==null? app.request.get('producto'):search['producto'] }}" class="form-control" /></th>
+       {% if ops==true %}
+        <th>    <input type="text" id="seccion" name="seccion" value="{{ search==null?app.request.get('seccion'):search['seccion'] }}" class="form-control" />
+        </th>
+        {% endif %}
+        {% if opf==true %}
+        <th >     <input type="text" id="familia" name="familia" value="{{ search==null?app.request.get('familia'):search['familia'] }}" class="form-control" />
+        </th>
+        {% endif %}
+        <th>      <input type="text" id="subfamilia" name="subfamilia" value="{{ search==null?app.request.get('subfamilia'):search['subfamilia'] }}" class="form-control" />
+        </th>
+        {% if opsf==true %}
+        <th >
+            <button type="submit" class="btn blue fa fa-search"></button>
+        </th>
+        {% endif %}
+
+    </tr>
+{% endblock columns%}
+{% block list_content %}
+
+        {% for entity in entities %}
+    <tr role="row" class="odd">
+        <td class="sorting_1"><a  href="{{ path('producto_edit', { 'id': entity.id }) }}">    {% if  entity.producto!=null %}
+                    {{ entity.producto.id }}
+                {% endif %}</a></td>
+        <td class="sorting_1"><a  href="{{ path('producto_edit', { 'id': entity.id }) }}">    {% if  entity.producto!=null %}
+                    {{ entity.producto.nombre }}
+                {% endif %}</a></td>
+        {% if ops==true %}
+        <td class="sorting_1"><a  href="{{ path('producto_edit', { 'id': entity.id }) }}">    {% if  entity.producto!=null %}
+               {% set seccion = entity.idcategory.ParentByLength(1) %}
+
+                    {% if seccion!=null %}
+                    {{ seccion.name}}
+                        {% endif %}
+                {% endif %}</a></td>
+        {% endif %}
+        {% if opf==true %}
+        <td class="sorting_1"><a  href="{{ path('producto_edit', { 'id': entity.id }) }}">    {% if  entity.producto!=null %}
+
+                    {% set seccion = entity.idcategory.ParentByLength(2) %}
+
+                    {% if seccion!=null %}
+                        {{ seccion.name}}
+                    {% endif %}
+                {% endif %}</a></td>
+        {% endif %}
+        {% if opsf==true %}
+        <td class="sorting_1"><a  href="{{ path('producto_edit', { 'id': entity.id }) }}">    {% if  entity.producto!=null %}
+                    {% set seccion = entity.idcategory.ParentByLength(3) %}
+
+                    {% if seccion!=null %}
+                        {{ seccion.name}}
+                    {% endif %}
+
+                {% endif %}</a></td>
+        {% endif %}
+        <td> <ul class="list-actions">
+                <li>
+                    <a href="{{ path('producto_edit', { 'id': entity.id }) }}"> <span class="glyphicon glyphicon-edit"></span></a>
+                </li>
+         {#      <li>
+                    <a aria-controls="gridview" href="{{ path('producto_delete', { 'id': entity.id }) }}"> <span class="glyphicon glyphicon-remove"></span></a>
+                </li>#}
+            </ul></td>
+    </tr>
+
+        {% endfor %}
+
+
+    {% endblock %}
+{% block list_footer %}
+    <th>{% trans %}product.id{% endtrans %}</th>
+    <th rowspan="1" colspan="1">{% trans %} product.name{% endtrans %}</th>
+    {% if ops==true %}
+        <th>{% trans %}product.section{% endtrans %}</th>
+    {% endif %}
+    {% if opf==true %}
+        <th>{% trans %}product.family{% endtrans %}</th>
+    {% endif %}
+    {% if opsf==true %}
+        <th>{% trans %}product.subfamily{% endtrans %}</th>
+    {% endif %}
+
+
+    <th rowspan="1" colspan="1">  {% trans %} actions.label{% endtrans %}</th>
+{% endblock %}
+

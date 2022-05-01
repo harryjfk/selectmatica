@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="es" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="1">
+                <source>js_seleccionar_elemento</source>
+                <target>Debe seleccionar al menos un elemento del listado</target>
+            </trans-unit>             
+            <trans-unit id="2">
+                <source>js_eliminar_seleccionados</source>
+                <target>¿Está seguro que desea eliminar los elementos seleccionados?</target>
+            </trans-unit>             
+            <trans-unit id="3">
+                <source>js_eliminados_correctamente</source>
+                <target>Los datos se han eliminado correctamente</target>
+            </trans-unit>             
+            <trans-unit id="4">
+                <source>js_datos_guardados</source>
+                <target>Los datos se han guardado correctamente</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>js_datos_no_guardados</source>
+                <target>Los datos no se han podido guardar</target>
+            </trans-unit>           
+            <trans-unit id="6">
+                <source>acceso_denegado</source>
+                <target>Acceso denegado</target>
+            </trans-unit> 
+            <trans-unit id="7">
+                <source>no_eliminar_admin</source>
+                <target>No puedes eliminar un administrador</target>
+            </trans-unit> 
+            <trans-unit id="8">
+                <source>fecha_inicio_mayor_fin</source>
+                <target>La fecha de inicio debe ser menor o igual a la de fin</target>
+            </trans-unit> 
+            <trans-unit id="9">
+                <source>bd_no_respaldada</source>
+                <target>La base de datos no se ha podido respaldar</target>
+            </trans-unit> 
+            <trans-unit id="10">
+                <source>bd_respaldada</source>
+                <target>La base de datos se ha respaldado correctamente</target>
+            </trans-unit> 
+            <trans-unit id="11">
+                <source>usuario_pass_nocoincide</source>
+                <target>El usuario y la contraseña no coinciden</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>users.list</source>
+                <target>Lista de usuario</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>usergroups.list</source>
+                <target>Lista de grupo de usuarios</target>
+            </trans-unit>
+            <trans-unit id="14">
+                <source>clients</source>
+                <target>Cliente</target>
+            </trans-unit>
+           <trans-unit id="15">
+                <source>entity.new</source>
+                <target>Nuevo</target>
+             </trans-unit>
+           <trans-unit id="16">
+                <source>entity.delete</source>
+                <target>Eliminar</target>
+             </trans-unit>
+           <trans-unit id="17">
+                <source>entity.edit</source>
+                <target>editar</target>
+             </trans-unit>
+           <trans-unit id="18">
+                <source>profile</source>
+                <target>Perfil</target>
+             </trans-unit>
+           <trans-unit id="19">
+                <source>profile.change</source>
+                <target>Cambiar</target>
+             </trans-unit>
+          <trans-unit id="20">
+                <source>user.control</source>
+                <target>Entrar como usuario</target>
+             </trans-unit>
+           <trans-unit id="21">
+                <source>user.control.exit</source>
+                <target>Dejar de controlar</target>
+             </trans-unit>
+           <trans-unit id="22">
+                <source>comercial</source>
+                <target>Correspondencia con ERP Gestión</target>
+             </trans-unit>
+          <trans-unit id="23">
+                <source>user.info</source>
+                <target>Información</target>
+             </trans-unit>
+        </body>
+    </file>
+</xliff>

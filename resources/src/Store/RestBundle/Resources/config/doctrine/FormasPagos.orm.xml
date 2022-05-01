@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Store\RestBundle\Entity\FormasPagos" table="formas-pago">
+      <id name="id" type="string" column="id"  >
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </id>
+      <field name="descripcion" type="string" column="descripcion"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="prontoPago" type="string" column="prontoPago"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="numeroVencimientos" type="float" column="numeroVencimientos"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="cobroDirecto" type="boolean" column="cobroDirecto"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="negociable" type="boolean" column="negociable"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="porcentajeRecargoFinanciero" type="float" column="porcentajeRecargoFinanciero"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="clasificacionRiesgo" type="float" column="clasificacionRiesgo"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="negativos" type="boolean" column="negativos"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="medioPago" type="string" column="medioPago"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="reembolso" type="boolean" column="reembolso"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="autorizacionAutomaticaPedidos" type="boolean" column="autorizacionAutomaticaPedidos"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="lineas" type="string" column="lineas"  nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+
+
+  </entity>
+</doctrine-mapping>

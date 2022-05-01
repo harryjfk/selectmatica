@@ -1,0 +1,40 @@
+<html>
+<head>
+    {% include '@CommonAdminBase/Default/_links.html.twig' with {server:true}%}
+
+    <style  > .product-number
+        {
+            margin-left: 1px !important;
+        }
+     * {background: white !important;}
+        .col-xs-12 a {padding: 0 !important;}
+        body {background:white!important;}
+    </style>
+</head>
+
+
+<body >
+
+
+<div class="row">
+
+
+{% for product in entities %}
+    {% include 'StoreStoreBundle:Producto:show.html.twig' with {product:product,base_dir:base_dir,simple:true} %}
+{% endfor %}
+</div>
+<script src="{{ asset('bundles/storebundle/js/jQuery-2.2.0.min.js') }}"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="{{ asset('bundles/adminbundle/js/jquery-ui.min.js') }}"></script>
+
+<script>
+    $('a').on('click',function (event) {
+        event.stopPropagation();
+        event.preventDefault();
+
+        window.parent.document.location=$(this).attr('href');
+    })
+</script>
+
+</body>
+</html>

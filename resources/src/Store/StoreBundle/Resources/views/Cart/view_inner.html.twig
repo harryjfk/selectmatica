@@ -1,0 +1,144 @@
+<div class="col-xs-12 cart">
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <div class="portlet yellow-crusta box">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-cogs"></i>{% trans %}order.details{% endtrans %} </div>
+
+                </div>
+                <div class="portlet-body">
+                    <div class="row static-info">
+                        <div class="col-md-5 name"> {% trans %}cart.id{% endtrans %}:</div>
+                        <div class="col-md-7 value"> {{ entities.no }}
+                            {% if entities.ordered %}
+                            <span class="label label-info label-sm"> {% trans %} order.mailsend{% endtrans %} </span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name"> {% trans %}cart.date{% endtrans %}:</div>
+                        <div class="col-md-7 value"> {{ entities.date|date('d-m-Y') }} </div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">  {% trans %}cart.status{% endtrans %}:</div>
+                        <div class="col-md-7 value">
+                                                                            <span class="label label-success"> {% if entities.ordered %}
+                                                                                    {% trans %}cart.status.closed{% endtrans %}
+                                                                                {% else %}
+                                                                                    {% trans %}cart.status.open{% endtrans %}{% endif %}</span>
+                        </div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name"> {% trans %}cart.total{% endtrans %}:</div>
+                        <div class="col-md-7 value"> {{ entities.IVAPrice(tarifa)|number_format(3,',','.') }}  €</div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name"> {% trans %}cart.payment{% endtrans %}:</div>
+                        <div class="col-md-7 value">{{ entities.user.cliente. FormaPagoObject.descripcion }} </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="portlet blue-hoki box">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-cogs"></i>{% trans %} cart.customer.info{% endtrans %} </div>
+
+                </div>
+                <div class="portlet-body">
+                    <div class="row static-info">
+                        <div class="col-md-5 name"> {% trans %}cart.customer.name{% endtrans %}:</div>
+                        <div class="col-md-7 value"> {{ entities.user.nombre }} </div>
+                    </div>
+                    <div class="row static-info">
+                        <div class="col-md-5 name">{% trans %} cart.customer.mail{% endtrans %}:</div>
+                        <div class="col-md-7 value"> {{ entities.user.email }}</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="portlet grey-cascade box">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <i class="fa fa-cogs"></i>{% trans %}product.list{% endtrans %} </div>
+                </div>
+                <div class="portlet-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th> {% trans %}image.name{% endtrans %} </th>
+                                <th> {% trans %}product.name{% endtrans %} </th>
+                                <th> {% trans %}price.amount{% endtrans %}</th>
+                                <th> {% trans %}cart.amount{% endtrans %} </th>
+                                <th>{% trans %}price.discount{% endtrans %} </th>
+                                <th> {% trans %}price.gift{% endtrans %} </th>
+                                <th></th>
+                                <th> {% trans %}cart.reducedprice{% endtrans %}  </th>
+                                <th> {% trans %}cart.totaliva{% endtrans %}  </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {% for line in entities.lines %}
+                                {% include "@StoreStore/Cart/line_item_view.html.twig" with {line:line,tarifa:tarifa} %}
+                            {% endfor %}
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-6">
+
+            <div class="well">
+                <div class="row static-info ">
+                    <div class="col-md-8 name"> {% trans %} cart.observations{% endtrans %}:</div>
+                    <div class="col-md-3 value cart-amount">{{ entities.observaciones }} </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="well">
+                <div class="row static-info align-reverse">
+                    <div class="col-md-8 name"> {% trans %} total.amount{% endtrans %}:</div>
+                    <div class="col-md-3 value cart-amount">{{ entities.TotalAmount }} </div>
+                </div>
+                <div class="row static-info align-reverse">
+                    <div class="col-md-8 name"> {% trans %} total.gift{% endtrans %}:</div>
+                    <div class="col-md-3 value total-gift">{{ entities.TotalGift }} </div>
+                </div>
+                <div class="row static-info align-reverse">
+                    <div class="col-md-8 name">   {% trans %} cart.subtotal {% endtrans %}: </div>
+                    <div class="col-md-3 value cart-sub-total"> {{ entities.totalprice(tarifa)|number_format(3,',','.') }}€ </div>
+                </div>
+
+                <div class="row static-info align-reverse">
+                    <div class="col-md-8 name">   IVA: </div>
+                    <div class="col-md-3 value cart-total-iva"> {{ entities.IVAValue(tarifa)|number_format(3,',','.')  }}€ </div>
+                </div>
+                <div class="row static-info align-reverse">
+
+                    <div class="col-md-8 name">   {% trans %} cart.total {% endtrans %}: </div>
+                    <div class="col-md-3 value cart-total"> {{ entities.ImpuestoPrice(tarifa)|number_format(3,',','.') }}€</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

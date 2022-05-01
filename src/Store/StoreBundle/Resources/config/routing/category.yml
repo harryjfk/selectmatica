@@ -1,0 +1,46 @@
+category_list:
+    path:     /
+    defaults: { _controller: "StoreStoreBundle:Category:index" }
+
+category_show:
+    path:     /{id}/show
+    defaults: { _controller: "StoreStoreBundle:Category:show" }
+
+category_new:
+    path:     /new
+    defaults: { _controller: "StoreStoreBundle:Category:new" }
+
+category_create:
+    path:     /create
+    defaults: { _controller: "StoreStoreBundle:Category:create" }
+    methods:  POST
+
+category_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "StoreStoreBundle:Category:edit" }
+
+category_update:
+    path:     /{id}/update
+    defaults: { _controller: "StoreStoreBundle:Category:update" }
+    methods:  [POST, PUT]
+
+category_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "StoreStoreBundle:Category:delete" }
+    methods:  [GET, DELETE]
+
+category_sync:
+    path:     /sync
+    defaults: { _controller: "StoreStoreBundle:Category:sync" }
+    methods:
+category_prods :
+      path:     /{id}/products
+      defaults: { _controller: "StoreStoreBundle:Category:products" }
+      methods:
+category_nav:
+      path :  /nav
+      defaults: { _controller: "StoreStoreBundle:Category:nav" }
+
+category_bread:
+      path:   /bread/{id}
+      defaults:  {_controller:"StoreStoreBundle:Category:bread"}

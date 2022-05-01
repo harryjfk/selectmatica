@@ -1,0 +1,30 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Cart</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Iduser</th>
+                <td>{{ entity.iduser }}</td>
+            </tr>
+            <tr>
+                <th>Ordered</th>
+                <td>{{ entity.ordered }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ entity.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('cart') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+{% endblock %}

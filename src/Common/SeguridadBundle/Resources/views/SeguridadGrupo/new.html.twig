@@ -1,0 +1,72 @@
+{% extends app.request.isXmlHttpRequest ? 'CommonAdminBaseBundle:Default:_ajax_layout.html.twig' : 'CommonAdminBaseBundle:Default:index.html.twig' %}
+
+
+{% set titlePage = 'grupo_usuario' | trans({}, 'seguridad') %} 
+{% set tit = 'crear_X' | trans({'%nombre%':  titlePage }, 'backend') %} 
+{% block title %} {{ tit }} {% endblock %} 
+
+{% block update -%}
+    <div class="portlet">
+        <div class="portlet-title">
+            <div class="caption">{{ tit }}</div>            
+        </div>
+
+        {% for tipo, mensajes in app.session.flashbag.all() %}
+            {% for mensaje in mensajes %}
+                <div class="{{ tipo }}">{{ mensaje }}</div>
+            {% endfor %}
+        {% endfor %}
+
+        {{ form_start(form, { attr:{id:form.vars.id} } ) }}
+        <div class="sepnorth">
+            <div class="row">
+                <div class="col-md-12">
+                    {{ form_row(form.nombreGrupo, {'attr':{'class': 'form-control'} }) }} 
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    {{ form_row(form.rol, {'attr':{'class': 'form-control'} }) }} 
+                </div> 
+            </div>
+
+            <div class="tc">
+                {{ form_row(form.submit, {'attr': {'class': 'btn blue'} }) }} 
+                {{ form_row(form.button, {'attr': {'class': 'btn', 'id': 'btnback'} }) }} 
+            </div>
+        </div>
+        {{ form_end(form) }}
+    </div>
+    <script type="text/javascript">
+
+        jQuery(document).ready(function () {
+
+            /* jQuery('#{{ form.vars.id }}').on('submit', function (e) {
+             e.preventDefault();
+             var _this = jQuery(this);
+             
+             MKLib.AjaxRequest(_this.attr('action'), _this.attr('id'), function (j) {
+             
+             if (parseInt(j.status) === 1)
+             {
+             MKLib.showMsg('alert-success', '{{ 'js_datos_guardados' | trans({}, 'messages') }}');
+             MKLib.resetForm('{{ form.vars.id }}');
+             }
+             else
+             {
+             MKLib.showMsg('alert-danger', '{{ 'js_datos_no_guardados' | trans({}, 'messages') }}');                        
+             }
+             Util.renderErrors(j.error);
+             MKLib.unlockScreen();
+             }, 'json');
+             
+             });*/
+
+            jQuery('#{{ form.vars.id }}_button').on('click', function () {
+                MKLib.AjaxUpdate('{{ path('grupo') }}', 'dvupdate', '');
+            });
+
+        });
+    </script>
+
+{% endblock %}

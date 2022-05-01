@@ -1,0 +1,156 @@
+    <a  href="#" id="sync_button" class="btn btn-primary non-ajax" onclick="Synclick()">{% trans %} product.sync{% endtrans %}</a>
+    <div id="dialog" title="{% trans %}product.synchronizing{% endtrans %}" style="display: none">
+        <div class='float_left'>
+            <h3>{% trans %}product.sync.progress{%endtrans%}</h3>
+            <div id='progress_wrapper'>
+                <div id="progressor"></div>
+            </div>
+        </div>
+        <div class='float_right'>
+            <h3>{% trans %}product.sync.log{%endtrans%}</h3>
+            <div id="divProgress"></div>
+        </div>
+
+
+
+
+
+         </div>
+
+
+
+<script>
+    function Synclick(e)
+    {
+      //  e.preventDefault();
+        try{
+            progressor.style.width='0%';
+            $('#divProgress')[0].innerHTML='';
+            $('.ui-dialog-title')[0].innerHTML =   "{% trans %}product.synchronizing{% endtrans %}";
+
+        }catch( q){}
+
+
+          $( "#dialog" ).dialog({
+                    draggable: false,modal: true,height:"550",width:"400",
+            buttons: [
+        {
+            text: "OK",
+            click: function() {
+                $( this ).dialog( "close" );
+            }
+        }
+    ]}
+
+        );
+        ajax_stream();
+        }
+var ifrm;
+   function OnComplete()
+    {
+        var t= $('.ui-dialog-title');
+             for(var i=0;i< t.length;i++)
+                t[i].innerHTML = '{% trans %}product.sync.done{% endtrans %}';
+        UpdateCategories();
+        document.location.href = "{{ url('store_homepage') }}";
+        //ifrm.remove();
+    }
+    function ajax_stream(){
+
+       ifrm = document.createElement("IFRAME");
+        ifrm.setAttribute("src", "{{ url('producto_sync') }}");
+        ifrm.style.width = 0+"px";
+        ifrm.style.height = 0+"px";
+        ifrm.style.border = 0;
+        document.body.appendChild(ifrm);
+
+       /*   if (!window.XMLHttpRequest){
+            alert("Your browser does not support the native XMLHttpRequest object.");
+            return;
+        }
+        try{
+            var xhr = new XMLHttpRequest();
+            xhr.previous_text = '';
+
+            xhr.onerror = function() {  $('.ui-dialog-title')[0].innerHTML = '{% trans %}product.sync.error{% endtrans %}';
+                //document.getElementById("divProgress").innerHTML+=e;
+                };
+            xhr.onreadystatechange = function() {
+				alert(xhr.readyState);
+               try{
+                    if (xhr.readyState == 4){
+                        $('.ui-dialog-title')[0].innerHTML = '{% trans %}product.sync.done{% endtrans %}';UpdateCategories();
+                    }
+                    else if (xhr.readyState > 2){
+                        var new_response = xhr.responseText.substring(xhr.previous_text.length);
+                        var result = JSON.parse( new_response );
+
+                  
+						alert(result.message);
+                        addLog( result.message, result.progress);
+
+
+                        xhr.previous_text = xhr.responseText;
+                    }
+                }
+                catch (e){
+                    $('.ui-dialog-title')[0].innerHTML = '{% trans %}product.sync.error{% endtrans %}';
+              //      document.getElementById("divProgress").innerHTML+=e;
+                }
+            };
+            xhr.open("GET", "{{ url('producto_sync') }}", true);
+            xhr.send();
+        }
+        catch (e){
+            $('.ui-dialog-title')[0].innerHTML = '{% trans %}product.sync.error{% endtrans %}';
+        //    document.getElementById("divProgress").innerHTML+=e;
+        }
+		
+		
+		
+		
+      /*  es = new EventSource('sse_progress.php');
+      
+    //a message is received
+    es.addEventListener('message', function(e) {
+        var result = JSON.parse( e.data );
+          
+        addLog(result.message);       
+          
+        if(e.lastEventId == 'CLOSE') {
+            addLog('Received CLOSE closing');
+            es.close();
+            var pBar = document.getElementById('progressor');
+            pBar.value = pBar.max; //max out the progress bar
+        }
+        else {
+           alert(result.message);
+        }
+    });
+      
+    es.addEventListener('error', function(e) {
+        addLog('Error occurred);
+        es.close();
+    });*/
+    }
+	function addLog(message,position) {
+
+      var t=  progressor;
+      if(t.toString().indexOf('HTMLCollection')>0)
+          for(var i=0;i< t.length;i++)
+        t[i].style.width =position+"%";
+        else
+          t.style.width =position+"%";
+       t=  divProgress;
+        if(message!='')
+            if(t.toString().indexOf('HTMLCollection')>0)
+                for(var i=0;i< t.length;i++)
+                    t[i].innerHTML+= message+"<br/>";
+            else
+                t.innerHTML+= message+"<br/>";
+
+
+
+}
+
+</script>

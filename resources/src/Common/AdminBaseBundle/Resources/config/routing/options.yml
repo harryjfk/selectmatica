@@ -1,0 +1,10 @@
+options_list:
+    path:     /{view}
+    defaults: { _controller: "CommonAdminBaseBundle:Options:index" }
+
+options_edit:
+    path:     /{id}/edit/{view}
+    defaults: { _controller: "CommonAdminBaseBundle:Options:show" }
+
+
+

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Store\RestBundle\Entity\Articulos" table="articulos" repository-class="Store\RestBundle\Repository\ArticulosRepository">
+    <id name="id" type="string" column="id">
+       <options>
+        <option name="unsigned"/>
+      </options>
+    </id>
+    <field name="id2" type="integer" column="id2" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+
+      <field name="nombre" type="string" column="nombre" nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="descripcion" type="string" column="descripcion" nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="marca" type="string" column="marca" nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="baja" type="boolean" column="baja" nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="idProveedor" type="integer" column="idProveedor" nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="unidadesCaja" type="float" column="unidadesCaja" nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="imagen" type="string" column="imagen" nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="tarifas" type="string" column="tarifas" nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="precioCosto" type="float" column="precioCosto" nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="ultimoCosto" type="float" column="ultimoCosto" nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="costoMedio" type="float" column="costoMedio" nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="ajuste" type="float" column="ajuste" nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="stock" type="float" column="stock" nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="pendienteRecibir" type="float" column="pendienteRecibir" nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="fechaPendienteRecibir" type="date" column="fechaPendienteRecibir" nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="precioMinimoVenta" type="float" column="precioMinimoVenta" nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="unidadDeMedida" type="float" column="unidadDeMedida" nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="controlaLotes" type="boolean" column="controlaLotes" nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="valorImpuesto" type="float" column="valorImpuesto" nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="codigoImpuesto" type="string" column="codigoImpuesto" nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="envase" type="string" column="envase" nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="envaseBultosUnidades" type="boolean" column="envaseBultosUnidades" nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <field name="idTipoIVA" type="integer" column="idTipoIVA" nullable="false">
+          <options>
+              <option name="unsigned"/>
+          </options>
+      </field>
+      <one-to-many target-entity="Store\RestBundle\Entity\PreciosEspeciales" mapped-by="idArticulo" field="PreciosEspeciales" >
+
+      </one-to-many>
+      <many-to-one field="idSeccion" target-entity="Store\RestBundle\Entity\Secciones" fetch="LAZY">
+          <join-columns>
+              <join-column name="idSeccion" referenced-column-name="id"/>
+          </join-columns>
+      </many-to-one>
+      <many-to-one field="idFamilia" target-entity="Store\RestBundle\Entity\Familias" fetch="LAZY">
+          <join-columns>
+              <join-column name="idFamilia" referenced-column-name="id"/>
+          </join-columns>
+      </many-to-one>
+
+
+     <many-to-one field="idSubfamilia" target-entity="Store\RestBundle\Entity\SubFamilias" fetch="LAZY">
+          <join-columns>
+              <join-column name="idSubfamilia" referenced-column-name="id"/>
+          </join-columns>
+      </many-to-one>
+
+
+
+  </entity>
+</doctrine-mapping>
